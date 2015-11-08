@@ -1,0 +1,216 @@
+<div>
+
+
+
+
+	<ion-view view-title="" hide-back-button="true" align-title="center"> 
+
+    <ion-nav-buttons side="left">
+  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="goBack()"></a>
+   <a align="left" class="button button-icon"
+    ng-click="goBack()"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a>
+  </ion-nav-buttons>
+
+<div class="tabs-striped tabs-top tabs-background-stable">
+    <div class="tabs">
+      <a class="tab-item" href="#/landinfo/review-results">
+        <i ></i>
+        <img  ng-src="{{review_status_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/>
+        Review
+      </a>
+      <a class="tab-item" href="#/landinfo/results">
+        <i></i>
+        <img  ng-src="{{results_status_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/>
+        Result
+      </a>
+      
+    </div>
+</div>
+
+<div>
+
+    <ion-content class="padding">
+
+	<br>
+    <br>
+ 
+	<p>
+		<b> Plot ID </b>
+	</p>
+	<br>
+	<label class="item item-input"> 
+	    <span class="input-label">Plot name</span><span class="input-label">{{plotname(selectedPlot.name)}}</span>
+	</label> 
+	<label class="item item-input"> 
+        <span class="input-label">Recorder name</span><span class="input-label">{{selectedPlot.recorder_name}}</span>
+    </label>  
+    <label class="item item-input"> 
+        <span class="input-label">Organization</span><span class="input-label">{{selectedPlot.organization}}</span>
+    </label> 
+    <label class="item item-input"> 
+        <span class="input-label">Latitude</span><span class="input-label">{{selectedPlot.latitude}}</span>
+    </label>  
+    <label class="item item-input"> 
+        <span class="input-label">Longitude</span><span class="input-label">{{selectedPlot.longitude}}</span>
+    </label>
+   
+    <br>
+	<p>
+		<b> Land Cover </b>
+	</p>
+	<br>
+
+	<label class="item item-input"> 
+        <span class="input-label">Land Cover</span><span class="input-label">{{selectedPlot.land_cover}}</span>
+    </label>   
+    <label class="item item-input"> 
+        <span class="input-label">Grazed</span><span class="input-label">{{selectedPlot.grazed}}</span>
+    </label> 
+    <label class="item item-input"> 
+        <span class="input-label">Flooding</span><span class="input-label">{{selectedPlot.flooding}}</span>
+    </label>
+    
+	<br>
+	<p>
+		<b> Land Use </b>
+	</p>
+	<br>
+
+	<label class="item item-input"> 
+        <span class="input-label">Grazing</span><span class="input-label">{{selectedPlot.grazing}}</span>
+    </label>
+    <br>
+	<p>
+		<b> Slope </b>
+	</p>
+	<br>
+
+	<label class="item item-input"> 
+        <span class="input-label">Slope</span><span class="input-label">{{selectedPlot.slope}}</span>
+    </label>
+    
+    <br>
+	<p>
+		<b> Slope Shape </b>
+	</p>
+	<br>
+
+	<label class="item item-input"> 
+        <span class="input-label">Down slope shape</span><span class="input-label">{{selectedPlot.slope_shape}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Cross slope shape</span><span class="input-label">{{selectedPlot.slope_shape}}</span>
+    </label>
+    <br>
+    <p>
+	  <b> Soil Conditions </b>
+	</p>
+	<br>
+
+	<label class="item item-input"> 
+        <span class="input-label">Surface Cracked</span><span class="input-label">{{selectedPlot.surface_cracking}}</span>
+    </label>
+     <label class="item item-input"> 
+        <span class="input-label">Surface Salt</span><span class="input-label">{{selectedPlot.surface_salt}}</span>
+    </label>
+    
+     <br>
+	<p>
+		<b> Soil Layers </b>
+	</p>
+	<br>
+	<p>0-1cm</p>
+	<br>
+	<label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_1}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_1}}</span>
+    </label>    
+    <br>
+	<p>1-10cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_2}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_2}}</span>
+    </label>    
+    <br>
+	<p>10-20cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_3}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_3}}</span>
+    </label>    
+    <br>
+	<p>20-50cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_4}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_4}}</span>
+    </label>    
+    <br>
+	<p>50-70cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_5}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_5}}</span>
+    </label>    
+    <br>
+	<p>70-100cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_6}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_6}}</span>
+    </label>    
+    <br>
+	<p>100-120cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_7}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_7}}</span>
+    </label>    
+    <br>
+	<p>
+		<b> Photos </b>
+	</p>
+	<br>
+
+	<label class="item item-input"> 
+        <span class="input-label">North</span><img ng-src="{{selectedPlot.landscape_north_photo_url}}" class="image-list-thumb"/>
+    </label>
+   <label class="item item-input"> 
+        <span class="input-label">East</span><img ng-src="{{selectedPlot.landscape_east_photo_url}}" class="image-list-thumb"/>
+   </label>
+    <label class="item item-input"> 
+        <span class="input-label">South</span><img ng-src="{{selectedPlot.landscape_south_photo_url}}" class="image-list-thumb"/>
+   </label> 
+   <label class="item item-input"> 
+        <span class="input-label">West</span><img ng-src="{{selectedPlot.landscape_west_photo_url}}" class="image-list-thumb"/>
+   </label> 
+   <label class="item item-input"> 
+        <span class="input-label">Soil Pit</span><img ng-src="{{selectedPlot.soil_pit_photo_url}}" class="image-list-thumb"/>
+   </label> 
+   <label class="item item-input"> 
+        <span class="input-label">Soil Sample</span><img ng-src="{{selectedPlot.soil_samples_photo_url}}" class="image-list-thumb"/>
+   </label>
+    <label class="item item-input"> 
+        <span class="input-label">Notes</span><span class="input-label">{{selectedPlot.notes}}</span>
+    </label>   
+   </ion-content> 
+  
+</div>
+</ion-view>
+   
+</div>

@@ -1,0 +1,53 @@
+<ion-view align-title="left" hide-back-button="true" cache-view="false">
+<ion-nav-title >
+      <img src="img/ic_launcher.png" class="title-image" align="left">
+    </ion-nav-title>
+
+	 <ion-nav-buttons side="right" style="color: grey;">
+	    <a align="right" class="button button-icon ion-ios-rainy" ng-click="getClimate()"></a>
+	    <a class="button button-icon ion-ios-world" ui-sref="landinfo.plots_map"></a>
+	    <a class="button button-icon ion-plus-round" ui-sref="landinfo.newplot_temp"></a>
+	    <a class="button button-icon ion-gear-b" ui-sref="landinfo.settings"></a>
+	  </ion-nav-buttons>
+
+ 	<ion-content class="padding" >
+	<ion-list> <ion-item ng-repeat="plot in plots" ng-click="selectPlot(plot)" style="vertical-align: middle">
+		{{plotname(plot.name)}}<img  ng-src="{{plot.img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></ion-item></ion-list>
+	<p></p>
+	</ion-content>
+	</ion-view>  
+
+
+
+<!-- <div>
+ <ion-nav-bar class="bar-stable" align-title="left" >
+    
+</ion-nav-bar>
+             
+    <ion-nav-view animation="slide-left-right"> </ion-nav-view>
+<ion-view hide-back-button="true">
+
+	 <ion-nav-buttons side="right">
+	    <a align="right" class="button button-icon ion-ios-rainy" ng-click="getClimate()"></a>
+	    <a class="button button-icon ion-ios-world"></a>
+	    <a class="button button-icon ion-plus-round" ui-sref="landinfo.newplot_temp"></a>
+	    <a class="button button-icon ion-gear-b" ui-sref="landinfo.settings"></a>
+	  </ion-nav-buttons>
+	  </ion-view>
+
+    
+     <ion-view title='<img src="/img/lpks_logo.png" class="title-image">Landinfo' cache-view="false">
+ 	<ion-content class="padding" >
+	<ion-list> <ion-item ng-repeat="plot in plots" ng-click="selectPlot(plot)" style="vertical-align: middle">
+		{{plotname(plot.name)}}<img  ng-src="{{plot.img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></ion-item></ion-list>
+	<p></p>
+	</ion-content>
+	</ion-view>  
+	
+ </div>
+
+
+ -->
+
+
+  

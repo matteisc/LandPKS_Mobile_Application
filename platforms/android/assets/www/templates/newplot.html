@@ -1,0 +1,41 @@
+<!--  <div ng-controller="AddPlot_Edit_Ctrl"> -->
+
+<ion-view view-title="" hide-back-button="true" cache-view="false">
+
+
+<ion-nav-buttons side="left">
+  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="myGoBack()"></a>
+   <a align="left" class="button button-icon"
+    ng-click="myGoBack();"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}}</a>
+  </ion-nav-buttons>
+
+<ion-nav-buttons side="right">
+      <a align="right" class="button button-icon ion-trash-b" ></a>
+      <a align="right" class="button button-icon ion-android-more-vertical" href='#/landinfo/settings'></a>
+      </ion-nav-buttons>
+         <ion-content class="padding">
+            <a class="item item-icon-right" ng-click="gotoAddPlot_Edit_PlotID();">Plot ID
+            <img  ng-src="{{plot_id_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+            <a class="item item-icon-right" href="#/landinfo/landcover">Land Cover
+            <img  ng-src="{{plot_landcover_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+            <a class="item item-icon-right" href="#/landinfo/landuse">Land Use
+            <img  ng-src="{{plot_landuse_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+            <a class="item item-icon-right" href="#/landinfo/slope">Slope
+            <img  ng-src="{{plot_slope_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+            <a class="item item-icon-right" href="#/landinfo/slopeshape">Slope Shape
+            <img  ng-src="{{plot_slopeshape_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+            <a class="item item-icon-right" href="#/landinfo/soilcondition">Soil Conditions
+            <img  ng-src="{{plot_soilcondition_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+            <a class="item item-icon-right" href="#/landinfo/soillayers">Soil Layers
+            <img  ng-src="{{plot_soillayers_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+            <a class="item item-icon-right" href="#/landinfo/photos">Photos
+            <img  ng-src="{{plot_photos_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+            <a class="item item-icon-right" href="#/landinfo/review">Review
+            <img  ng-src="{{plot_review_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+          </p>
+        </ion-content>
+
+
+      </ion-view>
+
+<!--   </div> -->

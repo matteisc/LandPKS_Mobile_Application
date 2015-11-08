@@ -1,0 +1,42 @@
+<ion-view view-title="" hide-back-button="true" cache-view="false">
+<ion-nav-buttons
+	side="left">
+<a align="left" class="button button-icon ion-ios-arrow-back" ng-click="completeAddPlot_PlotID();" ></a>
+	 <a align="left" class="button button-icon"
+	ng-click="completeAddPlot_PlotID();"><img src="img/ic_launcher.png" class="title-image1" align="left">New Plot Detail</a>
+	</ion-nav-buttons>
+
+ <ion-nav-buttons
+	side="right"> <a
+	align="right" class="button button-icon ion-navicon"></a> <a
+	align="right" class="button button-icon ion-android-more-vertical"></a>
+</ion-nav-buttons> <ion-content class="padding"> <label
+	class="item item-input"> <span class="input-label"><b>Plot
+			Name</b>
+</span> <input type="text" id="name"> </label>
+<p></p>
+
+<p align="right">
+	<label>Test Plot?</label> <input type="radio" name="radSize"
+		id="chkTestPlotYes" value="small" checked="checked" /> <label
+		for="sizeSmall">Yes</label> <input type="radio" name="radSize"
+		id="chkTestPlotNo" value="medium" /> <label for="sizeMed">No</label>
+
+</p>
+
+<label class="item item-input"> <span class="input-label"><b>Recorder
+			Name</b>
+</span> <span class="input-label">{{recorder_name}}</span> </label> <label
+	class="item item-input"> <span class="input-label"><b>Organization</b>
+</span> <input type="text" id="organization"> </label>
+<p></p>
+<text> <b>Location (decimal degrees, <10m accuracy) </b></text>
+
+<p align="right">
+	<a class="button icon ion-navigate" ng-click="getLocation();"
+		id="btnObtainGPS">Obtain GPS fix</a>
+</p>
+<label class="item item-input"> <span class="input-label"><b>Latitude</b>
+</span> <input type="number" id="latitude" /> </label> <label class="item item-input">
+	<span class="input-label"><b>Longitude</b>
+</span> <input type="number" id="longitude" /> </label> </ion-content> </ion-view>

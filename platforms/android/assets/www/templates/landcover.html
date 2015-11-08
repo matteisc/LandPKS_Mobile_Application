@@ -1,0 +1,75 @@
+<link href="css/landcover.css" rel="stylesheet">
+
+<ion-view view-title="" cache-view="false"> <ion-nav-buttons
+	side="left"> 
+  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="completeAddPlot_LandCover();" ></a>
+  <a align="left" class="button button-icon" ng-click="completeAddPlot_LandCover();"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> </ion-nav-buttons> 
+	
+	<ion-nav-buttons
+    side="right"> <a
+    align="right" class="button button-icon ion-android-more-vertical"></a>
+</ion-nav-buttons>
+	
+	<ion-content class="padding"> 
+	
+	
+	    <div class="row">
+               <div class="col col-33 ctn box">
+                    <img class="content" ng-src="{{landcover_current_tree}}" ng-click="selectPart1('tree')" style="width:98%; height:85%" />
+               </div>
+               <div class="col col-33 ctn box">
+                    <img class="content" ng-src="{{landcover_current_shrub}}" ng-click="selectPart1('shrubland')" style="width:98%; height:85%"/>
+               </div>
+               <div class="col col-33 divider_left ctn box">
+                    
+               </div> 
+         </div>
+         <!--<div class="row responsive-md"> -->   
+         <div class="row"> 
+               <div class="col col-33 ctn box">
+                    <img class="content" ng-src="{{landcover_current_grass_land}}" ng-click="selectPart1('grassland')" style="width:98%; height:85%"/>
+               </div>
+               <div class="col col-33 ctn box">
+                    <img class="content" ng-src="{{landcover_current_savana}}" ng-click="selectPart1('savanna')" style="width:98%; height:85%"/>
+               </div>
+               <div class="col col-33 ctn divider_left box">
+                    <img class="content" ng-src="{{landcover_current_no_flooded}}" ng-click="selectFlood('not_flooded')" style="width:98%; height:85%"/>
+               </div>
+        </div> 
+         <div class="row">     
+               <div class="col col-33 ctn box">
+                    <img class="content" ng-src="{{landcover_current_garden_mixed}}" ng-click="selectPart1('garden/mixed')" style="width:98%; height:85%"/>
+               </div>
+               <div class="col col-33 ctn box">
+                    <img class="content" ng-src="{{landcover_current_cropland}}" ng-click="selectPart1('cropland')" style="width:98%; height:85%"/>
+               </div>
+               <div class="col col-33 ctn divider_left box">
+                    <img class="content" ng-src="{{landcover_current_flooded}}" ng-click="selectFlood('flooded')" style="width:98%; height:85%"/>
+               </div>
+        </div>
+         
+        <div class="row">     
+               <div class="col col-33 ctn box">
+                    <img class="content" ng-src="{{landcover_current_developed}}" ng-click="selectPart1('developed')" style="width:98%; height:85%"/>
+               </div>
+               <div class="col col-33 ctn box">
+                    <img class="content" ng-src="{{landcover_current_barren}}" ng-click="selectPart1('barren')" style="width:98%; height:85%"/>
+               </div>
+               <div class="col col-33 ctn divider_left">
+                    
+               </div>
+         </div>
+         
+         <div class="row">     
+               <div class="col col-33 ctn box">
+                    <img class="content" ng-src="{{landcover_current_water}}" ng-click="selectPart1('water')" style="width:98%; height:85%"/>
+               </div>
+               <div class="col col-33 ctn">
+                    
+               </div>
+               <div class="col col-33 ctn divider_left">
+                    
+               </div>
+         </div>
+	</ion-content>
+</ion-view>

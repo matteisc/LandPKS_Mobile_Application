@@ -1,0 +1,20 @@
+
+<ion-view view-title="" hide-back-button="true" cache-view="false">
+
+<ion-nav-buttons side="left">
+  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="goBack()"></a>
+   <a align="left" class="button button-icon"
+    ng-click="goBack();"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}}</a>
+  </ion-nav-buttons>
+
+       
+        <ion-content class="padding">
+        <a class="item item-icon-right" ui-sref="landinfo.review-results">Review
+            <img  ng-src="{{review_status_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+            <a class="item item-icon-right" ui-sref="landinfo.results">Results
+            <img  ng-src="{{results_status_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/></a>
+          <p>
+            
+          </p>
+        </ion-content>
+      </ion-view>

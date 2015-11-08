@@ -1,0 +1,17 @@
+<div>
+	
+	<ion-view view-title="Accounts"> <ion-content
+		class="padding"> 
+	<p>
+        <b> Choose an account</b>
+    </p>
+    <br>	
+		
+		<ion-list> <ion-item
+		ng-repeat="account in accounts" ng-click="selectAccount(account)">
+	{{account.email}}</ion-item> </ion-list>
+	<p></p>
+	<a class="item item-icon-right" ui-sref="landinfo.login">Add account <i class="icon ion-plus-round icon-accessory"></i> </a> </ion-content> </ion-view>
+</div>
+
+

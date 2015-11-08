@@ -1,0 +1,48 @@
+  
+ <ion-view view-title="">
+        <ion-content class="padding">
+          
+
+
+
+ <p align='center'> Climate </p>
+  <p> <B>Precipitation(mm) </B></p>
+
+<canvas id="bar" class="chart chart-bar"
+  chart-data="data" chart-labels="labels" chart-caption="captions">
+</canvas>
+
+<p align='center'> Month </p>
+
+<h6> <B>Temperature(°C) </B></h6>
+
+
+ <canvas id="line" class="chart chart-line" chart-data="linedata"
+  chart-labels="names" chart-legend="true" chart-series="number"
+  chart-click="onClick" >
+</canvas> 
+
+<p align='center'> Month </p>
+<p >
+  Latitude :  {{plots.latitude}} </p>
+ 
+<p >
+  Longitude : {{plots.longitude}} </p>
+  <p >
+  Elevation (m) : {{plots.geospatial_data.gdal_elevation}} </p>
+  <p >
+  Average annual precipitation (mm) : {{plots.climate.precipitation.annual}} </p>
+  <p >
+  FAO length of growing period (days/year): {{plots.geospatial_data.gdal_fao_lgp}} </p>
+  <p >
+  Aridity index : {{plots.geospatial_data.gdal_aridity_index}} </p>
+ 
+
+
+
+
+</div>
+          
+        
+        </ion-content>
+      </ion-view>
