@@ -9,17 +9,24 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.android</groupId>
-            <artifactId>android</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
+	<groupId>com.google.android</groupId>
+	<artifactId>android</artifactId>
+	<version>4.1.1.4</version>
+	 <scope>provided</scope>
+</dependency>
+
 
         <dependency>
           <groupId>org.apache.cordova</groupId>
           <artifactId>cordova</artifactId>
-          <version>5.1.1</version>
+          <version>2.0.0</version>
         </dependency>
+<dependency>
+	<groupId>org.jboss.errai</groupId>
+	<artifactId>cordova-maven-plugin</artifactId>
+	<version>3.2.1.Final</version>
+</dependency>
+
     </dependencies>
 
     <build>
