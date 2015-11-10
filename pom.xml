@@ -61,7 +61,9 @@
                 <version>2.3</version>
             </plugin>
         </plugins>
- <pluginRepositories>
+ 
+    </build>
+<pluginRepositories>
         <pluginRepository>
             <id>snapshots.jboss.org</id>
             <name>JBoss Snapshot Repository</name>
@@ -72,5 +74,4 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-    </build>
 </project>
