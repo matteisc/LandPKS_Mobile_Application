@@ -38,8 +38,7 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
- <build>
-    <plugins>
+ 
       <plugin>
         <groupId>org.jboss.errai</groupId>
         <artifactId>cordova-maven-plugin</artifactId>
