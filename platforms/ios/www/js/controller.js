@@ -294,11 +294,8 @@ angular.module('ionicApp.controller',['chart.js'])
 /** ReviewSelectedPlot Controller **/
 /****************************************/
 .controller('ReviewSelectedPlotCtrl', function($scope, $state, $http, Scopes) {
-	
-	
-	
+
 	$scope.goBack = function() {
-	
          $state.go('landinfo.results-section');
     };
 	var ListPlotsCtrl_Scope = Scopes.get('ListPlotsCtrl_Scope');
@@ -372,7 +369,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	
            lat = position.coords.latitude;
            lon =  position.coords.longitude ;       
-           //console.log("Get data : " + lat + ":" + lon);
+          
     	   $http.get('http://128.123.177.21:8080/query', {
 				params : {
 					action : "get",
@@ -625,7 +622,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_hilly = "media/slope_images/ic_slope_hilly.png";
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				break;
 			case "GENTLE (3-5%)": 
 				$scope.slope_flat = "media/slope_images/ic_slope_flat.png"; 
@@ -635,7 +632,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_hilly = "media/slope_images/ic_slope_hilly.png";
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				break;
 			case "MODERATE (6-10%)": 
 				$scope.slope_flat = "media/slope_images/ic_slope_flat.png"; 
@@ -645,7 +642,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_hilly = "media/slope_images/ic_slope_hilly.png";
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				break;
 			case "ROLLING (11-15%)": 
 				$scope.slope_flat = "media/slope_images/ic_slope_flat.png"; 
@@ -655,7 +652,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_hilly = "media/slope_images/ic_slope_hilly.png";
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				break;
 			case "HILLY (16-30%)": 
 				$scope.slope_flat = "media/slope_images/ic_slope_flat.png"; 
@@ -665,7 +662,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_hilly = "media/slope_images/ic_slope_hilly_selected.png";
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				break;
 			
 			case "STEEP (31-60%)": 
@@ -676,7 +673,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_hilly = "media/slope_images/ic_slope_hilly.png";
 				$scope.slope_steep= "media/slope_images/ic_slope_steep_selected.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				break;
 			case "VERYSTEEP (60‐100%)": 
 				$scope.slope_flat = "media/slope_images/ic_slope_flat.png"; 
@@ -686,7 +683,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_hilly = "media/slope_images/ic_slope_hilly.png";
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep_selected.png";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				break;
 			default:
 				$scope.slope_flat = "media/slope_images/ic_slope_flat.png"; 
@@ -780,7 +777,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
 				Slope_part1_data = "flat (0-2%)";
 				seeToast2(Slope_part1_data,2000);
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				break;
 			case "gentle": 
 				$scope.slope_flat = "media/slope_images/ic_slope_flat.png"; 
@@ -792,7 +789,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
 				Slope_part1_data = "gentle (3-5%)";
 				seeToast2(Slope_part1_data,2000);
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				break;
 			case "moderate": 
 				$scope.slope_flat = "media/slope_images/ic_slope_flat.png"; 
@@ -803,7 +800,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
 				Slope_part1_data = "moderate (6-10%)";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				seeToast2(Slope_part1_data,2000);
 				break;
 			case "rolling": 
@@ -815,7 +812,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
 				Slope_part1_data = "rolling (11-15%)";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				seeToast2(Slope_part1_data,2000);
 				break;
 			case "hilly": 
@@ -827,7 +824,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
 				Slope_part1_data = "hilly (16-30%)";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				seeToast2(Slope_part1_data,2000);
 				break;
 			
@@ -840,7 +837,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_steep= "media/slope_images/ic_slope_steep_selected.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep.png";
 				Slope_part1_data = "steep (31-60%)";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				seeToast2(Slope_part1_data,2000);
 				break;
 			case "verysteep": 
@@ -852,7 +849,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				$scope.slope_steep= "media/slope_images/ic_slope_steep.png";
 				$scope.slope_verysteep= "media/slope_images/ic_slope_very_steep_selected.png";
 				Slope_part1_data = "verysteep (60‐100%)";
-				document.getElementById("txtSlopeMeter").innerHTML  = "OR";
+				document.getElementById("txtSlopeMeter").innerHTML  = "";
 				seeToast2(Slope_part1_data,2000);
 				break;
 			
@@ -1086,8 +1083,8 @@ angular.module('ionicApp.controller',['chart.js'])
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	
 	console.log(newPlot);
-	var slopeshape_part1_data = "";
-	var slopeshape_part2_data = "";
+	var slopeshape_cross_data = "";
+	var slopeshape_down_data = "";
 	
 	$scope.plot_name = newPlot.real_name;
 	
@@ -1098,31 +1095,164 @@ angular.module('ionicApp.controller',['chart.js'])
 	$scope.slopeshape_crossslopeconvex = "media/slopeshape_images/ic_crossslopeconvex.png"; 
 	$scope.slopeshape_crossslopeflat = "media/slopeshape_images/ic_crossslopeflat.png";
 	
+	/* Pre-processing LandUse data */
+	if (isEmpty(newPlot.isSlopeShapeDoing)  ||  newPlot.isSlopeShapeDoing == false){
+		/* New One */
+		
+	} else if (newPlot.isSlopeShapeDoing == true){
+		/* Edit old one */
+		if (!isEmpty(newPlot.slope_shape)){
+			list_slope_shape = getListComponents(newPlot.slope_shape.trim(),",");
+			if (!isEmpty(list_slope_shape[0].toUpperCase().trim())){
+				slopeshape_down_data = list_slope_shape[0].toUpperCase().trim();
+			}
+			if (!isEmpty(list_slope_shape[1].toUpperCase().trim())){
+				slopeshape_cross_data = list_slope_shape[1].toUpperCase().trim();
+			}
+			//console.log(slopeshape_down_data + ";;;" +slopeshape_cross_data);
+			presentStatus(slopeshape_down_data,slopeshape_cross_data);
+			newPlot.isSlopeShapeDoing = true;
+		} else {
+			slopeshape_cross_data = "";
+			slopeshape_down_data = "";
+		}
+		
+	}
 	
+	$scope.completeAddPlot_SlopeShape = function(){
+		var slope_shape_data = slopeshape_down_data + "," + slopeshape_cross_data;
+		
+		if (slope_shape_data == null || slope_shape_data == 'null' || slope_shape_data == 'undefined' || slope_shape_data == ''){
+			//newPlot.land_cover = "";
+		} else {
+			newPlot.slope_shape = slope_shape_data;		
+			newPlot.isSlopeShapeDoing = true;
+		}
+		
+		if (isEmpty(slopeshape_down_data) || isEmpty(slopeshape_cross_data)){
+			newPlot.isSlopeShapeCompleted = false;
+		} else {
+			newPlot.isSlopeShapeCompleted = true;
+		}
+		
+		updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+		window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+		$state.go('landinfo.newplot');
+	};
+	
+	$scope.select_down_slope = function(item){
+		switch(item){
+			case "CONVEX":
+				$scope.slopeshape_downslopeconcave = "media/slopeshape_images/ic_downslopeconcave.png"; 
+			    $scope.slopeshape_downslopeconvex = "media/slopeshape_images/ic_downslopeconvex_selected.png"; 
+			    $scope.slopeshape_downslopeflat = "media/slopeshape_images/ic_downslopeflat.png";	
+			    slopeshape_down_data = "CONVEX";
+				seeToast2("Down slope shape : CONVEX",2000);
+				break;
+			case "CONCAVE": 
+				$scope.slopeshape_downslopeconcave = "media/slopeshape_images/ic_downslopeconcave_selected.png"; 
+			    $scope.slopeshape_downslopeconvex = "media/slopeshape_images/ic_downslopeconvex.png"; 
+				$scope.slopeshape_downslopeflat = "media/slopeshape_images/ic_downslopeflat.png"; 
+				slopeshape_down_data = "CONCAVE";
+				seeToast2("Down slope shape : CONCAVE",2000);
+				break;
+			case "FLAT": 
+				$scope.slopeshape_downslopeconcave = "media/slopeshape_images/ic_downslopeconcave.png"; 
+				$scope.slopeshape_downslopeconvex = "media/slopeshape_images/ic_downslopeconvex.png"; 
+				$scope.slopeshape_downslopeflat = "media/slopeshape_images/ic_downslopeflat_selected.png"; 
+				slopeshape_down_data = "FLAT";
+				seeToast2("Down slope shape : FLAT",2000);
+				break;
+		}
+	};
+	
+	$scope.select_cross_slope = function(item){
+		switch(item){
+			case "CONVEX":
+				$scope.slopeshape_crossslopeconcave = "media/slopeshape_images/ic_crossslopeconcave.png"; 
+				$scope.slopeshape_crossslopeconvex = "media/slopeshape_images/ic_crossslopeconvex_selected.png"; 
+				$scope.slopeshape_crossslopeflat = "media/slopeshape_images/ic_crossslopeflat.png";	
+			    slopeshape_cross_data = "CONVEX";
+				seeToast2("Cross slope shape : CONVEX",2000);
+				break;
+			case "CONCAVE": 
+				$scope.slopeshape_crossslopeconcave = "media/slopeshape_images/ic_crossslopeconcave_selected.png"; 
+				$scope.slopeshape_crossslopeconvex = "media/slopeshape_images/ic_crossslopeconvex.png"; 
+				$scope.slopeshape_crossslopeflat = "media/slopeshape_images/ic_crossslopeflat.png"; 
+				slopeshape_cross_data = "CONCAVE";
+				seeToast2("Cross slope shape : CONCAVE",2000);
+				break;
+			case "FLAT": 
+				$scope.slopeshape_crossslopeconcave = "media/slopeshape_images/ic_crossslopeconcave.png"; 
+				$scope.slopeshape_crossslopeconvex = "media/slopeshape_images/ic_crossslopeconvex.png"; 
+				$scope.slopeshape_crossslopeflat = "media/slopeshape_images/ic_crossslopeflat_selected.png"; 
+				slopeshape_cross_data = "FLAT";
+				seeToast2("Cross slope shape : FLAT",2000);
+				break;
+		}
+	};
+	
+	
+	function presentStatus(slopeshape_down_data,slopeshape_cross_data){
+		console.log(slopeshape_down_data + ":" + slopeshape_cross_data);
+	    switch(slopeshape_down_data) {
+			case "CONVEX": 
+				$scope.slopeshape_downslopeconcave = "media/slopeshape_images/ic_downslopeconcave.png"; 
+			    $scope.slopeshape_downslopeconvex = "media/slopeshape_images/ic_downslopeconvex_selected.png"; 
+			    $scope.slopeshape_downslopeflat = "media/slopeshape_images/ic_downslopeflat.png";  
+				break;
+			case "CONCAVE": 
+				$scope.slopeshape_downslopeconcave = "media/slopeshape_images/ic_downslopeconcave_selected.png"; 
+			    $scope.slopeshape_downslopeconvex = "media/slopeshape_images/ic_downslopeconvex.png"; 
+				$scope.slopeshape_downslopeflat = "media/slopeshape_images/ic_downslopeflat.png"; 
+				break;
+			case "FLAT": 
+				$scope.slopeshape_downslopeconcave = "media/slopeshape_images/ic_downslopeconcave.png"; 
+				$scope.slopeshape_downslopeconvex = "media/slopeshape_images/ic_downslopeconvex.png"; 
+				$scope.slopeshape_downslopeflat = "media/slopeshape_images/ic_downslopeflat_selected.png"; 
+				break;
+		}	
+	    
+	    switch(slopeshape_cross_data) {
+			case "CONVEX": 
+				$scope.slopeshape_crossslopeconcave = "media/slopeshape_images/ic_crossslopeconcave.png"; 
+				$scope.slopeshape_crossslopeconvex = "media/slopeshape_images/ic_crossslopeconvex_selected.png"; 
+				$scope.slopeshape_crossslopeflat = "media/slopeshape_images/ic_crossslopeflat.png";
+				break;
+			case "CONCAVE": 
+				$scope.slopeshape_crossslopeconcave = "media/slopeshape_images/ic_crossslopeconcave_selected.png"; 
+				$scope.slopeshape_crossslopeconvex = "media/slopeshape_images/ic_crossslopeconvex.png"; 
+				$scope.slopeshape_crossslopeflat = "media/slopeshape_images/ic_crossslopeflat.png"; 
+				break;
+			case "FLAT": 
+				$scope.slopeshape_crossslopeconcave = "media/slopeshape_images/ic_crossslopeconcave.png"; 
+				$scope.slopeshape_crossslopeconvex = "media/slopeshape_images/ic_crossslopeconvex.png"; 
+				$scope.slopeshape_crossslopeflat = "media/slopeshape_images/ic_crossslopeflat_selected.png";
+				break;
+		}
+	    
+	    
+
+	};
 
 	$scope.goBack = function() {
-	
          $state.go('landinfo.newplot');
     };
-	
-
 })
 /****************************************/
 /** AddPlot_Soilcondition_Ctrl **/
 /****************************************/
 .controller('AddPlot_Soilcondition_Ctrl',function($scope,$state){
-	
-	
-	
+
 	var recorder_name = window.localStorage.getItem('current_email');
 	var email = recorder_name;
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	
 	console.log(newPlot);
-	var landcover_part1_data = "";
-	var landcover_part2_data = "";
-	var flooding_data = "";
+	var surface_cracking = "false";
+	var surface_salt = "false";
 	$scope.plot_name = newPlot.real_name;
 	
 	$scope.soilcondition_soilcracks = "media/soilcondition_images/ic_soil_cracks.png"; 
@@ -1130,6 +1260,103 @@ angular.module('ionicApp.controller',['chart.js'])
 	$scope.soilcondition_nosoilcracks = "media/soilcondition_images/ic_no_soil_cracks.png"; 
 	$scope.soilcondition_nosurfacesalt = "media/soilcondition_images/ic_no_surface_salt.png"; 
 
+	
+	/* Pre-processing LandUse data */
+	if (isEmpty(newPlot.isSoilConditionsDoing)  ||  newPlot.isSoilConditionsDoing == false){
+		/* New One */
+		
+	} else if (newPlot.isSoilConditionsDoing == true){
+		/* Edit old one */
+		if (!isEmpty(newPlot.surface_cracking)){
+			surface_cracking = newPlot.surface_cracking;
+		} 
+		if (!isEmpty(newPlot.surface_salt)){
+			surface_salt = newPlot.surface_salt;
+		}
+		presentStatus(surface_cracking,surface_salt);
+		newPlot.isSoilConditionsDoing = true;
+	}
+	
+	function presentStatus(crack,salt){
+		crack = crack.toUpperCase().trim();
+		salt = salt.toUpperCase().trim();
+	    switch(crack) {
+			case "TRUE": 
+				$scope.soilcondition_soilcracks = "media/soilcondition_images/ic_soil_cracks_selected.png";
+				$scope.soilcondition_nosoilcracks = "media/soilcondition_images/ic_no_soil_cracks.png"; 
+				break;
+			case "FALSE": 
+				$scope.soilcondition_soilcracks = "media/soilcondition_images/ic_soil_cracks.png";
+				$scope.soilcondition_nosoilcracks = "media/soilcondition_images/ic_no_soil_cracks_selected.png"; 
+				break;
+		}	
+	    
+	    switch(salt) {
+		    case "TRUE": 
+		    	$scope.soilcondition_surfacesalt = "media/soilcondition_images/ic_surface_salt_selected.png"; 
+		    	$scope.soilcondition_nosurfacesalt = "media/soilcondition_images/ic_no_surface_salt.png"; 
+				break;
+			case "FALSE": 
+				$scope.soilcondition_surfacesalt = "media/soilcondition_images/ic_surface_salt.png"; 
+		    	$scope.soilcondition_nosurfacesalt = "media/soilcondition_images/ic_no_surface_salt_selected.png"; 
+				break;
+		}
+	    
+	    
+
+	};
+	
+	$scope.completeAddPlot_SoilConditions = function(){
+		newPlot.surface_cracking = surface_cracking;
+		newPlot.surface_salt = surface_salt;
+		newPlot.isSoilConditionsDoing = true;
+		newPlot.isSoilConditionCompleted = true;
+		if (isEmpty(surface_cracking) || isEmpty(surface_salt)){
+			newPlot.isSoilConditionsDoing = false;
+		} else {
+			newPlot.isSoilConditionsDoing = true;
+		}
+		updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+		window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+		$state.go('landinfo.newplot');
+	};
+	
+	
+	$scope.select_crack_or_not_crack = function(item){
+		switch(item){
+			case "CRACKED":
+				$scope.soilcondition_soilcracks = "media/soilcondition_images/ic_soil_cracks_selected.png";
+				$scope.soilcondition_nosoilcracks = "media/soilcondition_images/ic_no_soil_cracks.png"; 
+				surface_cracking = "TRUE";
+				seeToast2("Cracking",2000);
+				break;
+			case "NOT_CRACKED": 
+				$scope.soilcondition_soilcracks = "media/soilcondition_images/ic_soil_cracks.png";
+				$scope.soilcondition_nosoilcracks = "media/soilcondition_images/ic_no_soil_cracks_selected.png"; 
+				surface_cracking = "FALSE";
+				seeToast2("No Cracking",2000);
+				break;
+		}
+	};
+	
+	$scope.select_salt_or_not_salt = function(item){
+		switch(item){
+			case "SALTED":
+				$scope.soilcondition_surfacesalt = "media/soilcondition_images/ic_surface_salt_selected.png"; 
+		    	$scope.soilcondition_nosurfacesalt = "media/soilcondition_images/ic_no_surface_salt.png"; 
+		    	surface_salt = "TRUE";
+				seeToast2("Salt",2000);
+				break;
+			case "NOT_SALTED": 
+				$scope.soilcondition_surfacesalt = "media/soilcondition_images/ic_surface_salt.png"; 
+		    	$scope.soilcondition_nosurfacesalt = "media/soilcondition_images/ic_no_surface_salt_selected.png"; 
+		    	surface_salt = "FALSE";
+				seeToast2("No Salt",2000);
+				break;
+		}
+	};
+	
 	$scope.goBack = function() {
 	
          $state.go('landinfo.newplot');

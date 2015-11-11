@@ -183,9 +183,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
       views: {
         'home-tab': {
           templateUrl: "templates/results.html",
-          controller: 'ReviewSelectedPlotCtrl'
-          
-          
+          controller: 'ReviewSelectedPlotCtrl' 
         }
       }
     })

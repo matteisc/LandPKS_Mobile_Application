@@ -1,12 +1,9 @@
-  
-        </ion-content>
-      </ion-view>
 <link href="css/landcover.css" rel="stylesheet">
 <ion-view view-title="" cache-view="false"> <ion-nav-buttons
 	side="left">
-  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="goBack()" ></a>
+  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="completeAddPlot_SlopeShape();" ></a>
    <a align="left" class="button button-icon"
-	ng-click="goBack()"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> </ion-nav-buttons>
+	ng-click="completeAddPlot_SlopeShape();"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> </ion-nav-buttons>
 	
 	
 	<ion-nav-buttons
@@ -17,32 +14,29 @@
 	<ion-content class="padding"> 
 	    <div class="row">
                <div class="col col-50 ctn box">
-                    <img class="content" ng-src="{{slopeshape_downslopeconcave}}" ng-click="selectPart1('tree')" style="width:98%; height:85%" />
+                    <img class="content" ng-src="{{slopeshape_downslopeconcave}}" ng-click="select_down_slope('CONCAVE')" style="width:98%; height:85%" />
                </div>
                 <div class="col col-50 divider_left ctn box">
-                <img class="content" ng-src="{{slopeshape_crossslopeconcave}}" ng-click="selectPart1('shrubland')" style="width:98%; height:85%"/>
-                </div> 
-              
-              
-                    
+                <img class="content" ng-src="{{slopeshape_crossslopeconcave}}" ng-click="select_cross_slope('CONCAVE')" style="width:98%; height:85%"/>
+                </div>        
                
          </div>
          <!--<div class="row responsive-md"> -->   
          <div class="row"> 
                <div class="col col-50 ctn box">
-                    <img class="content" ng-src="{{slopeshape_downslopeconvex}}" ng-click="selectPart1('grassland')" style="width:98%; height:85%"/>
+                    <img class="content" ng-src="{{slopeshape_downslopeconvex}}" ng-click="select_down_slope('CONVEX')" style="width:98%; height:85%"/>
                </div>
              
                <div class="col col-50 ctn divider_left box">
-                    <img class="content" ng-src="{{slopeshape_crossslopeconvex}}" ng-click="selectFlood('not_flooded')" style="width:98%; height:85%"/>
+                    <img class="content" ng-src="{{slopeshape_crossslopeconvex}}" ng-click="select_cross_slope('CONVEX')" style="width:98%; height:85%"/>
                </div>
         </div> 
          <div class="row">     
                <div class="col col-50 ctn box">
-                    <img class="content" ng-src="{{slopeshape_downslopeflat}}" ng-click="selectPart1('garden/mixed')" style="width:98%; height:85%"/>
+                    <img class="content" ng-src="{{slopeshape_downslopeflat}}" ng-click="select_down_slope('FLAT')" style="width:98%; height:85%"/>
                </div>
                <div class="col col-50 ctn divider_left box">
-                    <img class="content" ng-src="{{slopeshape_crossslopeflat}}" ng-click="selectFlood('flooded')" style="width:98%; height:85%"/>
+                    <img class="content" ng-src="{{slopeshape_crossslopeflat}}" ng-click="select_cross_slope('FLAT')" style="width:98%; height:85%"/>
                </div>
         </div>
          

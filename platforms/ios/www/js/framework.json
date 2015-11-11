@@ -1,0 +1,82 @@
+[
+ {
+	 "state" : "landinfo.home",
+	 "precondition_states" : ["landinfo.login","landinfo.plots","landinfo.plots_map","landinfo.newplot","landinfo.settings","landinfo.quick_climate"],
+	 "on_success_move_to_states" : ["landinfo.accounts","landinfo.local_climate","landinfo.map","landinfo.settings","landinfo.newplot"]
+ },
+ {
+	 "state" : "landinfo.plots",
+	 "precondition_states" : ["landinfo.login","landinfo.plots_map","landinfo.newplot","landinfo.settings"],
+	 "on_success_move_to_states" : ["landinfo.home","landinfo.quick_climate","landinfo.map","landinfo.settings","landinfo.newplot","landinfo.landinfo.results-section"]
+ },
+ {
+	 "state" : "landinfo.accounts",
+	 "precondition_states" : ["landinfo.settings"],
+	 "on_success_move_to_states" : ["landinfo.home","landinfo.plots"]
+ },
+ {
+	 "state" : "landinfo.newplot",
+	 "precondition_states" : ["landinfo.plots","landinfo.plots_map","landinfo.home","landinfo.quick_climate"],
+	 "on_success_move_to_states" : ["landinfo.plotid","landinfo.plots"]
+ },
+ {
+	 "state" : "landinfo.results-section",
+	 "precondition_states" : ["landinfo.plots"],
+	 "on_success_move_to_states" : ["landinfo.review","landinfo.result","landinfo.plots"]
+ },
+ {
+	 "state" : "landinfo.login",
+	 "precondition_states" : ["landinfo.accounts",""],
+	 "on_success_move_to_states" : ["landinfo.plots"]
+ },
+ {
+	 "state" : "landinfo.plotid",
+	 "precondition_states" : ["landinfo.newplot","landinfo_newplot_temp"],
+	 "on_success_move_to_states" : ["landinfo.newplot","landinfo.settings"]
+ },
+ {
+	 "state" : "landinfo.landcover",
+	 "precondition_states" : ["landinfo.newplot"],
+	 "on_success_move_to_states" : ["landinfo.newplot","landinfo.settings"]
+ },
+ {
+	 "state" : "landinfo.landuse",
+	 "precondition_states" : ["landinfo.newplot"],
+	 "on_success_move_to_states" : ["landinfo.newplot","landinfo.settings"]
+ },
+ {
+	 "state" : "landinfo.slope",
+	 "precondition_states" : ["landinfo.newplot"],
+	 "on_success_move_to_states" : ["landinfo.newplot","landinfo.settings","landinfo.accelerometer"]
+ },
+ {
+	 "state" : "landinfo.slopeshape",
+	 "precondition_states" : ["landinfo.newplot"],
+	 "on_success_move_to_states" : ["landinfo.newplot","landinfo.settings"]
+ },
+ {
+	 "state" : "landinfo.soilcondition",
+	 "precondition_states" : ["landinfo.newplot"],
+	 "on_success_move_to_states" : ["landinfo.newplot","landinfo.settings"]
+ },
+ {
+	 "state" : "landinfo.soillayers",
+	 "precondition_states" : ["landinfo.newplot"],
+	 "on_success_move_to_states" : ["landinfo.newplot","landinfo.settings"]
+ },
+ {
+	 "state" : "landinfo.review_before_submit",
+	 "precondition_states" : ["landinfo.newplot"],
+	 "on_success_move_to_states" : ["landinfo.plots","landinfo.newplot","landinfo.settings"]
+ },
+ {
+	 "state" : "landinfo.quick_climate",
+	 "precondition_states" : ["landinfo.home","landinfo.plots"],
+	 "on_success_move_to_states" : ["landinfo.plots","landinfo.newplot","landinfo.settings"]
+ },
+ {
+	 "state" : "landinfo.plots_map",
+	 "precondition_states" : ["landinfo.plots"],
+	 "on_success_move_to_states" : ["landinfo.plots","landinfo.newplot","landinfo.settings"]
+ }
+]

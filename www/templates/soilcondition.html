@@ -1,13 +1,9 @@
-
-          
-        
-     
 <link href="css/landcover.css" rel="stylesheet">
 <ion-view view-title="" cache-view="false"> <ion-nav-buttons
 	side="left"> 
-  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="goBack()" ></a>
+  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="completeAddPlot_SoilConditions()" ></a>
   <a align="left" class="button button-icon"
-	ng-click="goBack()"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> </ion-nav-buttons>
+	ng-click="completeAddPlot_SoilConditions()"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> </ion-nav-buttons>
 	
 	
 	<ion-nav-buttons
@@ -18,29 +14,22 @@
 	<ion-content class="padding"> 
 	    <div class="row">
                <div class="col col-55 ctn box">
-                    <img class="content" ng-src="{{soilcondition_soilcracks}}" ng-click="selectPart1('tree')" style="width:98%; height:85%" />
+                    <img class="content" ng-src="{{soilcondition_soilcracks}}" ng-click="select_crack_or_not_crack('CRACKED')" style="width:98%; height:85%" />
                </div>
                 <div class="col col-50 divider_left ctn box">
-               <img class="content" ng-src="{{soilcondition_surfacesalt}}" ng-click="selectPart1('shrubland')" style="width:98%; height:85%"/>
-                </div> 
-               
-              
-              
-                    
-               
+               <img class="content" ng-src="{{soilcondition_surfacesalt}}" ng-click="select_salt_or_not_salt('SALTED')" style="width:98%; height:85%"/>
+                </div>  
          </div>
          <!--<div class="row responsive-md"> -->   
          <div class="row"> 
                <div class="col col-50 ctn box">
-                    <img class="content" ng-src="{{soilcondition_nosoilcracks}}" ng-click="selectPart1('grassland')" style="width:98%; height:85%"/>
+                    <img class="content" ng-src="{{soilcondition_nosoilcracks}}" ng-click="select_crack_or_not_crack('NOT_CRACKED')" style="width:98%; height:85%"/>
                </div>
              
                <div class="col col-50 ctn divider_left box">
-                    <img class="content" ng-src="{{soilcondition_nosurfacesalt}}" ng-click="selectFlood('not_flooded')" style="width:98%; height:85%"/>
+                    <img class="content" ng-src="{{soilcondition_nosurfacesalt}}" ng-click="select_salt_or_not_salt('NOT_SALTED')" style="width:98%; height:85%"/>
                </div>
         </div> 
-    
-         
-       
+
 	</ion-content>
 </ion-view>
