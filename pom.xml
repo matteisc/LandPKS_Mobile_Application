@@ -39,14 +39,14 @@
                 </configuration>
             </plugin>
  <plugin>
-  <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
                 <version>3.8.0</version>
  <configuration>
                     <sdk>
                         <!-- platform or api level (api level 4 = platform 1.6)-->
 <path>E:\Program Files (x86)\Android\android-sdkK</path>
-                        <platform>17</platform>
+                        <platform>15</platform>
                     </sdk>
 <androidManifestFile>${project.basedir}/platforms/android/AndroidManifest.xml</androidManifestFile>
                     <emulator>
