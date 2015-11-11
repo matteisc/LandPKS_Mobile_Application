@@ -45,7 +45,7 @@
  <configuration>
                     <sdk>
                         <!-- platform or api level (api level 4 = platform 1.6)-->
-<path>E:\Program Files (x86)\Android\android-sdkK</path>
+<path>E:\Program Files (x86)\Android\android-sdk</path>
                         <platform>15</platform>
                     </sdk>
 <androidManifestFile>${project.basedir}/platforms/android/AndroidManifest.xml</androidManifestFile>
