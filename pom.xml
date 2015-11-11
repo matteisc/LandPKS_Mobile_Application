@@ -41,12 +41,12 @@
  <plugin>
     <groupId>com.simpligility.maven.plugins</groupId>
     <artifactId>android-maven-plugin</artifactId>
-    <version>4.1.1</version>
+    <version>3.5.1</version>
  <configuration>
                     <sdk>
                         <!-- platform or api level (api level 4 = platform 1.6)-->
 <path>E:\Program Files (x86)\Android\android-sdkK</path>
-                        <platform>17</platform>
+                        <platform>15</platform>
                     </sdk>
 <androidManifestFile>${project.basedir}/platforms/android/AndroidManifest.xml</androidManifestFile>
                     <emulator>
