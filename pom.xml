@@ -38,12 +38,11 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
+ <plugin>
+    <groupId>com.simpligility.maven.plugins</groupId>
+    <artifactId>android-maven-plugin</artifactId>
+    <version>4.1.1</version>
+ <configuration>
                     <sdk>
                         <!-- platform or api level (api level 4 = platform 1.6)-->
                         <platform>15</platform>
@@ -56,7 +55,9 @@
                     <undeployBeforeDeploy>true</undeployBeforeDeploy>
                 </configuration>
                 <extensions>true</extensions>
-            </plugin>
+  </plugin>
+
+            
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <!-- version 2.3 defaults to java 1.5, so no further configuration needed-->
