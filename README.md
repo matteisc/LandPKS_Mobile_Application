@@ -1,4 +1,4 @@
-# LandPKS_Mobile_Application
+# LandInfo_Mobile_Application
 ## Automate build for new Mobile application
 Command to automatically build
 
