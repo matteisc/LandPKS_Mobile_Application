@@ -27,6 +27,14 @@
                         {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -36,16 +44,34 @@
                     "CoreGraphics.framework": [
                         {
                             "xml": false,
-                            "count": 1
+                            "count": 3
                         }
                     ],
                     "CoreLocation.framework": [
                         {
                             "xml": false,
+                            "count": 2
+                        }
+                    ],
+                    "QuartzCore.framework": [],
+                    "ImageIO.framework": [
+                        {
+                            "xml": true,
                             "count": 1
                         }
                     ],
-                    "QuartzCore.framework": []
+                    "AssetsLibrary.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "MobileCoreServices.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ]
                 }
             },
             "*-Info.plist": {
@@ -53,7 +79,7 @@
                     "NSLocationWhenInUseUsageDescription": [
                         {
                             "xml": "<string />",
-                            "count": 1
+                            "count": 2
                         }
                     ]
                 }
@@ -75,6 +101,9 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.ionicframework.ionicdemo539879"
+        },
+        "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "org.landpotential.lpks.landinfo"
         }
     },
     "dependent_plugins": {}

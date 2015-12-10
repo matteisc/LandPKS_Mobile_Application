@@ -153,6 +153,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
     })
     .state('landinfo.soillayers', {
       url: "/soillayers",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/soillayers.html",
@@ -198,9 +199,11 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
     })
     .state('landinfo.soillayers1', {
       url: "/soillayers1",
+      cache: false,
       views: {
         'home-tab': {
-          templateUrl: "templates/soillayers1.html"
+          templateUrl: "templates/soillayers1.html",
+          controller: 'AddPlot_Soillayer_Layer_1_Ctrl'
         }
       }
     })
@@ -208,7 +211,8 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
       url: "/soillayers2",
       views: {
         'home-tab': {
-          templateUrl: "templates/soillayers2.html"
+          templateUrl: "templates/soillayers2.html",
+          controller: 'AddPlot_Soillayer_Layer_2_Ctrl'
         }
       }
     })
@@ -216,7 +220,8 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
       url: "/soillayers3",
       views: {
         'home-tab': {
-          templateUrl: "templates/soillayers3.html"
+          templateUrl: "templates/soillayers3.html",
+          controller: 'AddPlot_Soillayer_Layer_3_Ctrl'
         }
       }
     })
@@ -224,7 +229,8 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
       url: "/soillayers4",
       views: {
         'home-tab': {
-          templateUrl: "templates/soillayers4.html"
+          templateUrl: "templates/soillayers4.html",
+          controller: 'AddPlot_Soillayer_Layer_4_Ctrl'
         }
       }
     })
@@ -232,7 +238,8 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
       url: "/soillayers5",
       views: {
         'home-tab': {
-          templateUrl: "templates/soillayers5.html"
+          templateUrl: "templates/soillayers5.html",
+          controller: 'AddPlot_Soillayer_Layer_5_Ctrl'
         }
       }
     })
@@ -240,7 +247,8 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
       url: "/soillayers6",
       views: {
         'home-tab': {
-          templateUrl: "templates/soillayers6.html"
+          templateUrl: "templates/soillayers6.html",
+          controller: 'AddPlot_Soillayer_Layer_6_Ctrl'
         }
       }
     })
@@ -248,7 +256,8 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
       url: "/soillayers7",
       views: {
         'home-tab': {
-          templateUrl: "templates/soillayers7.html"
+          templateUrl: "templates/soillayers7.html",
+          controller: 'AddPlot_Soillayer_Layer_7_Ctrl'
         }
       }
     })
@@ -308,10 +317,8 @@ angular.module('ionicApp', ['ionic','ionicApp.controller'])
    var listAuthentication = window.localStorage.getItem("AUTHENTICATION_LIST");
    console.log("Test " + listAuthentication);
    if (listAuthentication === null || listAuthentication === 'null'){
-	   //First open App Goto LoginPage
 	   $urlRouterProvider.otherwise("/landinfo/login");
    } else {
-	   //Goto Dialog to select Account
 	   var jsonObjAuth = JSON.parse(listAuthentication);
 	   if (jsonObjAuth['authentication'].length == 1){	   
 		   window.localStorage.setItem("current_json_auth_data", jsonObjAuth['authentication'][0].json_auth_data);

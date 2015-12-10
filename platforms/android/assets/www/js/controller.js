@@ -18,6 +18,30 @@ angular.module('ionicApp.controller',['chart.js'])
         }
     };
 })
+
+.factory('Camera', ['$q', function($q) {
+
+  return {
+    getPicture: function(options) {
+      var q = $q.defer();
+
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    }
+  }
+}])
+
+.config(function($compileProvider){
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+})
+
+
 /****************************************/
 /*
  * Manage Controller
@@ -1367,9 +1391,104 @@ angular.module('ionicApp.controller',['chart.js'])
 })
 
 /****************************************/
-/** AddPlot_Soillayers_Ctrl **/
+/** AddPlot_Soillayer_Layer_1_Ctrl **/
 /****************************************/
-.controller('AddPlot_Soillayers_Ctrl',function($scope,$state){
+.controller('AddPlot_Soillayer_Layer_1_Ctrl',function($scope,$state,$ionicPopup, $timeout,$ionicPlatform){
+	var recorder_name = window.localStorage.getItem('current_email');
+	var email = recorder_name;
+	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	
+	$scope.plot_name = newPlot.real_name;
+	
+
+	if (isEmpty(newPlot.rock_fragment) || isEmpty(newPlot.rock_fragment.soil_horizon_1)){
+		$scope.rock_fragement_value = "<choose range>";
+	} else {
+		if (!isEmpty(newPlot.rock_fragment.soil_horizon_1)) {
+			$scope.rock_fragement_value = newPlot.rock_fragment.soil_horizon_1;
+		}
+	}
+	
+	if (isEmpty(newPlot.texture) || isEmpty(newPlot.texture.soil_horizon_1)){
+		$scope.texture_value = "<choose range>";
+	} else {
+		if (!isEmpty(newPlot.texture.soil_horizon_1)) {
+			$scope.texture_value = newPlot.texture.soil_horizon_1;
+		}
+	}
+
+	$scope.goBack = function() {	
+         $state.go('landinfo.newplot');
+    };
+    
+    $scope.selectRockFragment = function(rock_fragement_value) {	
+    	$scope.rock_fragement_value = rock_fragement_value;
+    	newPlot.rock_fragment.soil_horizon_1 = $scope.rock_fragement_value;
+    	
+    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_1) && !isEmpty(newPlot.texture.soil_horizon_1)){
+         	newPlot.isSoilLayer_1_Completed = true;
+    	    newPlot.isSoilLayersCompleted = true;
+    	} else {
+    		newPlot.isSoilLayer_1_Completed = false;
+    		newPlot.isSoilLayersCompleted = false;
+    	}
+    	
+    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+ 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+ 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+    	
+    	myPopup.close();
+    };
+    
+    var myPopup ;
+    $scope.openPopupSelectRock_fragment = function() {
+    	myPopup = $ionicPopup.show({
+    	    templateUrl: 'templates/rock_fragment_dropdown.html',
+    	    scope: $scope,
+    	    
+    	});
+    };
+    
+    $scope.exitPopup = function() {
+    	myPopup.close();
+    };
+    
+    $scope.selectTexture = function(value){
+    	$scope.texture_value = value;
+    	newPlot.texture.soil_horizon_1 = $scope.texture_value;
+    	
+    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_1) && !isEmpty(newPlot.texture.soil_horizon_1)){
+         	newPlot.isSoilLayer_1_Completed = true;
+    	    newPlot.isSoilLayersCompleted = true;
+    	} else {
+    		newPlot.isSoilLayer_1_Completed = false;
+    		newPlot.isSoilLayersCompleted = false;
+    	}
+    	
+    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+ 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+ 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+ 	    
+    };
+    
+    $scope.completeAddPlot_Soilayer_1 = function(){	
+ 	    $state.go('landinfo.soillayers');
+    };
+    
+    $ionicPlatform.registerBackButtonAction(function (event) {
+    	  if (true) {
+    	    alert("OK CLick");
+    	  } else {
+    	    alert("Click Back Button");
+    	  }
+    }, 400);
+})
+
+/****************************************/
+/** AddPlot_Soillayer_Layer_2_Ctrl **/
+/****************************************/
+.controller('AddPlot_Soillayer_Layer_2_Ctrl',function($scope,$state,$ionicPopup){
 	
 	
 	
@@ -1378,27 +1497,565 @@ angular.module('ionicApp.controller',['chart.js'])
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	
-
 	$scope.plot_name = newPlot.real_name;
+	//console.log(newPlot);
 	
+		if (isEmpty(newPlot.rock_fragment) || isEmpty(newPlot.rock_fragment.soil_horizon_2)){
+			$scope.rock_fragement_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.rock_fragment.soil_horizon_2)) {
+				$scope.rock_fragement_value = newPlot.rock_fragment.soil_horizon_2;
+			}
+		}
+		
+		if (isEmpty(newPlot.texture) || isEmpty(newPlot.texture.soil_horizon_2)){
+			$scope.texture_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.texture.soil_horizon_2)) {
+				$scope.texture_value = newPlot.texture.soil_horizon_2;
+			}
+		}
+	
+		$scope.goBack = function() {	
+	         $state.go('landinfo.newplot');
+	    };
+	    
+	    $scope.selectRockFragment = function(rock_fragement_value) {	
+	    	$scope.rock_fragement_value = rock_fragement_value;
+	    	newPlot.rock_fragment.soil_horizon_2 = $scope.rock_fragement_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_2) && !isEmpty(newPlot.texture.soil_horizon_2)){
+	         	newPlot.isSoilLayer_2_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_2_Completed = false;
+	    	}
+	    	
+		    updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+		 	window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+		 	window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	    	
+	    	myPopup.close();
+	    };
+	    
+	    var myPopup ;
+	    $scope.openPopupSelectRock_fragment = function() {
+	    	myPopup = $ionicPopup.show({
+	    	    templateUrl: 'templates/rock_fragment_dropdown.html',
+	    	    scope: $scope,
+	    	});
+	    };
+	    
+	    $scope.exitPopup = function() {
+	    	myPopup.close();
+	    };
+	    
+	    $scope.selectTexture = function(value){
+	    	$scope.texture_value = value;
+	    	newPlot.texture.soil_horizon_2 = $scope.texture_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_2) && !isEmpty(newPlot.texture.soil_horizon_2)){
+	         	newPlot.isSoilLayer_2_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_2_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	 	    
+	    };
+	    
+	    $scope.completeAddPlot_Soilayer_2 = function(){
+	 	    $state.go('landinfo.soillayers');
+	    };
+
+	
+})
+
+/****************************************/
+/** AddPlot_Soillayer_Layer_3_Ctrl **/
+/****************************************/
+.controller('AddPlot_Soillayer_Layer_3_Ctrl',function($scope,$state,$ionicPopup){
+	var recorder_name = window.localStorage.getItem('current_email');
+	var email = recorder_name;
+	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	
+	$scope.plot_name = newPlot.real_name;
+	//console.log(newPlot);
+
+	
+		if (isEmpty(newPlot.rock_fragment) || isEmpty(newPlot.rock_fragment.soil_horizon_3)){
+			$scope.rock_fragement_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.rock_fragment.soil_horizon_3)) {
+				$scope.rock_fragement_value = newPlot.rock_fragment.soil_horizon_3;
+			}
+		}
+		
+		if (isEmpty(newPlot.texture) || isEmpty(newPlot.texture.soil_horizon_3)){
+			$scope.texture_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.texture.soil_horizon_3)) {
+				$scope.texture_value = newPlot.texture.soil_horizon_3;
+			}
+		}
+	
+	    
+	    $scope.selectRockFragment = function(rock_fragement_value) {	
+	    	$scope.rock_fragement_value = rock_fragement_value;
+	    	newPlot.rock_fragment.soil_horizon_3 = $scope.rock_fragement_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_3) && !isEmpty(newPlot.texture.soil_horizon_3)){
+	         	newPlot.isSoilLayer_3_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_3_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	    	
+	    	myPopup.close();
+	    };
+	    
+	    var myPopup ;
+	    $scope.openPopupSelectRock_fragment = function() {
+	    	myPopup = $ionicPopup.show({
+	    	    templateUrl: 'templates/rock_fragment_dropdown.html',
+	    	    scope: $scope,
+	    	});
+	    };
+	    
+	    $scope.exitPopup = function() {
+	    	myPopup.close();
+	    };
+	    
+	    $scope.selectTexture = function(value){
+	    	$scope.texture_value = value;
+	    	newPlot.texture.soil_horizon_3 = $scope.texture_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_3) && !isEmpty(newPlot.texture.soil_horizon_3)){
+	         	newPlot.isSoilLayer_3_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_3_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	 	    
+	    };
+	    
+	    $scope.completeAddPlot_Soilayer_3 = function(){
+	 	    $state.go('landinfo.soillayers');
+	    };
+	
+})
+
+/****************************************/
+/** AddPlot_Soillayer_Layer_4_Ctrl **/
+/****************************************/
+.controller('AddPlot_Soillayer_Layer_4_Ctrl',function($scope,$state,$ionicPopup){
+	var recorder_name = window.localStorage.getItem('current_email');
+	var email = recorder_name;
+	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	
+	$scope.plot_name = newPlot.real_name;
+	//console.log(newPlot);
+
+		if (isEmpty(newPlot.rock_fragment) || isEmpty(newPlot.rock_fragment.soil_horizon_4)){
+			$scope.rock_fragement_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.rock_fragment.soil_horizon_4)) {
+				$scope.rock_fragement_value = newPlot.rock_fragment.soil_horizon_4;
+			}
+		}
+		
+		if (isEmpty(newPlot.texture) || isEmpty(newPlot.texture.soil_horizon_4)){
+			$scope.texture_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.texture.soil_horizon_4)) {
+				$scope.texture_value = newPlot.texture.soil_horizon_4;
+			}
+		}
+	
+	    
+	    $scope.selectRockFragment = function(rock_fragement_value) {	
+	    	$scope.rock_fragement_value = rock_fragement_value;
+	    	newPlot.rock_fragment.soil_horizon_4 = $scope.rock_fragement_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_4) && !isEmpty(newPlot.texture.soil_horizon_4)){
+	         	newPlot.isSoilLayer_4_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_4_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	    	
+	    	myPopup.close();
+	    };
+	    
+	    var myPopup ;
+	    $scope.openPopupSelectRock_fragment = function() {
+	    	myPopup = $ionicPopup.show({
+	    	    templateUrl: 'templates/rock_fragment_dropdown.html',
+	    	    scope: $scope,
+	    	});
+	    };
+	    
+	    $scope.exitPopup = function() {
+	    	myPopup.close();
+	    };
+	    
+	    $scope.selectTexture = function(value){
+	    	$scope.texture_value = value;
+	    	newPlot.texture.soil_horizon_4 = $scope.texture_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_4) && !isEmpty(newPlot.texture.soil_horizon_4)){
+	         	newPlot.isSoilLayer_4_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_4_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	 	    
+	    };
+	    
+	    $scope.completeAddPlot_Soilayer_4 = function(){
+	 	    $state.go('landinfo.soillayers');
+	    };
+	
+})
+
+/****************************************/
+/** AddPlot_Soillayer_Layer_5_Ctrl **/
+/****************************************/
+.controller('AddPlot_Soillayer_Layer_5_Ctrl',function($scope,$state,$ionicPopup){
+	var recorder_name = window.localStorage.getItem('current_email');
+	var email = recorder_name;
+	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	
+	$scope.plot_name = newPlot.real_name;
+	//console.log(newPlot);
 
 
-	$scope.goBack = function() {
+		if (isEmpty(newPlot.rock_fragment) || isEmpty(newPlot.rock_fragment.soil_horizon_5)){
+			$scope.rock_fragement_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.rock_fragment.soil_horizon_5)) {
+				$scope.rock_fragement_value = newPlot.rock_fragment.soil_horizon_5;
+			}
+		}
+		
+		if (isEmpty(newPlot.texture) || isEmpty(newPlot.texture.soil_horizon_5)){
+			$scope.texture_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.texture.soil_horizon_5)) {
+				$scope.texture_value = newPlot.texture.soil_horizon_5;
+			}
+		}
 	
-         $state.go('landinfo.newplot');
-    };
-	
+	    
+	    $scope.selectRockFragment = function(rock_fragement_value) {	
+	    	$scope.rock_fragement_value = rock_fragement_value;
+	    	newPlot.rock_fragment.soil_horizon_5 = $scope.rock_fragement_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_5) && !isEmpty(newPlot.texture.soil_horizon_5)){
+	         	newPlot.isSoilLayer_5_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_5_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	    	
+	    	myPopup.close();
+	    };
+	    
+	    var myPopup ;
+	    $scope.openPopupSelectRock_fragment = function() {
+	    	myPopup = $ionicPopup.show({
+	    	    templateUrl: 'templates/rock_fragment_dropdown.html',
+	    	    scope: $scope,
+	    	});
+	    };
+	    
+	    $scope.exitPopup = function() {
+	    	myPopup.close();
+	    };
+	    
+	    $scope.selectTexture = function(value){
+	    	$scope.texture_value = value;
+	    	newPlot.texture.soil_horizon_5 = $scope.texture_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_5) && !isEmpty(newPlot.texture.soil_horizon_5)){
+	         	newPlot.isSoilLayer_5_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_5_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	 	    
+	    };
+	    
+	    $scope.completeAddPlot_Soilayer_5 = function(){
+	 	    $state.go('landinfo.soillayers');
+	    };
 	
 	
 })
 
 /****************************************/
+/** AddPlot_Soillayer_Layer_6_Ctrl **/
+/****************************************/
+.controller('AddPlot_Soillayer_Layer_6_Ctrl',function($scope,$state,$ionicPopup){
+	var recorder_name = window.localStorage.getItem('current_email');
+	var email = recorder_name;
+	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	
+	$scope.plot_name = newPlot.real_name;
+	//console.log(newPlot);
+
+		if (isEmpty(newPlot.rock_fragment) || isEmpty(newPlot.rock_fragment.soil_horizon_6)){
+			$scope.rock_fragement_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.rock_fragment.soil_horizon_6)) {
+				$scope.rock_fragement_value = newPlot.rock_fragment.soil_horizon_6;
+			}
+		}
+		
+		if (isEmpty(newPlot.texture) || isEmpty(newPlot.texture.soil_horizon_6)){
+			$scope.texture_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.texture.soil_horizon_6)) {
+				$scope.texture_value = newPlot.texture.soil_horizon_6;
+			}
+		}
+	
+	    
+	    $scope.selectRockFragment = function(rock_fragement_value) {	
+	    	$scope.rock_fragement_value = rock_fragement_value;
+	    	newPlot.rock_fragment.soil_horizon_6 = $scope.rock_fragement_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_6) && !isEmpty(newPlot.texture.soil_horizon_6)){
+	         	newPlot.isSoilLayer_6_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_6_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	    	
+	    	myPopup.close();
+	    };
+	    
+	    var myPopup ;
+	    $scope.openPopupSelectRock_fragment = function() {
+	    	myPopup = $ionicPopup.show({
+	    	    templateUrl: 'templates/rock_fragment_dropdown.html',
+	    	    scope: $scope,
+	    	});
+	    };
+	    
+	    $scope.exitPopup = function() {
+	    	myPopup.close();
+	    };
+	    
+	    $scope.selectTexture = function(value){
+	    	$scope.texture_value = value;
+	    	newPlot.texture.soil_horizon_6 = $scope.texture_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_6) && !isEmpty(newPlot.texture.soil_horizon_6)){
+	         	newPlot.isSoilLayer_6_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_6_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	 	    
+	    };
+	    
+	    $scope.completeAddPlot_Soilayer_6 = function(){
+	 	    $state.go('landinfo.soillayers');
+	    };
+	
+})
+
+/****************************************/
+/** AddPlot_Soillayer_Layer_7_Ctrl **/
+/****************************************/
+.controller('AddPlot_Soillayer_Layer_7_Ctrl',function($scope,$state,$ionicPopup,$ionicModal){
+	var recorder_name = window.localStorage.getItem('current_email');
+	var email = recorder_name;
+	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	
+	
+	/* Test Modal */
+	
+	
+	/* End test */
+	
+	$scope.plot_name = newPlot.real_name;
+	//console.log(newPlot);
+		if (isEmpty(newPlot.rock_fragment) || isEmpty(newPlot.rock_fragment.soil_horizon_7)){
+			$scope.rock_fragement_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.rock_fragment.soil_horizon_7)) {
+				$scope.rock_fragement_value = newPlot.rock_fragment.soil_horizon_7;
+			}
+		}
+		
+		if (isEmpty(newPlot.texture) || isEmpty(newPlot.texture.soil_horizon_7)){
+			$scope.texture_value = "<choose range>";
+		} else {
+			if (!isEmpty(newPlot.texture.soil_horizon_7)) {
+				$scope.texture_value = newPlot.texture.soil_horizon_7;
+			}
+		}
+	
+	    
+	    $scope.selectRockFragment = function(rock_fragement_value) {	
+	    	$scope.rock_fragement_value = rock_fragement_value;
+	    	newPlot.rock_fragment.soil_horizon_7 = $scope.rock_fragement_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_7) && !isEmpty(newPlot.texture.soil_horizon_7)){
+	         	newPlot.isSoilLayer_7_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_7_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	    	
+	    	myPopup.close();
+	    };
+	    
+	    var myPopup ;
+	    $scope.openPopupSelectRock_fragment = function() {
+	    	myPopup = $ionicPopup.show({
+	    	    templateUrl: 'templates/rock_fragment_dropdown.html',
+	    	    scope: $scope,
+	    	});
+	    };
+	    
+	    $scope.exitPopup = function() {
+	    	myPopup.close();
+	    };
+	    
+	    $scope.selectTexture = function(value){
+	    	$scope.texture_value = value;
+	    	newPlot.texture.soil_horizon_7 = $scope.texture_value;
+	    	
+	    	if (!isEmpty(newPlot.rock_fragment.soil_horizon_7) && !isEmpty(newPlot.texture.soil_horizon_7)){
+	         	newPlot.isSoilLayer_7_Completed = true;
+	    	} else {
+	    		newPlot.isSoilLayer_7_Completed = false;
+	    	}
+	    	
+	    	updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+	 	    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+	 	    window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	 	    
+	    };
+	    
+	    $scope.completeAddPlot_Soilayer_7 = function(){
+	 	    $state.go('landinfo.soillayers');
+	    };
+
+})
+
+/****************************************/
+/** AddPlot_Soillayers_Ctrl **/
+/****************************************/
+.controller('AddPlot_Soillayers_Ctrl',function($scope,$state){
+	
+	function initImages(plot){
+		if (plot.isSoilLayer_1_Completed == true) {
+			$scope.add_plot_soil_layer_1 = "img/check-mark-th.png";
+		} else {
+			$scope.add_plot_soil_layer_1 = "img/check-mark-white-th.png";
+		}
+		if (plot.isSoilLayer_2_Completed == true) {
+			$scope.add_plot_soil_layer_2 = "img/check-mark-th.png";
+		} else {
+			$scope.add_plot_soil_layer_2 = "img/check-mark-white-th.png";
+		}
+		if (plot.isSoilLayer_3_Completed == true) {
+			$scope.add_plot_soil_layer_3 = "img/check-mark-th.png";
+		} else {
+			$scope.add_plot_soil_layer_3 = "img/check-mark-white-th.png";
+		}
+		if (plot.isSoilLayer_4_Completed == true) {
+			$scope.add_plot_soil_layer_4 = "img/check-mark-th.png";
+		} else {
+			$scope.add_plot_soil_layer_4 = "img/check-mark-white-th.png";
+		}
+		if (plot.isSoilLayer_5_Completed == true) {
+			$scope.add_plot_soil_layer_5 = "img/check-mark-th.png";
+		} else {
+			$scope.add_plot_soil_layer_5 = "img/check-mark-white-th.png";
+		}
+		if (plot.isSoilLayer_6_Completed == true) {
+			$scope.add_plot_soil_layer_6 = "img/check-mark-th.png";
+		} else {
+			$scope.add_plot_soil_layer_6 = "img/check-mark-white-th.png";
+		}
+		if (plot.isSoilLayer_7_Completed == true) {
+			$scope.add_plot_soil_layer_7 = "img/check-mark-th.png";
+		} else {
+			$scope.add_plot_soil_layer_7 = "img/check-mark-white-th.png";
+		}
+	}
+	
+	
+	var recorder_name = window.localStorage.getItem('current_email');
+	var email = recorder_name;
+	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	
+	$scope.plot_name = newPlot.real_name;
+	
+	console.log(newPlot);
+	
+	/* Full fill the images */
+	initImages(newPlot);
+
+	if (isEmpty(newPlot.rock_fragment) || isEmpty(newPlot.texture)){
+	       var rock_fragment = {"soil_horizon_1":"","soil_horizon_2":"","soil_horizon_3":"","soil_horizon_4":"","soil_horizon_5":"","soil_horizon_6":"","soil_horizon_7":""}
+	       var texture = {"soil_horizon_1":"","soil_horizon_2":"","soil_horizon_3":"","soil_horizon_4":"","soil_horizon_5":"","soil_horizon_6":"","soil_horizon_7":""}
+	       newPlot.rock_fragment = rock_fragment; 
+	       newPlot.texture = texture;
+	       updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+		   window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+		   window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+	}
+	
+	
+	$scope.goBack = function() {
+         $state.go('landinfo.newplot');
+    };
+})
+
+/****************************************/
 /** AddPlot_Photos_Ctrl **/
 /****************************************/
-.controller('AddPlot_Photos_Ctrl',function($scope,$state){
-	
-	
-	
+.controller('AddPlot_Photos_Ctrl',function($scope,$state, $cordovaCamera){
 	var recorder_name = window.localStorage.getItem('current_email');
 	var email = recorder_name;
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
@@ -1407,15 +2064,31 @@ angular.module('ionicApp.controller',['chart.js'])
 
 	$scope.plot_name = newPlot.real_name;
 	
+	$scope.takePicture = function() {
+        var options = { 
+            quality : 75, 
+            destinationType : Camera.DestinationType.DATA_URL, 
+            sourceType : Camera.PictureSourceType.CAMERA, 
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 300,
+            targetHeight: 300,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
 
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+            $scope.imgURI = "data:image/jpeg;base64," + imageData;
+        }, function(err) {
+            // An error occured. Show a message to the user
+        });
+    };
 
 	$scope.goBack = function() {
 	
          $state.go('landinfo.newplot');
     };
-	
-	
-	
+
 })
 
 
@@ -1992,8 +2665,7 @@ angular.module('ionicApp.controller',['chart.js'])
 /****************************************/
 .controller('ListPlotsCtrl', function($scope,$state, $http, Scopes, $ionicHistory,$ionicLoading) {
     $scope.title = 'Landinfo';
-		
-		
+
     function isPlotInCloud(plot){
 			if (plot.id === null || plot.id === '' || plot.id === 'null' || plot.id === 'undefined' || plot.isActived == true){
 				return false;
@@ -2013,7 +2685,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	});
 	 
 	if (previous_page === "LOGIN_PAGE") {
-	   console.log("Get Data From API");
+	   console.log("1st Time After Login : get data from API");
 	   $http.get('http://128.123.177.21:8080/query', {
 			params : {
 				action : "get",
@@ -2053,9 +2725,22 @@ angular.module('ionicApp.controller',['chart.js'])
 		});
 	} else {
 		clearAllCache();
-		console.log("Get Data From Cache");
-		$scope.plots = {};
-		$scope.plots = JSON.parse(window.localStorage.getItem(email + "_" + "LIST_LANDINFO_PLOTS"));
+		/**********************/
+		/* Syncing with Cloud */
+		/**********************/
+		console.log("Caching & Syncing : Queyry API to check Are there any newplots in Clound of this account ?");
+		var areThereAnyNewPlots = false;
+		
+		if (areThereAnyNewPlots == false) {
+		     console.log("Caching & Syncing :  Get Data From Local Cache - NO NEWS");
+		     $scope.plots = {};
+		     $scope.plots = JSON.parse(window.localStorage.getItem(email + "_" + "LIST_LANDINFO_PLOTS"));
+		} else {
+			/* Caching & Syncing : Query plots from Cloud that are not stored in Local Caching */
+			 console.log("Caching & Syncing :  Query new plots in Cloud and update with Local Cache");
+		}
+		
+		
 		
 		for(var index = 0 ; index < $scope.plots.length; index ++){
 			var plot = $scope.plots[index];

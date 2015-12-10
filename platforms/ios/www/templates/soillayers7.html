@@ -1,32 +1,66 @@
-<ion-view view-title="100-120cm">
-        <ion-content class="padding">
-          
-   <text><b>Rock Fragment Volume</b></text> <br>
-<div class="list">
-    <select>
-      <option selected>0%-15%</option>
-      <option >15%-35%</option>
-      <option>35%-60%</option>
-      <option>60%-90%</option>
-    </select>
+<link href="css/tab.css" rel="stylesheet">
+<ion-view view-title="" hide-back-button="true" cache-view="false">
+<ion-nav-buttons
+    side="left"> 
+    <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="completeAddPlot_Soilayer_7();" ></a>
+    <a align="left" class="button button-icon"
+    ng-click="completeAddPlot_Soilayer_7();"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> 
+</ion-nav-buttons>
+
+
+<div class="tabs-striped tabs-top tabs-background-stable">
+    <div class="tabs">
+      <a class="tab-item tab_border" href="#/landinfo/soillayers1">
+        0-1CM
+      </a>
+      <a class="tab-item tab_border" href="#/landinfo/soillayers2">
+        1-10CM
+      </a>
+      <a class="tab-item tab_border" href="#/landinfo/soillayers3">
+        10-20CM
+      </a>
+      <a class="tab-item tab_border" href="#/landinfo/soillayers4">
+        20-50CM
+      </a>
+      <a class="tab-item tab_border" href="#/landinfo/soillayers5">
+        50-70CM
+      </a>
+      <a class="tab-item tab_border" href="#/landinfo/soillayers6">
+        70-10CM
+      </a>
+      <a class="tab-item  tab_selected" href="#/landinfo/soillayers7">
+        100-120CM
+      </a>
+    </div>
 </div>
 
-       <text><b>Soil Texture</b></text> <br>
+<ion-content class="padding">  
+<br>
+<br>
+<br> 
+   <text><b><h4>100-120 cm</h4></b></text> <br>
+   <text><b>Rock Fragment Volume</b></text> <br>
+<div class="item" ng-click="openPopupSelectRock_fragment();">
+    <input type="text" ng-model="rock_fragement_value" value="0-15%"/>
+</div> 
+  
+<br>
+<br>    
+<text><b>Soil Texture</b></text> <br>
       
-      <p > <div class="list">
-    <select>
-      <option selected>Sand</option>
-      <option >Loamy sand</option>
-      <option>Sandy loam</option>
-      <option>Silt loam</option>
-      <option>Loam</option>
-<option>Sandy clay loam</option>
-<option>Silty clay loam</option>
-<option>Clay loam</option>
-<option>Sandy clay loam</option>
-<option>Silty clay</option>
-<option>Clay</option>
-
+<p > <div class="list">
+    <select ng-model="texture_value" ng-change="selectTexture(texture_value)">
+      <option value="SAND">Sand</option>
+      <option value="LOAMY SAND">Loamy sand</option>
+      <option value="SANDY LOAM">Sandy loam</option>
+      <option value="SILT LOAM">Silt loam</option>
+      <option value="LOAM">Loam</option>
+	  <option value="SANDY CLAY LOAM">Sandy clay loam</option>
+	  <option value="SILTY CLAY LOAM">Silty clay loam</option>
+	  <option value="CLAY LOAM">Clay loam</option>
+	  <option value="SANDY CLAY LOAM">Sandy clay loam</option>
+	  <option value="SILTY CLAY">Silty clay</option>
+	  <option value="CLAY">Clay</option>
     </select>
 
     <text> <b>or</b></text>

@@ -1,8 +1,5 @@
+<link href="css/tab.css" rel="stylesheet">
 <div>
-
-
-
-
 	<ion-view view-title="" hide-back-button="true" align-title="center"> 
 
     <ion-nav-buttons side="left">
@@ -13,14 +10,12 @@
 
 <div class="tabs-striped tabs-top tabs-background-stable">
     <div class="tabs">
-      <a class="tab-item" href="#/landinfo/review-results">
-        <i ></i>
-        <img  ng-src="{{review_status_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/>
+      <a class="tab-item tab_border tab_selected" href="#/landinfo/review-results">
+        <img ng-src="{{review_status_img_src}}" class="title-image1" style="width:30%; height:60%"/>
         Review
       </a>
-      <a class="tab-item" href="#/landinfo/results">
-        <i></i>
-        <img  ng-src="{{results_status_img_src}}"  style="height:5% ; margin:0" align="right" class="image-list-thumb"/>
+      <a class="tab-item" href="#/landinfo/results" style="width:100%;">
+        <img ng-src="{{results_status_img_src}}"  class="title-image1" style="width:30%; height:60%"/>
         Result
       </a>
       
