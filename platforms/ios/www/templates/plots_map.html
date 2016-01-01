@@ -1,10 +1,11 @@
 <ion-view align-title="left" hide-back-button="true" cache-view="false">
     <ion-nav-title >
-      <a class="button button-icon" ui-sref="landinfo.plots"><img src="img/ic_launcher.png" class="title-image" align="left"></a>
+      <img src="img/ic_launcher.png" class="title-image" align="left" />&nbsp;LandInfo
     </ion-nav-title>
 
      <ion-nav-buttons side="right">
         <a align="right" class="button button-icon ion-ios-rainy" ng-click="getClimate()"></a>
+        <a class="button button-icon icon ion-navicon" ui-sref="landinfo.plots"></a>
         <a class="button button-icon ion-plus-round" ui-sref="landinfo.newplot_temp"></a>
         <a class="button button-icon ion-gear-b" ui-sref="landinfo.settings"></a>
       </ion-nav-buttons>
@@ -12,4 +13,4 @@
      <ion-content ng-init="init()" ng-controller="PlotsMapCtrl">
         <div id="map" data-tap-disabled="true" style="width: 1300px; height: 950px"></div>
     </ion-content>
-</ion-view>  
+</ion-view>

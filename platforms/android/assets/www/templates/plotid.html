@@ -3,14 +3,14 @@
 	side="left">
 <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="completeAddPlot_PlotID();" ></a>
 	 <a align="left" class="button button-icon"
-	ng-click="completeAddPlot_PlotID();"><img src="img/ic_launcher.png" class="title-image1" align="left">New Plot Detail</a>
+	ng-click="completeAddPlot_PlotID();"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a>
 	</ion-nav-buttons>
 
- <ion-nav-buttons
-	side="right"> <a
-	align="right" class="button button-icon ion-navicon"></a> <a
-	align="right" class="button button-icon ion-android-more-vertical"></a>
-</ion-nav-buttons> <ion-content class="padding"> <label
+<ion-nav-buttons side="right"> 
+    <a align="right" class="button button-icon ion-navicon" ng-click="showNotesPopup()"></a>
+</ion-nav-buttons> 
+
+<ion-content class="padding"> <label
 	class="item item-input"> <span class="input-label"><b>Plot
 			Name</b>
 </span> <input type="text" id="name"> </label>
@@ -36,7 +36,11 @@
 	<a class="button icon ion-navigate" ng-click="getLocation();"
 		id="btnObtainGPS">Obtain GPS fix</a>
 </p>
-<label class="item item-input"> <span class="input-label"><b>Latitude</b>
-</span> <input type="number" id="latitude" /> </label> <label class="item item-input">
-	<span class="input-label"><b>Longitude</b>
-</span> <input type="number" id="longitude" /> </label> </ion-content> </ion-view>
+<label class="item item-input"> 
+   <span class="input-label"><b>Latitude</b></span> 
+   <input type="number" id="latitude" ng-blur="validateLatitude()"/> 
+</label> 
+<label class="item item-input">
+   <span class="input-label"><b>Longitude</b></span>
+   <input type="number" id="longitude" ng-blur="validateLongitude()"/> </label> 
+</ion-content> </ion-view>

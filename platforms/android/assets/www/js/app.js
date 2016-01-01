@@ -1,5 +1,13 @@
 angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
 
+.config(['$httpProvider', function($httpProvider) {
+	 //$httpProvider.defaults.withCredentials = true;
+	 $httpProvider.defaults.headers.common = {};
+	 $httpProvider.defaults.headers.post = {};
+	 $httpProvider.defaults.headers.put = {};
+	 $httpProvider.defaults.headers.patch = {};
+}])
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -172,6 +180,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.review', {
       url: "/review",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/review.html",
@@ -324,7 +333,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
 		   window.localStorage.setItem("current_json_auth_data", jsonObjAuth['authentication'][0].json_auth_data);
 		   window.localStorage.setItem("current_email",jsonObjAuth['authentication'][0].email);
 		   window.localStorage.setItem("current_password",jsonObjAuth['authentication'][0].password);
-		   window.localStorage.setItem("PREVIOUS_PAGE","LOGIN_PAGE");
+		   //window.localStorage.setItem("PREVIOUS_PAGE","LOGIN_PAGE");
 		   $urlRouterProvider.otherwise("/landinfo/plots");
 	   } else {
 		   $urlRouterProvider.otherwise("/landinfo/accounts");

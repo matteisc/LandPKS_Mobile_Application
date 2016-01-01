@@ -16,12 +16,27 @@ function seeToast2(message, duration) {
 	};
 
 function updatePlotExist(name,recorder_name,JSONArray,newPlot){
-		for (var index = 0; index < JSONArray.length; index++) {
-		    var plot = JSONArray[index];
-		    if(plot.recorder_name === recorder_name && plot.real_name === name){
-		        JSONArray[index] = newPlot;
-		    }
+	for (var index = 0; index < JSONArray.length; index++) {
+		var plot = JSONArray[index];
+		if(plot.recorder_name === recorder_name && plot.real_name === name){
+		     JSONArray[index] = newPlot;
 		}
+	}
+};
+
+function deleteLandInfoPlotInArrayt(name,recorder_name,JSONArray){
+	for (var index = 0; index < JSONArray.length; index++) {
+	    var plot = JSONArray[index];
+	    if(plot.recorder_name === recorder_name && plot.real_name === name){
+	       if (index > - 1){
+	    	   JSONArray.splice(index, 1);
+	    	   return true;
+	       } else{
+	    	   return false;
+	       }
+	    } 
+	}
+	return false;
 };
 
 function isEmpty(value){

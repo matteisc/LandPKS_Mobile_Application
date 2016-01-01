@@ -1,203 +1,192 @@
  <ion-view view-title="">
 
- <ion-nav-buttons
-    side="left">
-  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="goBack()" ></a>
-   <a align="left" class="button button-icon"
-    ng-click="goBack()"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> </ion-nav-buttons>
+<ion-nav-buttons side="left">
+   <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="goBack()" ></a>
+   <a align="left" class="button button-icon" ng-click="goBack()">
+      <img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details
+   </a> 
+</ion-nav-buttons>
     
-        <ion-content class="padding">
-          
- <p>  <a  class="button icon">Submit Plot Data</a> </p><br>
+<ion-content class="padding">
+    <p><a  class="button icon" ng-click="submitPlot()" id="btnSubmitPlot">Submit Plot Data</a> </p><br>
+   
+    <p>
+		<b> Plot ID </b>
+	</p>
+	<br>
+	<label class="item item-input"> 
+	    <span class="input-label">Plot name</span><span class="input-label">{{plot_name}}</span>
+	</label> 
+	<label class="item item-input"> 
+        <span class="input-label">Recorder name</span><span class="input-label">{{currentPlot.recorder_name}}</span>
+    </label>  
+    <label class="item item-input"> 
+        <span class="input-label">Organization</span><span class="input-label">{{currentPlot.organization}}</span>
+    </label> 
+    <label class="item item-input"> 
+        <span class="input-label">Latitude</span><span class="input-label">{{currentPlot.latitude}}</span>
+    </label>  
+    <label class="item item-input"> 
+        <span class="input-label">Longitude</span><span class="input-label">{{currentPlot.longitude}}</span>
+    </label>
+   
+    <br>
+	<p>
+		<b> Land Cover </b>
+	</p>
+	<br>
 
- <p><b> Plot ID </b></p> <br>
-<label class="item item-input">
-  <span class="input-label">Plot Name</span>
-  <input type="text">
-</label> 
+	<label class="item item-input"> 
+        <span class="input-label">Land Cover</span><span class="input-label">{{currentPlot.land_cover}}</span>
+    </label>   
+    <label class="item item-input"> 
+        <span class="input-label">Grazed</span><span class="input-label">{{currentPlot.grazed}}</span>
+    </label> 
+    <label class="item item-input"> 
+        <span class="input-label">Flooding</span><span class="input-label">{{currentPlot.flooding}}</span>
+    </label>
+    
+	<br>
+	<p>
+		<b> Land Use </b>
+	</p>
+	<br>
 
-<label class="item item-input">
-  <span class="input-label">Recorder Name</span>
-  <input type="text">
-</label> 
+	<label class="item item-input"> 
+        <span class="input-label">Grazing</span><span class="input-label">{{currentPlot.grazing}}</span>
+    </label>
+    <br>
+	<p>
+		<b> Slope </b>
+	</p>
+	<br>
 
-<label class="item item-input">
-  <span class="input-label">Organization</span>
-  <input type="text">
-</label> 
+	<label class="item item-input"> 
+        <span class="input-label">Slope</span><span class="input-label">{{currentPlot.slope}}</span>
+    </label>
+    
+    <br>
+	<p>
+		<b> Slope Shape </b>
+	</p>
+	<br>
 
-<label class="item item-input">
-  <span class="input-label">Latitude</span>
-  <input type="text">
-</label> 
+	<label class="item item-input"> 
+        <span class="input-label">Down slope shape</span><span class="input-label">{{currentPlot.slopeshape_down_data}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Cross slope shape</span><span class="input-label">{{currentPlot.slopeshape_cross_data}}</span>
+    </label>
+    <br>
+    <p>
+	  <b> Soil Conditions </b>
+	</p>
+	<br>
 
-<label class="item item-input">
-  <span class="input-label">Longitude</span>
-  <input type="text">
-</label> 
+	<label class="item item-input"> 
+        <span class="input-label">Surface Cracked</span><span class="input-label">{{currentPlot.surface_cracking}}</span>
+    </label>
+     <label class="item item-input"> 
+        <span class="input-label">Surface Salt</span><span class="input-label">{{currentPlot.surface_salt}}</span>
+    </label>
+    
+     <br>
+	<p>
+		<b> Soil Layers </b>
+	</p>
+	<br>
+	<p>0-1cm</p>
+	<br>
+	<label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{currentPlot.rock_fragment.soil_horizon_1}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{currentPlot.texture.soil_horizon_1}}</span>
+    </label>    
+    <br>
+	<p>1-10cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{currentPlot.rock_fragment.soil_horizon_2}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{currentPlot.texture.soil_horizon_2}}</span>
+    </label>    
+    <br>
+	<p>10-20cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{currentPlot.rock_fragment.soil_horizon_3}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{currentPlot.texture.soil_horizon_3}}</span>
+    </label>    
+    <br>
+	<p>20-50cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{currentPlot.rock_fragment.soil_horizon_4}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{currentPlot.texture.soil_horizon_4}}</span>
+    </label>    
+    <br>
+	<p>50-70cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{currentPlot.rock_fragment.soil_horizon_5}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{currentPlot.texture.soil_horizon_5}}</span>
+    </label>    
+    <br>
+	<p>70-100cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{currentPlot.rock_fragment.soil_horizon_6}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{currentPlot.texture.soil_horizon_6}}</span>
+    </label>    
+    <br>
+	<p>100-120cm</p>
+	<br>
+    <label class="item item-input"> 
+        <span class="input-label">Rock fragment volume</span><span class="input-label">{{currentPlot.rock_fragment.soil_horizon_7}}</span>
+    </label>
+    <label class="item item-input"> 
+        <span class="input-label">Soil texture</span><span class="input-label">{{currentPlot.texture.soil_horizon_7}}</span>
+    </label>    
+    <br>
+	<p>
+		<b> Photos </b>
+	</p>
+	<br>
 
-<br><p><b> Land Cover </b></p> <br>
-
-<label class="item item-input">
-  <span class="input-label">Land Cover</span>
-  <input type="text">
-</label>
-<label class="item item-input">
-  <span class="input-label">Flooded</span>
-  <input type="text">
-</label>
-
-<br><p><b> Land Use </b></p> <br>
-
-<label class="item item-input">
-  <span class="input-label">Grazing</span>
-  <input type="text">
-</label>
-
-<br><p><b> Slope </b></p> <br>
-
-<label class="item item-input">
-  <span class="input-label">Slope</span>
-  <input type="text">
-</label>
-
-
-
-<br><p><b> Slope Shape </b></p> <br>
-
-<label class="item item-input">
-  <span class="input-label">Down slope shape</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Cross slope shape</span>
-  <input type="text">
-</label>
-
-<br><p><b> Soil Conditions </b></p> <br>
-
-<label class="item item-input">
-  <span class="input-label">Surface Craked</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Surface Salt</span>
-  <input type="text">
-</label>
-
-<br><p><b> Soil Layers </b></p> <br>
-<p> 0-1cm </p> <br>
-<label class="item item-input">
-  <span class="input-label">Rock fragment volume</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Soil texture</span>
-  <input type="text">
-</label>
-
-<br><p> 1-10cm </p> <br>
-<label class="item item-input">
-  <span class="input-label">Rock fragment volume</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Soil texture</span>
-  <input type="text">
-</label>
-
-<br><p> 10-20cm </p> <br>
-<label class="item item-input">
-  <span class="input-label">Rock fragment volume</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Soil texture</span>
-  <input type="text">
-</label>
-
-<br><p> 20-50cm </p> <br>
-<label class="item item-input">
-  <span class="input-label">Rock fragment volume</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Soil texture</span>
-  <input type="text">
-</label>
-
-<br><p> 50-70cm </p> <br>
-<label class="item item-input">
-  <span class="input-label">Rock fragment volume</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Soil texture</span>
-  <input type="text">
-</label>
-
-<br><p> 70-100cm </p> <br>
-<label class="item item-input">
-  <span class="input-label">Rock fragment volume</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Soil texture</span>
-  <input type="text">
-</label>
-
-<br><p> 100-120cm </p> <br>
-<label class="item item-input">
-  <span class="input-label">Rock fragment volume</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Soil texture</span>
-  <input type="text">
-</label>
-
-<br> <p><b> Photos </b></p> <br>
-
-<label class="item item-input">
-  <span class="input-label">North</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">East</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">South</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">West</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Soil Pit</span>
-  <input type="text">
-</label>
-
-<label class="item item-input">
-  <span class="input-label">Soil Samples</span>
-  <input type="text">
-</label>
+	<label class="item item-input"> 
+        <span class="input-label">North</span><img ng-src="{{currentPlot.landscape_north_photo_url}}" class="image-list-thumb"/>
+    </label>
+   <label class="item item-input"> 
+        <span class="input-label">East</span><img ng-src="{{currentPlot.landscape_east_photo_url}}" class="image-list-thumb"/>
+   </label>
+    <label class="item item-input"> 
+        <span class="input-label">South</span><img ng-src="{{currentPlot.landscape_south_photo_url}}" class="image-list-thumb"/>
+   </label> 
+   <label class="item item-input"> 
+        <span class="input-label">West</span><img ng-src="{{currentPlot.landscape_west_photo_url}}" class="image-list-thumb"/>
+   </label> 
+   <label class="item item-input"> 
+        <span class="input-label">Soil Pit</span><img ng-src="{{currentPlot.soil_pit_photo_url}}" class="image-list-thumb"/>
+   </label> 
+   <label class="item item-input"> 
+        <span class="input-label">Soil Sample</span><img ng-src="{{currentPlot.soil_samples_photo_url}}" class="image-list-thumb"/>
+   </label>
+    <label class="item item-input"> 
+        <span class="input-label">Notes</span><span class="input-label">{{currentPlot.notes}}</span>
+    </label>
+ 
 
           
         
-        </ion-content>
-      </ion-view>
+</ion-content>
+</ion-view>
