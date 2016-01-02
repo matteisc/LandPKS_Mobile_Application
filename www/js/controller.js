@@ -343,8 +343,40 @@ angular.module('ionicApp.controller',['chart.js'])
     $scope.series = ['Series A'];
     $scope.captions = ['Climate'];
 
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate.precipitation)){
+    	//console.log("Dech co gi");
+    	ListPlotsCtrl_Scope.selectedPlot.climate = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.january = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.february = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.march = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.april = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.may = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.june = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.july = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.august = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.september = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.october = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.november = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.december = -999;
+    }
+    
+    
     $scope.data = [
-       [ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.january, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.february, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.march, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.april, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.may, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.june, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.july, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.august,ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.september,ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.october,ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.november,ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.december],
+       [ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.january, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.february, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.march, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.april, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.may, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.june, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.july, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.august,
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.september,
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.october,
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.november,
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.december
+       ],
     ];
 
     $scope.temp_line_options = {
@@ -352,6 +384,62 @@ angular.module('ionicApp.controller',['chart.js'])
     };
     $scope.names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'];
     $scope.number = ['Max Temp', 'Avg Temp','Min Temp'];
+    
+    
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature)){
+    	//console.log("Dech co gi");
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.january = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.february = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.march = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.april = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.may = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.june = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.july = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.august = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.september = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.october = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.november = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.december = -999;
+    }
+    
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature)){
+    	//console.log("Dech co gi");
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.january = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.february = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.march = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.april = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.may = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.june = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.july = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.august = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.september = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.october = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.november = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.december = -999;
+    }
+    
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature)){
+    	//console.log("Dech co gi");
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.january = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.february = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.march = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.april = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.may = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.june = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.july = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.august = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.september = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.october = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.november = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.december = -999;
+    }
+    
     $scope.linedata = [
           [ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.january, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.february, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.march, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.april, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.may, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.june, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.july, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.august,ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.september,ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.october,ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.november,ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.december]
          ,[ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.january, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.february, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.march, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.april, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.may, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.june, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.july, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.august,ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.september,ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.october,ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.november,ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.december]
@@ -370,6 +458,15 @@ angular.module('ionicApp.controller',['chart.js'])
     $scope.awcseries = ['Series A'];
     $scope.awccaptions = ['AWC Soil Profile'];
 
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc)){
+    	//console.log("Dech co gi");
+    	ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil = {};
+    	ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc = 0;
+
+    }
+    
+    
     $scope.awcdata = [
        [ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc],
     ];
@@ -2187,8 +2284,7 @@ angular.module('ionicApp.controller',['chart.js'])
 				    	 texture_for_soil_horizon_7:newPlot.texture.soil_horizon_7,
 				    	 surface_salt:newPlot.surface_salt, surface_cracking:newPlot.surface_cracking,
 				    	 soil_pit_photo_url:'',soil_samples_photo_url:'',landscape_north_photo_url:'',
-				    	 landscape_east_photo_url:'',landscape_south_photo_url:'',landscape_west_photo_url:'',
-				    	 notes:newPlot.notes
+				    	 landscape_east_photo_url:'',landscape_south_photo_url:'',landscape_west_photo_url:'',notes:newPlot.notes
 				    }
 				    
 			}).success(
