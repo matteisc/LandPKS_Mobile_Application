@@ -81,6 +81,7 @@ angular.module('ionicApp.controller',['chart.js'])
 /****************************************/
 .controller('Results_Section_Ctrl', function($scope, $state, Scopes) {
 	$scope.goBack = function() {
+		 window.localStorage.setItem("PREVIOUS_PAGE","RESULT_SECTION_PAGE");
          $state.go('landinfo.plots');
     };
     var view_plot = JSON.parse(window.localStorage.getItem("current_view_plot"));
@@ -496,6 +497,7 @@ angular.module('ionicApp.controller',['chart.js'])
 .controller('QuickClimateCtrl', function($scope,$state,$http,$ionicLoading) {
 	
 	$scope.goBack = function() {
+		window.localStorage.setItem("PREVIOUS_PAGE","QUICK_CLIMATE_PAGE");
         $state.go('landinfo.plots');
     };
 	
@@ -649,6 +651,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	},
 	
 	$scope.myGoBack = function() {
+		 window.localStorage.setItem("PREVIOUS_PAGE","ADD_PLOT_GO_BACK");
          $state.go('landinfo.plots');
     };
     
@@ -658,6 +661,7 @@ angular.module('ionicApp.controller',['chart.js'])
     		 var resultDeleted = deleteLandInfoPlotInArrayt(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS);
     		 if (resultDeleted == true){
     		    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+    		    window.localStorage.setItem("PREVIOUS_PAGE","ADD_PLOT_DELETE_EDITION_PLOT_SUCCESS");
     		    $state.go('landinfo.plots');
     		 } else {
     			alert("Error in delete editing plot");
@@ -2290,10 +2294,13 @@ angular.module('ionicApp.controller',['chart.js'])
 			}).success(
 					function(data, status, headers, config) {
 						alert("Plot is submitted already");
+						window.localStorage.setItem("PREVIOUS_PAGE","ADD_NEW_PLOT_SUCCESS");
+						window.localStorage.setItem("delete_plot_name",newPlot.name);
+						window.localStorage.setItem("delete_recorder_name",newPlot.recorder_name);
 						$state.go('landinfo.plots');
 					}).error(function(err) {
 						$ionicLoading.hide();
-				        alert(err.error,'Submit Plot Error');
+				        alert(err.error,'Error in submit Plot');
 			});
 		
 		   
@@ -2875,6 +2882,7 @@ angular.module('ionicApp.controller',['chart.js'])
 			    	alert("Plot Name is already used. Please try other name");
 			    }
 	    	} else {
+	    		window.localStorage.getItem("PREVIOUS_PAGE") === "ADD_NEW_PLOT_NOT_SUCCESS";
 	    		$state.go('landinfo.plots');
 	    	}
 	    };
@@ -2965,6 +2973,7 @@ angular.module('ionicApp.controller',['chart.js'])
     }		
 		
 	var email = window.localStorage.getItem('current_email');
+	var recorder_name = email;
 	console.log("LIST of " + email);
 	var previous_page = window.localStorage.getItem("PREVIOUS_PAGE");
 	
@@ -2976,7 +2985,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	
 	console.log(previous_page);
 	if (previous_page === "LOGIN_PAGE") {
-	   console.log("1st Time After Login : get data from API");
+	   console.log("1st Time After Login : get data from API - Refresh data - all data from Cloud");
 	   $http.get('http://128.123.177.21:8080/query', {
 			params : {
 				action : "get",
@@ -3012,21 +3021,82 @@ angular.module('ionicApp.controller',['chart.js'])
 			$ionicLoading.hide();
 			alert(err.error);
 		});
-	   
 	    window.localStorage.setItem("PREVIOUS_PAGE","LIST_PLOT_PAGE");
-	    //var previous_page = window.localStorage.getItem("PREVIOUS_PAGE");
-	    //console.log(previous_page);
+	} else if (previous_page === "ADD_NEW_PLOT_SUCCESS") {
+		var delete_plot_name = window.localStorage.getItem("delete_plot_name");
+		var delete_recorder_name = window.localStorage.getItem("delete_recorder_name");
+		var recorder_name = window.localStorage.getItem('current_email');
+        if (delete_recorder_name === recorder_name){
+        	/* Extract list of local caching plots */
+        	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
+        	for(var index = 0 ; index < LIST_PLOTS.length ; index ++){
+        		var plot = LIST_PLOTS[index];
+        		if (plot.name === delete_plot_name && plot.recorder_name === delete_recorder_name){
+        			if (index > 0){
+        				LIST_PLOTS.splice(index,1);
+        			}
+        		}
+        	}
+        	var LIST_LOCAL_CACHE_PLOTS = [];
+        	for(var index = 0 ; index < LIST_PLOTS.length; index ++){
+        		var plot = LIST_PLOTS[index];
+        		if (!isPlotInCloud(plot)){
+        			LIST_LOCAL_CACHE_PLOTS.push(plot);
+        		}
+        	}
+        	
+        	/* Get list of plots from Cloud */
+        	$http.get('http://128.123.177.21:8080/query', {
+    			params : {
+    				action : "get",
+    				object : "landinfo",
+    				recorder_name : email,
+    				display : "",
+    				delimiter : ",",
+    				version : ""
+    			}
+    		}).success(function(data) {
+    	       for(var index = 0 ; index < data.length; index ++){
+	   				var plot = data[index];
+	   				if (isPlotInCloud(plot) == true){
+	   					data[index].img_src = "img/check-mark-th.png";
+	   				} else {
+	   					data[index].img_src = "img/check-mark-white-th.png";
+	   				}
+   		       }
+    	       
+    	       for(var index = 0 ; index < data.length; index ++){
+   				   var plot = data[index];
+   				   LIST_LOCAL_CACHE_PLOTS.push(plot);
+   		       }
+    	       
+    	       window.localStorage.setItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_LOCAL_CACHE_PLOTS));
+           	   
+           	   $scope.plots = {};
+   		       $scope.plots = LIST_LOCAL_CACHE_PLOTS;
+    	       
+   		       $ionicLoading.hide();
+    	     
+    		}).error(function(err) {
+    			$ionicLoading.hide();
+    			$scope.plots = {};
+     		    $scope.plots = LIST_LOCAL_CACHE_PLOTS;
+    			alert(err.error);
+    		});	
+        	
+        }
 	} else {
 		clearAllCache();
 		/**********************/
 		/* Syncing with Cloud */
 		/**********************/
-		console.log("Caching & Syncing : Queyry API to check Are there any newplots in Clound of this account ?");
+		console.log("Caching & Syncing : Queyry API to check Are there any newplots in Cloud of this account ?");
 		var areThereAnyNewPlots = false;
 		
 		if (areThereAnyNewPlots == false) {
 		     console.log("Caching & Syncing :  Get Data From Local Cache - NO NEWS");
 		     $scope.plots = {};
+		     //console.log(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 		     $scope.plots = JSON.parse(window.localStorage.getItem(email + "_" + "LIST_LANDINFO_PLOTS"));
 		} else {
 			/* Caching & Syncing : Query plots from Cloud that are not stored in Local Caching */
@@ -3042,7 +3112,7 @@ angular.module('ionicApp.controller',['chart.js'])
 			}
 		}
 		
-		console.log($scope.plots);
+		//console.log($scope.plots);
 		$ionicLoading.hide();
 	}
 
