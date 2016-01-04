@@ -102,6 +102,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.landcover', {
       url: "/landcover",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/landcover.html",
@@ -111,6 +112,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.landuse', {
       url: "/landuse",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/landuse.html",
@@ -141,6 +143,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.slopeshape', {
       url: "/slopeshape",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/slopeshape.html",
@@ -151,6 +154,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.soilcondition', {
       url: "/soilcondition",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/soilcondition.html",
@@ -171,6 +175,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.photos', {
       url: "/photos",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/photos.html",
@@ -218,6 +223,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.soillayers2', {
       url: "/soillayers2",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/soillayers2.html",
@@ -227,6 +233,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.soillayers3', {
       url: "/soillayers3",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/soillayers3.html",
@@ -236,6 +243,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.soillayers4', {
       url: "/soillayers4",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/soillayers4.html",
@@ -245,6 +253,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.soillayers5', {
       url: "/soillayers5",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/soillayers5.html",
@@ -254,6 +263,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.soillayers6', {
       url: "/soillayers6",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/soillayers6.html",
@@ -263,6 +273,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.soillayers7', {
       url: "/soillayers7",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/soillayers7.html",

@@ -81,6 +81,7 @@ angular.module('ionicApp.controller',['chart.js'])
 /****************************************/
 .controller('Results_Section_Ctrl', function($scope, $state, Scopes) {
 	$scope.goBack = function() {
+		 window.localStorage.setItem("PREVIOUS_PAGE","RESULT_SECTION_PAGE");
          $state.go('landinfo.plots');
     };
     var view_plot = JSON.parse(window.localStorage.getItem("current_view_plot"));
@@ -337,14 +338,47 @@ angular.module('ionicApp.controller',['chart.js'])
   	      animation: false
     };
   
+	$scope.precip_bar_colors = [{fillColor:["#0000FF"]}];
 	
 	$scope.selectedPlot = ListPlotsCtrl_Scope.selectedPlot;
     $scope.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'];
     $scope.series = ['Series A'];
     $scope.captions = ['Climate'];
 
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate.precipitation)){
+    	//console.log("Dech co gi");
+    	ListPlotsCtrl_Scope.selectedPlot.climate = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.january = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.february = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.march = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.april = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.may = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.june = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.july = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.august = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.september = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.october = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.november = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.december = -999;
+    }
+    
+    
     $scope.data = [
-       [ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.january, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.february, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.march, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.april, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.may, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.june, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.july, ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.august,ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.september,ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.october,ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.november,ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.december],
+       [ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.january, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.february, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.march, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.april, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.may, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.june, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.july, 
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.august,
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.september,
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.october,
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.november,
+        ListPlotsCtrl_Scope.selectedPlot.climate.precipitation.december
+       ],
     ];
 
     $scope.temp_line_options = {
@@ -352,6 +386,62 @@ angular.module('ionicApp.controller',['chart.js'])
     };
     $scope.names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'];
     $scope.number = ['Max Temp', 'Avg Temp','Min Temp'];
+    
+    
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature)){
+    	//console.log("Dech co gi");
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.january = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.february = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.march = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.april = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.may = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.june = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.july = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.august = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.september = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.october = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.november = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.december = -999;
+    }
+    
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature)){
+    	//console.log("Dech co gi");
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.january = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.february = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.march = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.april = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.may = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.june = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.july = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.august = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.september = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.october = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.november = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.december = -999;
+    }
+    
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature)){
+    	//console.log("Dech co gi");
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature = {};
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.january = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.february = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.march = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.april = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.may = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.june = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.july = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.august = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.september = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.october = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.november = -999;
+    	ListPlotsCtrl_Scope.selectedPlot.climate.min_temperature.december = -999;
+    }
+    
     $scope.linedata = [
           [ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.january, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.february, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.march, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.april, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.may, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.june, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.july, ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.august,ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.september,ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.october,ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.november,ListPlotsCtrl_Scope.selectedPlot.climate.max_temperature.december]
          ,[ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.january, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.february, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.march, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.april, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.may, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.june, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.july, ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.august,ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.september,ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.october,ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.november,ListPlotsCtrl_Scope.selectedPlot.climate.average_temperature.december]
@@ -361,15 +451,19 @@ angular.module('ionicApp.controller',['chart.js'])
         console.log(points, evt);
     };
   	
-	//var str = ListPlotsCtrl_Scope.selectedPlot.name.length;
-	//var email = window.localStorage.getItem('current_email');
-	//var emaillength = email.length + 1;
-	//var finalstr = name.substring(emaillength,str);
 		
 	$scope.names1 = [finalstr];
     $scope.awcseries = ['Series A'];
     $scope.awccaptions = ['AWC Soil Profile'];
 
+    /* Validate climate precipitation */
+    if (isEmpty(ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil) || isEmpty(ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc)){
+    	ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil = {};
+    	ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc = 0;
+
+    }
+    
+    
     $scope.awcdata = [
        [ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc],
     ];
@@ -377,6 +471,28 @@ angular.module('ionicApp.controller',['chart.js'])
     $scope.awc_bar_options = {
   	      animation: false
     };
+    
+    $scope.awc_bar_colors = [{fillColor:["#000066"]}];
+    
+    var slopeshape_down_data = "";
+	var slopeshape_cross_data = "";
+	
+	if (!isEmpty($scope.selectedPlot.slope_shape)){
+		list_slope_shape = getListComponents($scope.selectedPlot.slope_shape.trim(),",");
+		if (!isEmpty(list_slope_shape[0].toUpperCase().trim())){
+			slopeshape_down_data = list_slope_shape[0].toUpperCase().trim();
+		}
+		if (!isEmpty(list_slope_shape[1].toUpperCase().trim())){
+			slopeshape_cross_data = list_slope_shape[1].toUpperCase().trim();
+		}
+	} else {
+		slopeshape_down_data = "";
+		slopeshape_cross_data = "";
+	}
+	
+	$scope.selectedPlot.slopeshape_down_data = slopeshape_down_data;
+	$scope.selectedPlot.slopeshape_cross_data = slopeshape_cross_data;
+    
     
     $scope.plotname = function(name){
 		var str = name.length;
@@ -399,6 +515,7 @@ angular.module('ionicApp.controller',['chart.js'])
 .controller('QuickClimateCtrl', function($scope,$state,$http,$ionicLoading) {
 	
 	$scope.goBack = function() {
+		window.localStorage.setItem("PREVIOUS_PAGE","QUICK_CLIMATE_PAGE");
         $state.go('landinfo.plots');
     };
 	
@@ -447,14 +564,17 @@ angular.module('ionicApp.controller',['chart.js'])
 			   $scope.temp_line_options = {
 			    	      animation: false
 			   };
+			   //$scope.temp_line_colors = [{strokeColor:["#FF0000","#FF00FF","#0000FF"]}];
 			   
 			   $scope.precip_bar_options = {
 			    	      animation: false
 			   };
 			 
+			   $scope.precip_bar_colors = [{fillColor:["#0000FF"]}];
+			   
 			   $ionicLoading.hide();
 			   $scope.onClick = function (points, evt) {
-			    console.log(points, evt);
+			      console.log(points, evt);
 			   };
             }).error(function(err) {
             	$ionicLoading.hide();
@@ -490,8 +610,9 @@ angular.module('ionicApp.controller',['chart.js'])
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 	$scope.plot_name = newPlot.real_name;
 	
+	//console.log("Check Data");
+	//console.log(newPlot);
 	
-	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	if (newPlot.isPlotIDCompleted == true){
 		$scope.plot_id_img_src = "img/check-mark-th.png";
 	} else {
@@ -552,6 +673,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	},
 	
 	$scope.myGoBack = function() {
+		 window.localStorage.setItem("PREVIOUS_PAGE","ADD_PLOT_GO_BACK");
          $state.go('landinfo.plots');
     };
     
@@ -561,6 +683,7 @@ angular.module('ionicApp.controller',['chart.js'])
     		 var resultDeleted = deleteLandInfoPlotInArrayt(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS);
     		 if (resultDeleted == true){
     		    window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
+    		    window.localStorage.setItem("PREVIOUS_PAGE","ADD_PLOT_DELETE_EDITION_PLOT_SUCCESS");
     		    $state.go('landinfo.plots');
     		 } else {
     			alert("Error in delete editing plot");
@@ -779,7 +902,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	
-	console.log(newPlot);
+	//console.log(newPlot);
 	var Slope_part1_data = "";
 
 	
@@ -806,17 +929,16 @@ angular.module('ionicApp.controller',['chart.js'])
 	} 
 	
 	$scope.completeAddPlot_Slope = function(){
-		if (Slope_part1_data == null || Slope_part1_data == 'null' || Slope_part1_data == 'undefined' || Slope_part1_data == ''){
-			//newPlot.land_cover = "";
-		} else {
+		if (!isEmpty(Slope_part1_data)){
 			newPlot.slope = Slope_part1_data;		
 			newPlot.isSlopeDoing = true;
 		}
-		
 		if (!isEmptry(newPlot.slope)){
 			newPlot.isSlopeCompleted = true;
 		}
 		updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
+		//console.log("Update NEW Plot : ");
+		//console.log(LIST_PLOTS)
 		window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
 		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 		$state.go('landinfo.newplot');
@@ -1000,7 +1122,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	
-	console.log(newPlot);
+	//console.log(newPlot);
 	var landuse_grazed = "false";
 	var landuse_grazing = [];
 	$scope.plot_name = newPlot.real_name;
@@ -1014,10 +1136,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	$scope.landuse_current_wildlife= "media/landuse_images/ic_wildlife_grazing.png";
 	
 	/* Pre-processing LandUse data */
-	if (newPlot.isLandUseDoing == null || newPlot.isLandUseDoing == 'null' || newPlot.isLandUseDoing == 'undefined' || newPlot.isLandUseDoing == '' ||  newPlot.isLandUseDoing == false){
-		/* New One */
-		
-	} else if (newPlot.isLandUseDoing == true){
+	if (newPlot.isLandUseDoing == true){
 		/* Edit old one */
 		landuse_grazed = newPlot.grazed;
 		landuse_grazing_string = newPlot.grazing;
@@ -1110,9 +1229,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	
 	
 	$scope.completeAddPlot_LandUse = function(){
-		if (landuse_grazed == null || landuse_grazed == 'null' || landuse_grazed == 'undefined' || landuse_grazed == ''){
-			//newPlot.land_cover = "";
-		} else {
+		if (!isEmpty(landuse_grazed)){
 			newPlot.grazed = landuse_grazed;		
 			newPlot.isLandUseDoing = true;
 		}
@@ -1148,7 +1265,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	
-	console.log(newPlot);
+	//console.log(newPlot);
 	var slopeshape_cross_data = "";
 	var slopeshape_down_data = "";
 	
@@ -1162,10 +1279,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	$scope.slopeshape_crossslopeflat = "media/slopeshape_images/ic_crossslopeflat.png";
 	
 	/* Pre-processing LandUse data */
-	if (isEmpty(newPlot.isSlopeShapeDoing)  ||  newPlot.isSlopeShapeDoing == false){
-		/* New One */
-		
-	} else if (newPlot.isSlopeShapeDoing == true){
+	if (newPlot.isSlopeShapeDoing == true){
 		/* Edit old one */
 		if (!isEmpty(newPlot.slope_shape)){
 			list_slope_shape = getListComponents(newPlot.slope_shape.trim(),",");
@@ -1316,7 +1430,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	
-	console.log(newPlot);
+	//console.log(newPlot);
 	var surface_cracking = "false";
 	var surface_salt = "false";
 	$scope.plot_name = newPlot.real_name;
@@ -2073,7 +2187,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	
 	$scope.plot_name = newPlot.real_name;
 	
-	console.log(newPlot);
+	//console.log(newPlot);
 	
 	/* Full fill the images */
 	initImages(newPlot);
@@ -2187,17 +2301,19 @@ angular.module('ionicApp.controller',['chart.js'])
 				    	 texture_for_soil_horizon_7:newPlot.texture.soil_horizon_7,
 				    	 surface_salt:newPlot.surface_salt, surface_cracking:newPlot.surface_cracking,
 				    	 soil_pit_photo_url:'',soil_samples_photo_url:'',landscape_north_photo_url:'',
-				    	 landscape_east_photo_url:'',landscape_south_photo_url:'',landscape_west_photo_url:'',
-				    	 notes:newPlot.notes
+				    	 landscape_east_photo_url:'',landscape_south_photo_url:'',landscape_west_photo_url:'',notes:newPlot.notes
 				    }
 				    
 			}).success(
 					function(data, status, headers, config) {
 						alert("Plot is submitted already");
+						window.localStorage.setItem("PREVIOUS_PAGE","ADD_NEW_PLOT_SUCCESS");
+						window.localStorage.setItem("delete_plot_name",newPlot.name);
+						window.localStorage.setItem("delete_recorder_name",newPlot.recorder_name);
 						$state.go('landinfo.plots');
 					}).error(function(err) {
 						$ionicLoading.hide();
-				        alert(err.error,'Submit Plot Error');
+				        alert(err.error,'Error in submit Plot');
 			});
 		
 		   
@@ -2398,8 +2514,6 @@ angular.module('ionicApp.controller',['chart.js'])
 	var email = recorder_name;
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
-	
-	console.log(newPlot);
 	var landcover_part1_data = "";
 	var landcover_part2_data = "";
 	var flooding_data = "";
@@ -2761,7 +2875,30 @@ angular.module('ionicApp.controller',['chart.js'])
 				    
 				    if (isActived == true){
 					    $scope.newPlot_PlotID = newPlot_PlotID;
-					    var newPlot = {isActived:isActived, isPlotIDCompleted : isPlotIDCompleted, id:"",name:recorder_name + "-" + name, real_name:name ,recorder_name:recorder_name, test_plot:testPlot, organization : organization, latitude:latitude, longitude:longitude, notes:""};
+					    var newPlot = {isActived:isActived, 
+					    		       isPlotIDCompleted : isPlotIDCompleted,
+					    		       isLandCoverDoing:false,
+					    		       isLandCoverCompleted: false,
+					    		       isLandUseDoing:false,
+					    		       isLandUseCompleted: false,
+					    		       isSlopeCompleted: false,
+					    		       isSlopeDoing: false,
+					    		       isSlopeShapeCompleted: false,
+					    		       isSlopeShapeDoing: false,
+					    		       isSoilConditionCompleted:false,
+					    		       isSoilConditionDoing:false,
+					    		       isSoilLayersCompleted:false,
+					    		       isSoilLayersDoing:false,
+					    		       isPhotosCompleted:false,
+					    		       isPhotosDoing:false,
+					    		       id:"",
+					    		       name:recorder_name + "-" + name, 
+					    		       real_name:name,
+					    		       recorder_name:recorder_name,
+					    		       test_plot:testPlot, organization : organization,
+					    		       latitude:latitude,
+					    		       longitude:longitude,
+					    		       notes:""};
 					    if (checkExistName(recorder_name,name,LIST_PLOTS) == false) {
 					    	if (!isEmpty($scope.data.notes)){
 					    		newPlot.notes = $scope.data.notes;
@@ -2779,11 +2916,10 @@ angular.module('ionicApp.controller',['chart.js'])
 			    	alert("Plot Name is already used. Please try other name");
 			    }
 	    	} else {
+	    		window.localStorage.getItem("PREVIOUS_PAGE") === "ADD_NEW_PLOT_NOT_SUCCESS";
 	    		$state.go('landinfo.plots');
 	    	}
-	    };
-	    
-		
+	    };	
 	} else if (window.localStorage.getItem("PREVIOUS_PAGE") === "ADD_PLOT_EDIT"){
 		var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 		var recorder_name = window.localStorage.getItem('current_email');
@@ -2827,8 +2963,6 @@ angular.module('ionicApp.controller',['chart.js'])
 			 } else {
 			    	isPlotIDCompleted = false;
 			 }
-			 
-			 //var newPlot = {isActived:true, isPlotIDCompleted : isPlotIDCompleted, id:"",name:recorder_name + "-" + name, real_name:name ,recorder_name:recorder_name, test_plot:testPlot, organization : organization, latitude:latitude, longitude:longitude};
 			 newPlot.isActived = true;
 			 newPlot.isPlotIDCompleted = isPlotIDCompleted;
 			 newPlot.name = recorder_name + "-" + name;
@@ -2852,8 +2986,6 @@ angular.module('ionicApp.controller',['chart.js'])
 		};
 	}    
 })
-
-
 /****************************************/
 /** ListPlotsCtrl Controller **/
 /****************************************/
@@ -2869,6 +3001,7 @@ angular.module('ionicApp.controller',['chart.js'])
     }		
 		
 	var email = window.localStorage.getItem('current_email');
+	var recorder_name = email;
 	console.log("LIST of " + email);
 	var previous_page = window.localStorage.getItem("PREVIOUS_PAGE");
 	
@@ -2880,7 +3013,7 @@ angular.module('ionicApp.controller',['chart.js'])
 	
 	console.log(previous_page);
 	if (previous_page === "LOGIN_PAGE") {
-	   console.log("1st Time After Login : get data from API");
+	   console.log("1st Time After Login : get data from API - Refresh data - all data from Cloud");
 	   $http.get('http://128.123.177.21:8080/query', {
 			params : {
 				action : "get",
@@ -2916,21 +3049,82 @@ angular.module('ionicApp.controller',['chart.js'])
 			$ionicLoading.hide();
 			alert(err.error);
 		});
-	   
 	    window.localStorage.setItem("PREVIOUS_PAGE","LIST_PLOT_PAGE");
-	    //var previous_page = window.localStorage.getItem("PREVIOUS_PAGE");
-	    //console.log(previous_page);
+	} else if (previous_page === "ADD_NEW_PLOT_SUCCESS") {
+		var delete_plot_name = window.localStorage.getItem("delete_plot_name");
+		var delete_recorder_name = window.localStorage.getItem("delete_recorder_name");
+		var recorder_name = window.localStorage.getItem('current_email');
+        if (delete_recorder_name === recorder_name){
+        	/* Extract list of local caching plots */
+        	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
+        	for(var index = 0 ; index < LIST_PLOTS.length ; index ++){
+        		var plot = LIST_PLOTS[index];
+        		if (plot.name === delete_plot_name && plot.recorder_name === delete_recorder_name){
+        			if (index > 0){
+        				LIST_PLOTS.splice(index,1);
+        			}
+        		}
+        	}
+        	var LIST_LOCAL_CACHE_PLOTS = [];
+        	for(var index = 0 ; index < LIST_PLOTS.length; index ++){
+        		var plot = LIST_PLOTS[index];
+        		if (!isPlotInCloud(plot)){
+        			LIST_LOCAL_CACHE_PLOTS.push(plot);
+        		}
+        	}
+        	
+        	/* Get list of plots from Cloud */
+        	$http.get('http://128.123.177.21:8080/query', {
+    			params : {
+    				action : "get",
+    				object : "landinfo",
+    				recorder_name : email,
+    				display : "",
+    				delimiter : ",",
+    				version : ""
+    			}
+    		}).success(function(data) {
+    	       for(var index = 0 ; index < data.length; index ++){
+	   				var plot = data[index];
+	   				if (isPlotInCloud(plot) == true){
+	   					data[index].img_src = "img/check-mark-th.png";
+	   				} else {
+	   					data[index].img_src = "img/check-mark-white-th.png";
+	   				}
+   		       }
+    	       
+    	       for(var index = 0 ; index < data.length; index ++){
+   				   var plot = data[index];
+   				   LIST_LOCAL_CACHE_PLOTS.push(plot);
+   		       }
+    	       
+    	       window.localStorage.setItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_LOCAL_CACHE_PLOTS));
+           	   
+           	   $scope.plots = {};
+   		       $scope.plots = LIST_LOCAL_CACHE_PLOTS;
+    	       
+   		       $ionicLoading.hide();
+    	     
+    		}).error(function(err) {
+    			$ionicLoading.hide();
+    			$scope.plots = {};
+     		    $scope.plots = LIST_LOCAL_CACHE_PLOTS;
+    			alert(err.error);
+    		});	
+        	
+        }
 	} else {
 		clearAllCache();
 		/**********************/
 		/* Syncing with Cloud */
 		/**********************/
-		console.log("Caching & Syncing : Queyry API to check Are there any newplots in Clound of this account ?");
+		console.log("Caching & Syncing : Queyry API to check Are there any newplots in Cloud of this account ?");
 		var areThereAnyNewPlots = false;
 		
 		if (areThereAnyNewPlots == false) {
 		     console.log("Caching & Syncing :  Get Data From Local Cache - NO NEWS");
 		     $scope.plots = {};
+		     //console.log(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 		     $scope.plots = JSON.parse(window.localStorage.getItem(email + "_" + "LIST_LANDINFO_PLOTS"));
 		} else {
 			/* Caching & Syncing : Query plots from Cloud that are not stored in Local Caching */
@@ -2946,7 +3140,7 @@ angular.module('ionicApp.controller',['chart.js'])
 			}
 		}
 		
-		console.log($scope.plots);
+		//console.log($scope.plots);
 		$ionicLoading.hide();
 	}
 

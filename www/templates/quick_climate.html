@@ -12,7 +12,13 @@
  <p align='center'><B>Climate</B></p>
   <p> <B>Precipitation(mm) </B></p>
 
-<canvas id="bar" class="chart chart-bar" chart-options="precip_bar_options" chart-data="data" chart-labels="labels" chart-caption="captions">
+<canvas id="bar" 
+        class="chart chart-bar" 
+        chart-options="precip_bar_options" 
+        chart-data="data" 
+        chart-labels="labels" 
+        chart-caption="captions" chart-colours="precip_bar_colors"
+>
 </canvas>
 <p align='center'><b>Month</b></p>
 <br/>
@@ -20,7 +26,14 @@
 <h6> <B>Temperature(°C) </B></h6>
 
 
-<canvas id="line" class="chart chart-line" chart-options="temp_line_options" chart-data="linedata" chart-labels="names" chart-legend="true" chart-series="number" chart-click="onClick" >
+<canvas id="line" 
+        class="chart chart-line" 
+        chart-options="temp_line_options" 
+        chart-data="linedata" 
+        chart-labels="names" 
+        chart-legend="true" 
+        chart-series="number" 
+        chart-click="onClick">
 </canvas> 
 
 <p align='center'><b>Month</b></p>

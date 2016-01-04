@@ -14,52 +14,49 @@
     </ion-nav-buttons>
     
      
-    <ion-content class="padding"> 
+    <ion-content class="padding" > 
       
 <p align="center">
       <button  class="button icon" ng-click="slope_Meter();"
 		id="btnUseSlopeMeter" >Use Slope Meter</button>
-		     </p>
+</p>
 		<input type="text" id="slopeMeterValue" value=""/>
         <p align="center">
-         <b><text align="center" id="txtSlopeMeter"></text></b>
-         <br/>
-         <br/>
-         <b><text align="center">OR</text></b>
-    </p>
+	         <b><text align="center" id="txtSlopeMeter"></text></b>
+	         <b><text align="center">OR</text></b>
+        </p>
           <br/>
          <div class="row">
-               <div class="col col-50 ctn box">
+               <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_flat}}" ng-click="select_Slope_Filled('flat')"/>
                </div>
-               <div class="col col-50 ctn box">
+               <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_gentle}}" ng-click="select_Slope_Filled('gentle')"/>
                </div>
          </div>
           <div class="row">
-               <div class="col col-50 ctn box">
+               <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_moderate}}" ng-click="select_Slope_Filled('moderate')"/>
                </div>
-               <div class="col col-50 ctn box">
+               <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_rolling}}" ng-click="select_Slope_Filled('rolling')"/>
                </div>
          </div>
 
-        <text id="alrt"></text>
           <div class="row">
-               <div class="col col-50 ctn box">
+               <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_hilly}}" ng-click="select_Slope_Filled('hilly')"/>
                </div>
-               <div class="col col-50 ctn box">
+               <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_steep}}" ng-click="select_Slope_Filled('steep')"/>
                </div>
          </div>
 
          <div class="row">
-               <div class="col col-50 ctn box">
+               <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_verysteep}}" ng-click="select_Slope_Filled('verysteep')"/>
                </div>
-              
          </div>
+     
     </ion-content>
 </ion-view>
