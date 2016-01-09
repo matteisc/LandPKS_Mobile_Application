@@ -195,6 +195,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.results', {
       url: "/results",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/results.html",
@@ -204,6 +205,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
      .state('landinfo.review-results', {
       url: "/review-results",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/review-results.html",

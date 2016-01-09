@@ -72,7 +72,12 @@
 
 
 <div>
-<p>Number of plots to display: 1 </p>
+<p>Number of plots to display: <text align="center" id="txtNumberOfAWCPlots">1</text></p>
+	<div class="range range-positive">
+	    <i id="txtMinNumberOfAWC">1</i>
+	    <input type="range" id="numberOfAWCPlots" ng-model="numberOfAWCPlots" min="1" max="{{max_awc_plots}}" value="1" ng-change="changeNumberOfAWCPlots();"/>
+	    <i id="txtMaxNumberOfAWC"></i>
+	 </div>
 </div>
 
 

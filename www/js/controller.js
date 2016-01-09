@@ -117,24 +117,18 @@ angular.module('ionicApp.controller',['chart.js'])
 	
 	function fAvgLat(JSONArrayPlots){
 		var sumLat = 0;
-		//var sumLong = 0;
 		for (var index = 0; index < JSONArrayPlots.length; index++) {
 			var latitude =  parseFloat(JSONArrayPlots[index].latitude);
-			//var longitude =  parseFloat(JSONArray[index].longitude);
 			sumLat = sumLat + latitude;
-			//sumLong = sumLong + longitude;
 		}
 		
 		return parseFloat(sumLat / JSONArrayPlots.length);
 	};
 	
 	function fAvgLong(JSONArrayPlots){
-		//var sumLat = 0;
 		var sumLong = 0;
 		for (var index = 0; index < JSONArrayPlots.length; index++) {
-			//var latitude =  parseFloat(JSONArrayPlots[index].latitude);
 			var longitude =  parseFloat(JSONArrayPlots[index].longitude);
-			//sumLat = sumLat + latitude;
 			sumLong = sumLong + longitude;
 		}
 		
@@ -324,15 +318,153 @@ angular.module('ionicApp.controller',['chart.js'])
          $state.go('landinfo.results-section');
     };
 	var ListPlotsCtrl_Scope = Scopes.get('ListPlotsCtrl_Scope');
-	
 	$scope.name = ListPlotsCtrl_Scope.selectedPlot.name;
-	
+	$scope.selectedPlot = ListPlotsCtrl_Scope.selectedPlot;
 	var mix_name = $scope.name; 
 	var str = mix_name.length;
 	var email = window.localStorage.getItem('current_email');
 	var emaillength = email.length + 1;
 	var finalstr = mix_name.substring(emaillength,str);
 	$scope.plot_name = finalstr;
+	
+	var slopeshape_down_data = "";
+	var slopeshape_cross_data = "";
+	
+	if (!isEmpty($scope.selectedPlot.slope_shape)){
+		list_slope_shape = getListComponents($scope.selectedPlot.slope_shape.trim(),",");
+		if (!isEmpty(list_slope_shape[0].toUpperCase().trim())){
+			slopeshape_down_data = list_slope_shape[0].toUpperCase().trim();
+		}
+		if (!isEmpty(list_slope_shape[1].toUpperCase().trim())){
+			slopeshape_cross_data = list_slope_shape[1].toUpperCase().trim();
+		}
+	} else {
+		slopeshape_down_data = "";
+		slopeshape_cross_data = "";
+	}
+	
+	$scope.selectedPlot.slopeshape_down_data = slopeshape_down_data;
+	$scope.selectedPlot.slopeshape_cross_data = slopeshape_cross_data;
+	
+	/* Process Images for Review Page */
+	var current_plot = ListPlotsCtrl_Scope.selectedPlot;
+	$scope.landcover_selected_plot ="";
+	var land_cover_text = current_plot.land_cover.toUpperCase().trim();
+	if (isEmpty(current_plot.land_cover)){
+		$scope.landcover_selected_plot = "media/landcover_images/ic_unknown.png";
+	} else {
+		if (land_cover_text == "TREE"){
+			$scope.landcover_selected_plot = "media/landcover_images/ic_tree.png";
+		} else if (land_cover_text == "SHRUBLAND") {
+			$scope.landcover_selected_plot = "media/landcover_images/ic_shrub.png";
+		} else if (land_cover_text == "GRASSLAND") {
+			$scope.landcover_selected_plot = "media/landcover_images/ic_grass_land.png"; 
+		} else if (land_cover_text == "SAVANNA") {
+			console.log("SAVANA");
+			$scope.landcover_selected_plot = "media/landcover_images/ic_savanna.png";
+		} else if (land_cover_text == "GARDEN/MIXED") {
+			$scope.landcover_selected_plot = "media/landcover_images/ic_garden_mixed.png";
+		} else if (land_cover_text == "CROPLAND") {
+			$scope.landcover_selected_plot = "media/landcover_images/ic_cropland.png";
+		} else if (land_cover_text == "DEVELOPED") {
+			$scope.landcover_selected_plot = "media/landcover_images/ic_developed.png"; 
+		} else if (land_cover_text == "BARREN") {
+			$scope.landcover_selected_plot = "media/landcover_images/ic_barren.png";
+		} else if (land_cover_text == "WATER") {
+			$scope.landcover_selected_plot = "media/landcover_images/ic_water.png";
+		} else {
+			$scope.landcover_selected_plot = "media/landcover_images/ic_unknown.png";
+		}
+		
+	}
+	
+	$scope.flooding_selected_plot ="";
+	var flooding_text = current_plot.flooding.toUpperCase().trim();
+	if (flooding_text == "TRUE"){
+		$scope.flooding_selected_plot = "media/landcover_images/ic_flooded.png";
+	} else if (flooding_text == "FALSE") {
+		$scope.flooding_selected_plot = "media/landcover_images/ic_not_flooded.png";
+	} else {
+		$scope.flooding_selected_plot = "media/landcover_images/ic_unknown.png";
+	} 
+	
+	
+	$scope.grazed_selected_plot ="";
+	var grazed_text = current_plot.grazed.toUpperCase().trim();
+	if (grazed_text == "TRUE"){
+		$scope.grazed_selected_plot = "media/landuse_images/ic_grazed.png";
+	} else if (grazed_text == "FALSE") {
+		$scope.grazed_selected_plot = "media/landuse_images/ic_not_grazed.png";
+	} else {
+		$scope.grazed_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	 
+	$scope.slope_selected_plot ="";
+	var slope_text = current_plot.slope.toUpperCase().trim();
+	if (slope_text == "FLAT (0-2%)"){
+		$scope.slope_selected_plot = "media/slope_images/ic_slope_flat.png";
+	} else if (slope_text == "GENTLE (3-5%)") {
+		$scope.slope_selected_plot = "media/slope_images/ic_slope_gentle.png";
+	} else if (slope_text == "MODERATE (6-10%)"){
+		$scope.slope_selected_plot = "media/slope_images/ic_slope_moderate.png";
+	} else if (slope_text == "ROLLING (11-15%)") {
+		$scope.slope_selected_plot = "media/slope_images/ic_slope_rolling.png";
+	} else if (slope_text == "HILLY (16-30%)") {
+		$scope.slope_selected_plot = "media/slope_images/ic_slope_hilly.png";
+	} else if (slope_text == "STEEP (31-60%)") {
+		$scope.slope_selected_plot= "media/slope_images/ic_slope_steep.png";
+	} else if (slope_text == "VERYSTEEP (60-100%)") {
+		$scope.slope_selected_plot= "media/slope_images/ic_slope_very_steep.png";
+	} else {
+		$scope.slope_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+
+	
+	$scope.down_slopeshapre_selected_plot ="";
+	var down_slopeshapre_text = slopeshape_down_data.toUpperCase().trim();
+	if (down_slopeshapre_text == "CONVEX"){
+		$scope.down_slopeshapre_selected_plot = "media/slopeshape_images/ic_downslopeconvex.png";
+	} else if (down_slopeshapre_text == "CONCAVE") {
+		$scope.down_slopeshapre_selected_plot = "media/slopeshape_images/ic_downslopeconcave.png";
+	} else if (down_slopeshapre_text == "FLAT" || down_slopeshapre_text == "LINEAR") {
+		$scope.down_slopeshapre_selected_plot = "media/slopeshape_images/ic_downslopeflat.png";
+	} else {
+		$scope.down_slopeshapre_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	$scope.cross_slopeshapre_selected_plot ="";
+	var cross_slopeshapre_text = slopeshape_cross_data.toUpperCase().trim();
+	if (cross_slopeshapre_text == "CONVEX"){
+		$scope.cross_slopeshapre_selected_plot = "media/slopeshape_images/ic_crossslopeconvex.png";
+	} else if (cross_slopeshapre_text == "CONCAVE") {
+		$scope.cross_slopeshapre_selected_plot = "media/slopeshape_images/ic_crossslopeconcave.png";
+	} else if (cross_slopeshapre_text == "FLAT" || cross_slopeshapre_text == "LINEAR") {
+		$scope.cross_slopeshapre_selected_plot = "media/slopeshape_images/ic_crossslopeflat.png";
+	} else {
+		$scope.cross_slopeshapre_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	$scope.surface_cracked_selected_plot ="";
+	var surface_cracked_text = current_plot.surface_cracking.toUpperCase().trim();
+	if (surface_cracked_text == "TRUE"){
+		$scope.surface_cracked_selected_plot = "media/soilcondition_images/ic_soil_cracks.png";
+	} else if (surface_cracked_text == "FALSE") {
+		$scope.surface_cracked_selected_plot = "media/soilcondition_images/ic_no_soil_cracks.png";
+	} else {
+		$scope.surface_cracked_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	$scope.surface_salt_selected_plot ="";
+	var surface_salt_text = current_plot.surface_salt.toUpperCase().trim();
+	if (surface_salt_text == "TRUE"){
+		$scope.surface_salt_selected_plot = "media/soilcondition_images/ic_surface_salt.png";
+	} else if (surface_salt_text == "FALSE") {
+		$scope.surface_salt_selected_plot = "media/soilcondition_images/ic_no_surface_salt.png";
+	} else {
+		$scope.surface_salt_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	/* End Procress images */
 	
 	$scope.precip_bar_options = {
   	      animation: false
@@ -450,9 +582,7 @@ angular.module('ionicApp.controller',['chart.js'])
     $scope.onClick = function (points, evt) {
         console.log(points, evt);
     };
-  	
-		
-	$scope.names1 = [finalstr];
+	
     $scope.awcseries = ['Series A'];
     $scope.awccaptions = ['AWC Soil Profile'];
 
@@ -462,36 +592,69 @@ angular.module('ionicApp.controller',['chart.js'])
     	ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc = 0;
 
     }
-    
-    
+ 
+    /* Get List of AWC Soil Profile from List of Plots */
+    var awc_data_array = [ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc];
+	var awc_names_array = [finalstr];
+    /* Display AWC Soil Profile data depend of number of selection */
+	$scope.names1 = awc_names_array;
+	var recorder_name = window.localStorage.getItem('current_email');
+	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
     $scope.awcdata = [
-       [ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc],
+       awc_data_array,
     ];
 
     $scope.awc_bar_options = {
   	      animation: false
     };
     
+    var number = 0;
+    for(var index = 0 ; index < LIST_PLOTS.length ; index++){
+    	var plot = LIST_PLOTS[index];
+    	if (isPlotInCloud(plot) == true){
+    		number++;
+    	}
+    }
+    
     $scope.awc_bar_colors = [{fillColor:["#000066"]}];
     
-    var slopeshape_down_data = "";
-	var slopeshape_cross_data = "";
-	
-	if (!isEmpty($scope.selectedPlot.slope_shape)){
-		list_slope_shape = getListComponents($scope.selectedPlot.slope_shape.trim(),",");
-		if (!isEmpty(list_slope_shape[0].toUpperCase().trim())){
-			slopeshape_down_data = list_slope_shape[0].toUpperCase().trim();
-		}
-		if (!isEmpty(list_slope_shape[1].toUpperCase().trim())){
-			slopeshape_cross_data = list_slope_shape[1].toUpperCase().trim();
-		}
-	} else {
-		slopeshape_down_data = "";
-		slopeshape_cross_data = "";
-	}
-	
-	$scope.selectedPlot.slopeshape_down_data = slopeshape_down_data;
-	$scope.selectedPlot.slopeshape_cross_data = slopeshape_cross_data;
+    $scope.max_awc_plots = number;
+    if (document.getElementById("txtMaxNumberOfAWC") != null){
+       document.getElementById("txtMaxNumberOfAWC").innerHTML = number;
+    }
+    
+    $scope.changeNumberOfAWCPlots = function(){
+    	var awc_data_array = [ListPlotsCtrl_Scope.selectedPlot.analytic_data_soil.awc_soil_profile_awc];
+    	var awc_names_array = [finalstr];
+    	
+    	$scope.names1 = awc_names_array;
+    	
+        $scope.awcdata = [
+           awc_data_array,
+        ];
+    	var numberOfAWCPlots = document.getElementById("numberOfAWCPlots").value;
+    	document.getElementById("txtNumberOfAWCPlots").innerHTML = numberOfAWCPlots;
+    	if (numberOfAWCPlots > 1){
+    		var count = 1;
+    		for(var index=0 ; index < LIST_PLOTS.length ; index++){
+    			var plot = LIST_PLOTS[index];
+    			var real_name = getRealPlotName(recorder_name,plot.name);
+    			if (count < numberOfAWCPlots && real_name != finalstr && !isEmpty(real_name) && !isEmpty(plot.analytic_data_soil) &&!isEmpty(plot.analytic_data_soil.awc_soil_profile_awc)){
+    			   awc_names_array.push(real_name);
+    			   awc_data_array.push(plot.analytic_data_soil.awc_soil_profile_awc);
+    			   count = count + 1;
+    			}
+    			
+    		}
+    		$scope.names1 = awc_names_array;
+    	    $scope.awcdata = [
+    	       awc_data_array,
+    	    ];
+    	}
+    	
+    };
+    
+    
     
     
     $scope.plotname = function(name){
@@ -2338,10 +2501,169 @@ angular.module('ionicApp.controller',['chart.js'])
 	
 	$scope.currentPlot.slopeshape_down_data = slopeshape_down_data;
 	$scope.currentPlot.slopeshape_cross_data = slopeshape_cross_data;
+	
+	
+	/* Process Images for Review Page */
+	var current_plot = $scope.currentPlot;
+	$scope.landcover_selected_plot ="";
+	if (!isEmpty(current_plot.land_cover)){
+		var land_cover_text = current_plot.land_cover.toUpperCase().trim();
+		if (isEmpty(current_plot.land_cover)){
+			$scope.landcover_selected_plot = "media/landcover_images/ic_unknown.png";
+		} else {
+			if (land_cover_text == "TREE"){
+				$scope.landcover_selected_plot = "media/landcover_images/ic_tree.png";
+			} else if (land_cover_text == "SHRUBLAND") {
+				$scope.landcover_selected_plot = "media/landcover_images/ic_shrub.png";
+			} else if (land_cover_text == "GRASSLAND") {
+				$scope.landcover_selected_plot = "media/landcover_images/ic_grass_land.png"; 
+			} else if (land_cover_text == "SAVANNA") {
+				$scope.landcover_selected_plot = "media/landcover_images/ic_savanna.png";
+			} else if (land_cover_text == "GARDEN/MIXED") {
+				$scope.landcover_selected_plot = "media/landcover_images/ic_garden_mixed.png";
+			} else if (land_cover_text == "CROPLAND") {
+				$scope.landcover_selected_plot = "media/landcover_images/ic_cropland.png";
+			} else if (land_cover_text == "DEVELOPED") {
+				$scope.landcover_selected_plot = "media/landcover_images/ic_developed.png"; 
+			} else if (land_cover_text == "BARREN") {
+				$scope.landcover_selected_plot = "media/landcover_images/ic_barren.png";
+			} else if (land_cover_text == "WATER") {
+				$scope.landcover_selected_plot = "media/landcover_images/ic_water.png";
+			} else {
+				$scope.landcover_selected_plot = "media/landcover_images/ic_unknown.png";
+			}	
+		}
+	} else {
+		$scope.landcover_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	$scope.flooding_selected_plot ="";
+	if (!isEmpty(current_plot.flooding)){
+		var flooding_text = current_plot.flooding.toUpperCase().trim();
+		if (flooding_text == "TRUE"){
+			$scope.flooding_selected_plot = "media/landcover_images/ic_flooded.png";
+		} else if (flooding_text == "FALSE") {
+			$scope.flooding_selected_plot = "media/landcover_images/ic_not_flooded.png";
+		} else {
+			$scope.flooding_selected_plot = "media/landcover_images/ic_unknown.png";
+		} 
+	} else {
+		$scope.flooding_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	
+	$scope.grazed_selected_plot ="";
+	if (!isEmpty(current_plot.grazed)){
+		var grazed_text = current_plot.grazed.toUpperCase().trim();
+		if (grazed_text == "TRUE"){
+			$scope.grazed_selected_plot = "media/landuse_images/ic_grazed.png";
+		} else if (grazed_text == "FALSE") {
+			$scope.grazed_selected_plot = "media/landuse_images/ic_not_grazed.png";
+		} else {
+			$scope.grazed_selected_plot = "media/landcover_images/ic_unknown.png";
+		}
+	} else {
+		$scope.grazed_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	 
+	$scope.slope_selected_plot ="";
+	if (!isEmpty(current_plot.slope)){
+		var slope_text = current_plot.slope.toUpperCase().trim();
+		if (slope_text == "FLAT (0-2%)"){
+			$scope.slope_selected_plot = "media/slope_images/ic_slope_flat.png";
+		} else if (slope_text == "GENTLE (3-5%)") {
+			$scope.slope_selected_plot = "media/slope_images/ic_slope_gentle.png";
+		} else if (slope_text == "MODERATE (6-10%)"){
+			$scope.slope_selected_plot = "media/slope_images/ic_slope_moderate.png";
+		} else if (slope_text == "ROLLING (11-15%)") {
+			$scope.slope_selected_plot = "media/slope_images/ic_slope_rolling.png";
+		} else if (slope_text == "HILLY (16-30%)") {
+			$scope.slope_selected_plot = "media/slope_images/ic_slope_hilly.png";
+		} else if (slope_text == "STEEP (31-60%)") {
+			$scope.slope_selected_plot= "media/slope_images/ic_slope_steep.png";
+		} else if (slope_text == "VERYSTEEP (60-100%)") {
+			$scope.slope_selected_plot= "media/slope_images/ic_slope_very_steep.png";
+		} else {
+			$scope.slope_selected_plot = "media/landcover_images/ic_unknown.png";
+		}
+	} else {
+		$scope.slope_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+
+	
+	$scope.down_slopeshapre_selected_plot ="";
+	if (!isEmpty(slopeshape_down_data)){
+		var down_slopeshapre_text = slopeshape_down_data.toUpperCase().trim();
+		if (down_slopeshapre_text == "CONVEX"){
+			$scope.down_slopeshapre_selected_plot = "media/slopeshape_images/ic_downslopeconvex.png";
+		} else if (down_slopeshapre_text == "CONCAVE") {
+			$scope.down_slopeshapre_selected_plot = "media/slopeshape_images/ic_downslopeconcave.png";
+		} else if (down_slopeshapre_text == "FLAT" || down_slopeshapre_text == "LINEAR") {
+			$scope.down_slopeshapre_selected_plot = "media/slopeshape_images/ic_downslopeflat.png";
+		} else {
+			$scope.down_slopeshapre_selected_plot = "media/landcover_images/ic_unknown.png";
+		}
+	} else {
+		$scope.down_slopeshapre_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	$scope.cross_slopeshapre_selected_plot ="";
+	if (!isEmpty(slopeshape_cross_data)){
+		var cross_slopeshapre_text = slopeshape_cross_data.toUpperCase().trim();
+		if (cross_slopeshapre_text == "CONVEX"){
+			$scope.cross_slopeshapre_selected_plot = "media/slopeshape_images/ic_crossslopeconvex.png";
+		} else if (cross_slopeshapre_text == "CONCAVE") {
+			$scope.cross_slopeshapre_selected_plot = "media/slopeshape_images/ic_crossslopeconcave.png";
+		} else if (cross_slopeshapre_text == "FLAT" || cross_slopeshapre_text == "LINEAR") {
+			$scope.cross_slopeshapre_selected_plot = "media/slopeshape_images/ic_crossslopeflat.png";
+		} else {
+			$scope.cross_slopeshapre_selected_plot = "media/landcover_images/ic_unknown.png";
+		}
+	} else {
+		$scope.cross_slopeshapre_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	
+	
+	$scope.surface_cracked_selected_plot ="";
+	if (!isEmpty(current_plot.surface_cracking)){
+		var surface_cracked_text = current_plot.surface_cracking.toUpperCase().trim();
+		if (surface_cracked_text == "TRUE"){
+			$scope.surface_cracked_selected_plot = "media/soilcondition_images/ic_soil_cracks.png";
+		} else if (surface_cracked_text == "FALSE") {
+			$scope.surface_cracked_selected_plot = "media/soilcondition_images/ic_no_soil_cracks.png";
+		} else {
+			$scope.surface_cracked_selected_plot = "media/landcover_images/ic_unknown.png";
+		}
+	} else {
+		$scope.surface_cracked_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	$scope.surface_salt_selected_plot ="";
+	if (!isEmpty(current_plot.surface_salt)){
+		var surface_salt_text = current_plot.surface_salt.toUpperCase().trim();
+		if (surface_salt_text == "TRUE"){
+			$scope.surface_salt_selected_plot = "media/soilcondition_images/ic_surface_salt.png";
+		} else if (surface_salt_text == "FALSE") {
+			$scope.surface_salt_selected_plot = "media/soilcondition_images/ic_no_surface_salt.png";
+		} else {
+			$scope.surface_salt_selected_plot = "media/landcover_images/ic_unknown.png";
+		}
+	} else {
+		$scope.surface_salt_selected_plot = "media/landcover_images/ic_unknown.png";
+	}
+	
+	/* End Procress images */
+	
 
 	$scope.goBack = function() {
         $state.go('landinfo.newplot');
     };
+    
+    $scope.gotoAddPlot_Edit_PlotID = function(){
+		window.localStorage.setItem("PREVIOUS_PAGE","ADD_PLOT_EDIT");
+		$state.go('landinfo.plotid');
+	};
     
 })
 /****************************************/
@@ -3125,7 +3447,10 @@ angular.module('ionicApp.controller',['chart.js'])
 		     console.log("Caching & Syncing :  Get Data From Local Cache - NO NEWS");
 		     $scope.plots = {};
 		     //console.log(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
-		     $scope.plots = JSON.parse(window.localStorage.getItem(email + "_" + "LIST_LANDINFO_PLOTS"));
+		     var LIST_PLOTS =  JSON.parse(window.localStorage.getItem(email + "_" + "LIST_LANDINFO_PLOTS"));
+		     console.log(LIST_PLOTS);
+		     $scope.plots = LIST_PLOTS;
+		     
 		} else {
 			/* Caching & Syncing : Query plots from Cloud that are not stored in Local Caching */
 			 console.log("Caching & Syncing :  Query new plots in Cloud and update with Local Cache");

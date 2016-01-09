@@ -1,3 +1,10 @@
+function getRealPlotName(recorder_name,mix_name){
+	var str = mix_name.length;
+	var email = recorder_name;
+	var emaillength = email.length + 1;
+	var finalstr = mix_name.substring(emaillength,str);
+	return finalstr;
+};
 function seeToast2(message, duration) {
 		toastr.clear();
 		toastr.options = {

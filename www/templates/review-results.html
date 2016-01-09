@@ -34,19 +34,24 @@
 	</p>
 	<br>
 	<label class="item item-input"> 
-	    <span class="input-label">Plot name</span><span class="input-label">{{plotname(selectedPlot.name)}}</span>
+	    <span class="input-label">Plot name</span>
+	    <span class="input-label">{{plotname(selectedPlot.name)}}</span>
 	</label> 
 	<label class="item item-input"> 
-        <span class="input-label">Recorder name</span><span class="input-label">{{selectedPlot.recorder_name}}</span>
+        <span class="input-label">Recorder name</span>
+        <span class="input-label">{{selectedPlot.recorder_name}}</span>
     </label>  
     <label class="item item-input"> 
-        <span class="input-label">Organization</span><span class="input-label">{{selectedPlot.organization}}</span>
+        <span class="input-label">Organization</span>
+        <span class="input-label">{{selectedPlot.organization}}</span>
     </label> 
     <label class="item item-input"> 
-        <span class="input-label">Latitude</span><span class="input-label">{{selectedPlot.latitude}}</span>
+        <span class="input-label">Latitude</span>
+        <span class="input-label">{{selectedPlot.latitude}}</span>
     </label>  
     <label class="item item-input"> 
-        <span class="input-label">Longitude</span><span class="input-label">{{selectedPlot.longitude}}</span>
+        <span class="input-label">Longitude</span>
+        <span class="input-label">{{selectedPlot.longitude}}</span>
     </label>
    
     <br>
@@ -56,13 +61,14 @@
 	<br>
 
 	<label class="item item-input"> 
-        <span class="input-label">Land Cover</span><span class="input-label">{{selectedPlot.land_cover}}</span>
-    </label>   
+        <span class="input-label">Land Cover</span> <br/>
+        <img ng-src="{{landcover_selected_plot}}" width ="90" height="90"/>&nbsp;
+        <span class="input">{{selectedPlot.land_cover}}</span>
+    </label>
     <label class="item item-input"> 
-        <span class="input-label">Grazed</span><span class="input-label">{{selectedPlot.grazed}}</span>
-    </label> 
-    <label class="item item-input"> 
-        <span class="input-label">Flooding</span><span class="input-label">{{selectedPlot.flooding}}</span>
+        <span class="input-label">Flooding</span>
+        <img ng-src="{{flooding_selected_plot}}" width ="90" height="90"/>&nbsp;
+        <span class="input-label">{{selectedPlot.flooding}}</span>
     </label>
     
 	<br>
@@ -70,7 +76,13 @@
 		<b> Land Use </b>
 	</p>
 	<br>
-
+	
+	<label class="item item-input"> 
+        <span class="input-label">Grazed</span>
+        <img ng-src="{{grazed_selected_plot}}" width ="90" height="90"/>&nbsp;
+        <span class="input-label">{{selectedPlot.grazed}}</span>
+    </label>
+    
 	<label class="item item-input"> 
         <span class="input-label">Grazing</span><span class="input-label">{{selectedPlot.grazing}}</span>
     </label>
@@ -81,7 +93,9 @@
 	<br>
 
 	<label class="item item-input"> 
-        <span class="input-label">Slope</span><span class="input-label">{{selectedPlot.slope}}</span>
+        <span class="input-label">Slope</span>
+        <img ng-src="{{slope_selected_plot}}" width ="90" height="90"/>&nbsp;
+        <span class="input-label">{{selectedPlot.slope}}</span>
     </label>
     
     <br>
@@ -91,10 +105,14 @@
 	<br>
 
 	<label class="item item-input"> 
-        <span class="input-label">Down slope shape</span><span class="input-label">{{selectedPlot.slopeshape_down_data}}</span>
+        <span class="input-label">Down slope shape</span>
+        <img ng-src="{{down_slopeshapre_selected_plot}}" width ="90" height="90"/>&nbsp;
+        <span class="input-label">{{selectedPlot.slopeshape_down_data}}</span>
     </label>
     <label class="item item-input"> 
-        <span class="input-label">Cross slope shape</span><span class="input-label">{{selectedPlot.slopeshape_cross_data}}</span>
+        <span class="input-label">Cross slope shape</span>
+        <img ng-src="{{cross_slopeshapre_selected_plot}}" width ="90" height="90"/>&nbsp;
+        <span class="input-label">{{selectedPlot.slopeshape_cross_data}}</span>
     </label>
     <br>
     <p>
@@ -103,10 +121,14 @@
 	<br>
 
 	<label class="item item-input"> 
-        <span class="input-label">Surface Cracked</span><span class="input-label">{{selectedPlot.surface_cracking}}</span>
+        <span class="input-label">Surface Cracked</span>
+        <img ng-src="{{surface_cracked_selected_plot}}" width ="90" height="90"/>&nbsp;
+        <span class="input-label">{{selectedPlot.surface_cracking}}</span>
     </label>
      <label class="item item-input"> 
-        <span class="input-label">Surface Salt</span><span class="input-label">{{selectedPlot.surface_salt}}</span>
+        <span class="input-label">Surface Salt</span>
+        <img ng-src="{{surface_salt_selected_plot}}" width ="90" height="90"/>&nbsp;
+        <span class="input-label">{{selectedPlot.surface_salt}}</span>
     </label>
     
      <br>
@@ -114,7 +136,7 @@
 		<b> Soil Layers </b>
 	</p>
 	<br>
-	<p>0-1cm</p>
+	<p><b>0-1cm</b></p>
 	<br>
 	<label class="item item-input"> 
         <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_1}}</span>
@@ -123,7 +145,7 @@
         <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_1}}</span>
     </label>    
     <br>
-	<p>1-10cm</p>
+	<p><b>1-10cm</b></p>
 	<br>
     <label class="item item-input"> 
         <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_2}}</span>
@@ -132,7 +154,7 @@
         <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_2}}</span>
     </label>    
     <br>
-	<p>10-20cm</p>
+	<p><b>10-20cm</b></p>
 	<br>
     <label class="item item-input"> 
         <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_3}}</span>
@@ -141,7 +163,7 @@
         <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_3}}</span>
     </label>    
     <br>
-	<p>20-50cm</p>
+	<p><b>20-50cm</b></p>
 	<br>
     <label class="item item-input"> 
         <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_4}}</span>
@@ -150,7 +172,7 @@
         <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_4}}</span>
     </label>    
     <br>
-	<p>50-70cm</p>
+	<p><b>50-70cm</b></p>
 	<br>
     <label class="item item-input"> 
         <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_5}}</span>
@@ -159,7 +181,7 @@
         <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_5}}</span>
     </label>    
     <br>
-	<p>70-100cm</p>
+	<p><b>70-100cm</b></p>
 	<br>
     <label class="item item-input"> 
         <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_6}}</span>
@@ -168,7 +190,7 @@
         <span class="input-label">Soil texture</span><span class="input-label">{{selectedPlot.texture.soil_horizon_6}}</span>
     </label>    
     <br>
-	<p>100-120cm</p>
+	<p><b>100-120cm</b></p>
 	<br>
     <label class="item item-input"> 
         <span class="input-label">Rock fragment volume</span><span class="input-label">{{selectedPlot.rock_fragment.soil_horizon_7}}</span>
@@ -183,22 +205,28 @@
 	<br>
 
 	<label class="item item-input"> 
-        <span class="input-label">North</span><img ng-src="{{selectedPlot.landscape_north_photo_url}}" class="image-list-thumb"/>
+        <span class="input-label">North</span>
+        <img ng-src="{{selectedPlot.landscape_north_photo_url}}" class="image-list-thumb" width="200" height="200">
     </label>
    <label class="item item-input"> 
-        <span class="input-label">East</span><img ng-src="{{selectedPlot.landscape_east_photo_url}}" class="image-list-thumb"/>
+        <span class="input-label">East</span>
+        <img ng-src="{{selectedPlot.landscape_east_photo_url}}" class="image-list-thumb" width="200" height="200"/>
    </label>
     <label class="item item-input"> 
-        <span class="input-label">South</span><img ng-src="{{selectedPlot.landscape_south_photo_url}}" class="image-list-thumb"/>
+        <span class="input-label">South</span>
+        <img ng-src="{{selectedPlot.landscape_south_photo_url}}" class="image-list-thumb" width="200" height="200"/>
    </label> 
    <label class="item item-input"> 
-        <span class="input-label">West</span><img ng-src="{{selectedPlot.landscape_west_photo_url}}" class="image-list-thumb"/>
+        <span class="input-label">West</span>
+        <img ng-src="{{selectedPlot.landscape_west_photo_url}}" class="image-list-thumb" width="200" height="200"/>
    </label> 
    <label class="item item-input"> 
-        <span class="input-label">Soil Pit</span><img ng-src="{{selectedPlot.soil_pit_photo_url}}" class="image-list-thumb"/>
+        <span class="input-label">Soil Pit</span>
+        <img ng-src="{{selectedPlot.soil_pit_photo_url}}" class="image-list-thumb" width="200" height="200"/>
    </label> 
    <label class="item item-input"> 
-        <span class="input-label">Soil Sample</span><img ng-src="{{selectedPlot.soil_samples_photo_url}}" class="image-list-thumb"/>
+        <span class="input-label">Soil Sample</span>
+        <img ng-src="{{selectedPlot.soil_samples_photo_url}}" class="image-list-thumb" width="200" height="200"/>
    </label>
     <label class="item item-input"> 
         <span class="input-label">Notes</span><span class="input-label">{{selectedPlot.notes}}</span>
