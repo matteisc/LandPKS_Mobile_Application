@@ -2384,7 +2384,8 @@ angular.module('ionicApp.controller',['chart.js'])
 	
 	$scope.takePicture = function() {
 		console.log('Getting camera');
-	    Camera.getPicture({
+	    /*
+		Camera.getPicture({
 	      quality: 75,
 	      targetWidth: 320,
 	      targetHeight: 320,
@@ -2395,6 +2396,19 @@ angular.module('ionicApp.controller',['chart.js'])
 	    }, function(err) {
 	      console.err(err);
 	    });
+	    */
+		navigator.camera.getPicture(
+		   function(data) {
+				console.log(data);
+		   },
+		   function(message) {
+				console.log(message);
+		   }, 
+		   {
+				destinationType: Camera.DestinationType.DATA_URL,
+				sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM
+		   }
+		);
     };
 
 	$scope.goBack = function() {
@@ -3340,8 +3354,18 @@ angular.module('ionicApp.controller',['chart.js'])
 				version : ""
 			}
 		}).success(function(data) {
-	
-	       $scope.plots = data;
+		   
+		   /* Test sort data by alphabet of plot_name */
+		   
+			/* Sort list of plot based on alphabet of plot_name */
+	  		var LIST_PLOTS_SORTED = data;
+	  		LIST_PLOTS_SORTED.sort(function(a, b){
+	  		    	    if(getRealPlotName(email,a.name).toUpperCase().trim() < getRealPlotName(email,b.name).toUpperCase().trim()) return -1;
+	  		    	    if(getRealPlotName(email,a.name).toUpperCase().trim() > getRealPlotName(email,b.name).toUpperCase().trim()) return 1;
+	  		    	    return 0;
+	  	    });
+			
+	       $scope.plots = LIST_PLOTS_SORTED;
 	       console.log($scope.plots.length);
 	       
 	       for(var index = 0 ; index < $scope.plots.length; index ++){
@@ -3417,7 +3441,16 @@ angular.module('ionicApp.controller',['chart.js'])
     	       window.localStorage.setItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_LOCAL_CACHE_PLOTS));
            	   
            	   $scope.plots = {};
-   		       $scope.plots = LIST_LOCAL_CACHE_PLOTS;
+           	   
+	           /* Sort list of plot based on alphabet of plot_name */
+	  		   var LIST_PLOTS_SORTED = LIST_LOCAL_CACHE_PLOTS;
+	  		   LIST_PLOTS_SORTED.sort(function(a, b){
+	  		    	    if(getRealPlotName(email,a.name).toUpperCase().trim() < getRealPlotName(email,b.name).toUpperCase().trim()) return -1;
+	  		    	    if(getRealPlotName(email,a.name).toUpperCase().trim() > getRealPlotName(email,b.name).toUpperCase().trim()) return 1;
+	  		    	    return 0;
+	  		   });
+           	   
+   		       $scope.plots = LIST_PLOTS_SORTED;
     	       
    		       $ionicLoading.hide();
     	     
@@ -3443,7 +3476,16 @@ angular.module('ionicApp.controller',['chart.js'])
 		     //console.log(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 		     var LIST_PLOTS =  JSON.parse(window.localStorage.getItem(email + "_" + "LIST_LANDINFO_PLOTS"));
 		     console.log(LIST_PLOTS);
-		     $scope.plots = LIST_PLOTS;
+		     
+		     /* Sort list of plot based on alphabet of plot_name */
+		     var LIST_PLOTS_SORTED = LIST_PLOTS;
+		     LIST_PLOTS_SORTED.sort(function(a, b){
+		    	    if(getRealPlotName(email,a.name).toUpperCase().trim() < getRealPlotName(email,b.name).toUpperCase().trim()) return -1;
+		    	    if(getRealPlotName(email,a.name).toUpperCase().trim() > getRealPlotName(email,b.name).toUpperCase().trim()) return 1;
+		    	    return 0;
+		     });
+		     
+		     $scope.plots = LIST_PLOTS_SORTED;
 		     
 		} else {
 			/* Caching & Syncing : Query plots from Cloud that are not stored in Local Caching */
