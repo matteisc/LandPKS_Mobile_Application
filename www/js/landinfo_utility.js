@@ -1,3 +1,15 @@
+function checkExist(value, JSONArray){
+		var hasMatch =false;
+		for (var index = 0; index < JSONArray.length; index++) {
+		    var auth = JSONArray[index];
+		    if(auth.email == value){
+		      hasMatch = true;
+		      break;
+		    }
+		}
+		return hasMatch;
+};
+
 function getRealPlotName(recorder_name,mix_name){
 	var str = mix_name.length;
 	var email = recorder_name;
@@ -74,4 +86,4 @@ function isEmpty(value){
 function getListComponents(string,char){
 	var partsOfStr = string.split(char);
 	return partsOfStr;
-}
+};
