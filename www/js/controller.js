@@ -73,6 +73,33 @@ angular.module('ionicApp.controller',['chart.js'])
 .controller('SettingsCtrl', function($scope, $state, $http, Scopes,$ionicHistory) {
 	console.log("Click Setting");
 	$ionicHistory.clearCache();
+	$scope.landinfo_logout = function() {
+		var objAuth = window.localStorage.getItem("AUTHENTICATION_LIST");
+		var email = window.localStorage.getItem("current_email"); 
+		if (!isEmpty(objAuth) && !isEmpty(email)){
+			var listAuthentication = JSON.parse(objAuth);
+			if (checkExist(email, listAuthentication['authentication']) == true){
+				var confirm_sign_out = confirm("Do you want to sign out account " + email + "? Account " + email + " and its data will be removed out of your device");
+				if (confirm_sign_out == true){
+					for (var index = 0; index < listAuthentication['authentication'].length; index++) {
+					    var account = listAuthentication['authentication'][index];
+					    if(account.email == email){
+					       if (index > - 1){
+					    	   console.log("Remove")
+					    	   listAuthentication['authentication'].splice(index, 1);
+					    	   window.localStorage.setItem("AUTHENTICATION_LIST",JSON.stringify(listAuthentication));
+					       } 
+					    } 
+					}
+					$state.go('landinfo.accounts');
+				} 
+			} else {
+				alert("Account " + email + " is sign out already !");
+			}	
+		} else {
+			alert("Account is sign out already !");
+		}
+	};
 }) // End Setting
 
 /****************************************/
@@ -359,7 +386,6 @@ angular.module('ionicApp.controller',['chart.js'])
 		} else if (land_cover_text == "GRASSLAND") {
 			$scope.landcover_selected_plot = "media/landcover_images/ic_grass_land.png"; 
 		} else if (land_cover_text == "SAVANNA") {
-			console.log("SAVANA");
 			$scope.landcover_selected_plot = "media/landcover_images/ic_savanna.png";
 		} else if (land_cover_text == "GARDEN/MIXED") {
 			$scope.landcover_selected_plot = "media/landcover_images/ic_garden_mixed.png";
@@ -658,7 +684,6 @@ angular.module('ionicApp.controller',['chart.js'])
     
     $scope.plotname = function(name){
 		var str = name.length;
-		//var email = document.getElementById("email").value;
 		var email = window.localStorage.getItem('current_email');
 		var emaillength = email.length + 1;
 		var finalstr = name.substring(emaillength,str);
