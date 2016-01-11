@@ -292,6 +292,22 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
         }
       }
     })
+   .state('landinfo.app_information', {
+      url: "/app_information",
+      views: {
+        'about-tab': {
+          templateUrl: "templates/app_information.html"
+        }
+      }
+    })
+   .state('landinfo.data_policy', {
+      url: "/data_policy",
+      views: {
+        'about-tab': {
+          templateUrl: "templates/data_policy.html"
+        }
+      }
+    })
   .state('landinfo.quick_climate', {
       url: "/quick_climate",
       views: {
