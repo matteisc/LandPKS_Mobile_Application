@@ -47,6 +47,7 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
     })
     .state('landinfo.accounts', {
       url: "/accounts",
+      cache: false,
       views: {
         'home-tab': {
           templateUrl: "templates/accounts.html",
@@ -326,7 +327,27 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
         }
       }
     })
-    .state('landinfo.settings', {
+  .state('landinfo.take_photo_soil_pit', {
+      url: "/take_photo_soil_pit",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/take_photo_soil_pit.html",
+          controller: 'Take_Photo_Soil_Pit_Ctrl'
+          
+        }
+      }
+    })
+  .state('landinfo.take_photo_soil_sample', {
+      url: "/take_photo_soil_sample",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/take_photo_soil_sample.html",
+          controller: 'Take_Photo_Soil_Sample_Ctrl'
+          
+        }
+      }
+    })
+  .state('landinfo.settings', {
       url: "/settings",
       views: {
         'settings-tab': {

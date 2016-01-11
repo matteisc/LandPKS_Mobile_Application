@@ -3,21 +3,29 @@
 
 <ion-nav-buttons
     side="left">
-  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="goBack()" ></a>
+  <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="completeAddPlot_Photos();" ></a>
    <a align="left" class="button button-icon"
-    ng-click="goBack()"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> </ion-nav-buttons>
+    ng-click="completeAddPlot_Photos();"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> </ion-nav-buttons>
     
         <ion-content class="padding">
           
-  <p> <b>LandScape Photos - Test - Check<b> <a  class="button icon ion-plus"></a> </p> <br><br>
+       <p><b>LandScape Photos<b> <a  class="button icon ion-plus" ></a> </p>
+       <img id="img_soil_pit_photo" ng-src="{{landscape_north_photo_data_url}}" style="width:150px; height:100px">
+       <img id="img_soil_pit_photo" ng-src="{{landscape_east_photo_data_url}}" style="width:150px; height:100px">
+       <img id="img_soil_pit_photo" ng-src="{{landscape_south_photo_data_url}}" style="width:150px; height:100px">
+       <img id="img_soil_pit_photo" ng-src="{{landscape_west_photo_data_url}}" style="width:150px; height:100px">
+       <br><br>
           
-       <p> <b>Pit Photo<b> <a  class="button icon ion-plus"></a> </p> <br><br>
-       <p> <b>Sample Photo<b> <a  class="button icon ion-plus"></a> </p> <br><br> 
+       <p> <b>Pit Photo<b> <a  class="button icon ion-plus" ui-sref="landinfo.take_photo_soil_pit"></a> </p> 
+       <img id="img_soil_pit_photo" ng-src="{{soil_pit_photo_data_url}}" style="width:150px; height:100px">
        
+       <br/><br/>
        
-        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-    <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
-    <button class="button" ng-click="takePicture()">Take Picture</button>
+       <p> <b>Sample Photo<b> <a  class="button icon ion-plus" ui-sref="landinfo.take_photo_soil_sample"></a> </p>
+       <img id="img_soil_sample_photo" ng-src="{{soil_sample_photo_data_url}}" style="width:150px; height:100px; border:none"> 
+       <br><br> 
+       
+     
        
         </ion-content>
       </ion-view>
