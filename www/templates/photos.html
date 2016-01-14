@@ -1,3 +1,4 @@
+<link href="css/photos.css" rel="stylesheet">
 <ion-view hide-back-button="true">
 
 
@@ -7,22 +8,22 @@
    <a align="left" class="button button-icon"
     ng-click="completeAddPlot_Photos();"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;{{plot_name}} Details</a> </ion-nav-buttons>
     
-        <ion-content class="padding">
-          
-       <p><b>LandScape Photos<b> <a  class="button icon ion-plus" ></a> </p>
-       <img id="img_soil_pit_photo" ng-src="{{landscape_north_photo_data_url}}" style="width:150px; height:100px">
-       <img id="img_soil_pit_photo" ng-src="{{landscape_east_photo_data_url}}" style="width:150px; height:100px">
-       <img id="img_soil_pit_photo" ng-src="{{landscape_south_photo_data_url}}" style="width:150px; height:100px">
-       <img id="img_soil_pit_photo" ng-src="{{landscape_west_photo_data_url}}" style="width:150px; height:100px">
+       <ion-content class="padding body">
+       <br/>   
+       <p class="lpks-p"><b>LandScape Photos<b> <a  class="button icon ion-plus" ></a> </p>
+       <img id="img_soil_pit_photo" ng-src="{{landscape_north_photo_data_url}}" style="width:150px; height:100px" class="lpks-img">
+       <img id="img_soil_pit_photo" ng-src="{{landscape_east_photo_data_url}}" style="width:150px; height:100px" class="lpks-img">
+       <img id="img_soil_pit_photo" ng-src="{{landscape_south_photo_data_url}}" style="width:150px; height:100px" class="lpks-img">
+       <img id="img_soil_pit_photo" ng-src="{{landscape_west_photo_data_url}}" style="width:150px; height:100px" class="lpks-img">
        <br><br>
           
-       <p> <b>Pit Photo<b> <a  class="button icon ion-plus" ui-sref="landinfo.take_photo_soil_pit"></a> </p> 
-       <img id="img_soil_pit_photo" ng-src="{{soil_pit_photo_data_url}}" style="width:150px; height:100px">
+       <p class="lpks-p"> <b>Pit Photo<b> <a  class="button icon ion-plus" ui-sref="landinfo.take_photo_soil_pit"></a> </p> 
+       <img id="img_soil_pit_photo" ng-src="{{soil_pit_photo_data_url}}" style="width:150px; height:100px" class="lpks-img">
        
        <br/><br/>
        
-       <p> <b>Sample Photo<b> <a  class="button icon ion-plus" ui-sref="landinfo.take_photo_soil_sample"></a> </p>
-       <img id="img_soil_sample_photo" ng-src="{{soil_sample_photo_data_url}}" style="width:150px; height:100px; border:none"> 
+       <p class="lpks-p"> <b>Sample Photo<b> <a  class="button icon ion-plus" ui-sref="landinfo.take_photo_soil_sample"></a> </p>
+       <img id="img_soil_sample_photo" ng-src="{{soil_sample_photo_data_url}}" style="width:150px; height:100px; border:none" class="lpks-img"> 
        <br><br> 
        
      

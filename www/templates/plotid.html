@@ -1,3 +1,4 @@
+<!--   <link href="css/plotid.css" rel="stylesheet"> -->
 <ion-view view-title="" hide-back-button="true" cache-view="false">
 <ion-nav-buttons
 	side="left">
@@ -14,7 +15,19 @@
 	class="item item-input"> <span class="input-label"><b>Plot
 			Name</b>
 </span> <input type="text" id="name"> </label>
-<p></p>
+
+<br>
+
+<!--  
+Test Plot ?
+<label class="toggle toggle-possitive">
+       <input type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+</label>
+-->
+
 
 <p align="right">
 	<label>Test Plot?</label> <input type="radio" name="radSize"
@@ -23,6 +36,8 @@
 		id="chkTestPlotNo" value="medium" /> <label for="sizeMed">No</label>
 
 </p>
+
+ 
 
 <label class="item item-input"> <span class="input-label"><b>Recorder
 			Name</b>
@@ -43,4 +58,5 @@
 <label class="item item-input">
    <span class="input-label"><b>Longitude</b></span>
    <input type="number" id="longitude" ng-blur="validateLongitude()"/> </label> 
-</ion-content> </ion-view>
+</ion-content>
+</ion-view>

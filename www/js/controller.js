@@ -121,9 +121,9 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
     
 	$scope.plot_name = finalstr;
 	console.log("Result Section Ctrl");
-	$scope.review_status_img_src = "img/check-mark-th.png";
+	$scope.review_status_img_src = "img/lpks_green_checkmark.png";
 	//$scope.review_status_img_src = "img/check-mark-white-th.png";	
-	$scope.results_status_img_src = "img/check-mark-th.png";
+	$scope.results_status_img_src = "img/lpks_green_checkmark.png";
 }) // End Results Section Controller
 
 /****************************************/
@@ -691,8 +691,8 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		return finalstr;
 	};
 	
-	$scope.review_status_img_src = "img/check-mark-th.png";
-	$scope.results_status_img_src = "img/check-mark-th.png";
+	$scope.review_status_img_src = "img/lpks_green_checkmark.png";
+	$scope.results_status_img_src = "img/lpks_green_checkmark.png";
 
 }) // End ReviewSelectedPlotCtrl
 
@@ -801,57 +801,57 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	//console.log(newPlot);
 	
 	if (newPlot.isPlotIDCompleted == true){
-		$scope.plot_id_img_src = "img/check-mark-th.png";
+		$scope.plot_id_img_src = "img/lpks_green_checkmark.png";
 	} else {
-		$scope.plot_id_img_src = "img/check-mark-white-th.png";	
+		$scope.plot_id_img_src = "img/lpks_empty_checkmark.png";	
 	}
 	
 	if (newPlot.isLandCoverCompleted == true){
-		$scope.plot_landcover_img_src = "img/check-mark-th.png";
+		$scope.plot_landcover_img_src = "img/lpks_green_checkmark.png";
 	} else {
-		$scope.plot_landcover_img_src = "img/check-mark-white-th.png";	
+		$scope.plot_landcover_img_src = "img/lpks_empty_checkmark.png";	
 	}
 	
 	if (newPlot.isLandUseCompleted == true){
-		$scope.plot_landuse_img_src = "img/check-mark-th.png";
+		$scope.plot_landuse_img_src = "img/lpks_green_checkmark.png";
 	} else {
-		$scope.plot_landuse_img_src = "img/check-mark-white-th.png";	
+		$scope.plot_landuse_img_src = "img/lpks_empty_checkmark.png";	
 	}
 	
 	if (newPlot.isSlopeCompleted == true){
-		$scope.plot_slope_img_src = "img/check-mark-th.png";
+		$scope.plot_slope_img_src = "img/lpks_green_checkmark.png";
 	} else {
-		$scope.plot_slope_img_src = "img/check-mark-white-th.png";	
+		$scope.plot_slope_img_src = "img/lpks_empty_checkmark.png";	
 	}
 	
 	if (newPlot.isSlopeShapeCompleted == true){
-		$scope.plot_slopeshape_img_src = "img/check-mark-th.png";
+		$scope.plot_slopeshape_img_src = "img/lpks_green_checkmark.png";
 	} else {
-		$scope.plot_slopeshape_img_src = "img/check-mark-white-th.png";	
+		$scope.plot_slopeshape_img_src = "img/lpks_empty_checkmark.png";	
 	}
 	
 	if (newPlot.isSoilConditionCompleted == true){
-		$scope.plot_soilcondition_img_src = "img/check-mark-th.png";
+		$scope.plot_soilcondition_img_src = "img/lpks_green_checkmark.png";
 	} else {
-		$scope.plot_soilcondition_img_src = "img/check-mark-white-th.png";	
+		$scope.plot_soilcondition_img_src = "img/lpks_empty_checkmark.png";	
 	}
 	
 	if (newPlot.isSoilLayersCompleted == true){
-		$scope.plot_soillayers_img_src = "img/check-mark-th.png";
+		$scope.plot_soillayers_img_src = "img/lpks_green_checkmark.png";
 	} else {
-		$scope.plot_soillayers_img_src = "img/check-mark-white-th.png";	
+		$scope.plot_soillayers_img_src = "img/lpks_empty_checkmark.png";	
 	}
 	
 	if (newPlot.isPhotosCompleted == true){
-		$scope.plot_photos_img_src = "img/check-mark-th.png";
+		$scope.plot_photos_img_src = "img/lpks_green_checkmark.png";
 	} else {
-		$scope.plot_photos_img_src = "img/check-mark-white-th.png";	
+		$scope.plot_photos_img_src = "img/lpks_empty_checkmark.png";	
 	}
 	
 	if (newPlot.isReviewCompleted == true){
-		$scope.plot_review_img_src = "img/check-mark-th.png";
+		$scope.plot_review_img_src = "img/lpks_green_checkmark.png";
 	} else {
-		$scope.plot_review_img_src = "img/check-mark-white-th.png";	
+		$scope.plot_review_img_src = "img/lpks_empty_checkmark.png";	
 	}
 	
 	$scope.gotoAddPlot_Edit_PlotID = function(){
@@ -2330,39 +2330,39 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	
 	function initImages(plot){
 		if (plot.isSoilLayer_1_Completed == true) {
-			$scope.add_plot_soil_layer_1 = "img/check-mark-th.png";
+			$scope.add_plot_soil_layer_1 = "img/lpks_green_checkmark.png";
 		} else {
-			$scope.add_plot_soil_layer_1 = "img/check-mark-white-th.png";
+			$scope.add_plot_soil_layer_1 = "img/lpks_empty_checkmark.png";
 		}
 		if (plot.isSoilLayer_2_Completed == true) {
-			$scope.add_plot_soil_layer_2 = "img/check-mark-th.png";
+			$scope.add_plot_soil_layer_2 = "img/lpks_green_checkmark.png";
 		} else {
-			$scope.add_plot_soil_layer_2 = "img/check-mark-white-th.png";
+			$scope.add_plot_soil_layer_2 = "img/lpks_empty_checkmark.png";
 		}
 		if (plot.isSoilLayer_3_Completed == true) {
-			$scope.add_plot_soil_layer_3 = "img/check-mark-th.png";
+			$scope.add_plot_soil_layer_3 = "img/lpks_green_checkmark.png";
 		} else {
-			$scope.add_plot_soil_layer_3 = "img/check-mark-white-th.png";
+			$scope.add_plot_soil_layer_3 = "img/lpks_empty_checkmark.png";
 		}
 		if (plot.isSoilLayer_4_Completed == true) {
-			$scope.add_plot_soil_layer_4 = "img/check-mark-th.png";
+			$scope.add_plot_soil_layer_4 = "img/lpks_green_checkmark.png";
 		} else {
-			$scope.add_plot_soil_layer_4 = "img/check-mark-white-th.png";
+			$scope.add_plot_soil_layer_4 = "img/lpks_empty_checkmark.png";
 		}
 		if (plot.isSoilLayer_5_Completed == true) {
-			$scope.add_plot_soil_layer_5 = "img/check-mark-th.png";
+			$scope.add_plot_soil_layer_5 = "img/lpks_green_checkmark.png";
 		} else {
-			$scope.add_plot_soil_layer_5 = "img/check-mark-white-th.png";
+			$scope.add_plot_soil_layer_5 = "img/lpks_empty_checkmark.png";
 		}
 		if (plot.isSoilLayer_6_Completed == true) {
-			$scope.add_plot_soil_layer_6 = "img/check-mark-th.png";
+			$scope.add_plot_soil_layer_6 = "img/lpks_green_checkmark.png";
 		} else {
-			$scope.add_plot_soil_layer_6 = "img/check-mark-white-th.png";
+			$scope.add_plot_soil_layer_6 = "img/lpks_empty_checkmark.png";
 		}
 		if (plot.isSoilLayer_7_Completed == true) {
-			$scope.add_plot_soil_layer_7 = "img/check-mark-th.png";
+			$scope.add_plot_soil_layer_7 = "img/lpks_green_checkmark.png";
 		} else {
-			$scope.add_plot_soil_layer_7 = "img/check-mark-white-th.png";
+			$scope.add_plot_soil_layer_7 = "img/lpks_empty_checkmark.png";
 		}
 	}
 	
@@ -3475,9 +3475,9 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	       for(var index = 0 ; index < $scope.plots.length; index ++){
 				var plot = $scope.plots[index];
 				if (isPlotInCloud(plot) == true){
-					$scope.plots[index].img_src = "img/check-mark-th.png";
+					$scope.plots[index].img_src = "img/lpks_green_checkmark.png";
 				} else {
-					$scope.plots[index].img_src = "img/check-mark-white-th.png";
+					$scope.plots[index].img_src = "img/lpks_empty_checkmark.png";
 				}
 			}
 	       
@@ -3531,10 +3531,10 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
     	       for(var index = 0 ; index < data.length; index ++){
 	   				var plot = data[index];
 	   				if (isPlotInCloud(plot) == true){
-	   					data[index].img_src = "img/check-mark-th.png";
-	   				} else {
-	   					data[index].img_src = "img/check-mark-white-th.png";
-	   				}
+						$scope.plots[index].img_src = "img/lpks_green_checkmark.png";
+					} else {
+						$scope.plots[index].img_src = "img/lpks_empty_checkmark.png";
+					}
    		       }
     	       
     	       for(var index = 0 ; index < data.length; index ++){
@@ -3599,9 +3599,9 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		for(var index = 0 ; index < $scope.plots.length; index ++){
 			var plot = $scope.plots[index];
 			if (isPlotInCloud(plot) == true){
-				$scope.plots[index].img_src = "img/check-mark-th.png";
+				$scope.plots[index].img_src = "img/lpks_green_checkmark.png";
 			} else {
-				$scope.plots[index].img_src = "img/check-mark-white-th.png";
+				$scope.plots[index].img_src = "img/lpks_empty_checkmark.png";
 			}
 		}
 		
@@ -3646,7 +3646,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 /****************************************/
 /** SignIn Controller **/
 /****************************************/
-.controller('SignInCtrl', function($scope, $state, $http, Scopes, $ionicHistory,$ionicLoading) {
+.controller('SignInCtrl', function($scope, $state, $http, Scopes, $ionicHistory,$ionicLoading, $cordovaOauth) {
 	function checkExist(value, JSONArray){
 		var hasMatch =false;
 		for (var index = 0; index < JSONArray.length; index++) {
@@ -3674,6 +3674,68 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		//$ionicHistory.clearHistory();
 	}
 	
+	/* Test login with Google Account */
+	$scope.googleSignIn_3 = function() {
+	    $ionicLoading.show({
+	      template: 'Logging in...'
+	    });
+	    
+	    window.plugins.googleplus.login(
+	      {},
+	      function (user_data) {
+	        // For the purpose of this example I will store user data on local storage
+	        console.log(user_data);
+
+	        $ionicLoading.hide();
+	        console.log("Successfully");
+	      },
+	      function (msg) {
+	        $ionicLoading.hide();
+	      }
+	    );
+	  };
+	
+	
+	/* Test Login with Google Account */
+	$scope.googleSignIn_1 = function() {
+        $cordovaOauth.google("254673914223-tv4pvoig9ouql2puvsuigmiuabaj87u8.apps.googleusercontent.com", ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email"]).then(function(result) {
+            console.log(JSON.stringify(result));
+        }, function(error) {
+            console.log(error);
+        });
+    };
+	
+    /* Test Login with Google Account */
+	$scope.googleSignIn_2 = function() {
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+		var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=254673914223-tv4pvoig9ouql2puvsuigmiuabaj87u8.apps.googleusercontent.com&redirect_uri=http://localhost/callback&scope=https://www.googleapis.com/auth/urlshortener&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no');
+        
+		alert("123");
+		
+		ref.addEventListener('loadstart', function(event) {
+			alert("456");
+            if((event.url).startsWith("http://localhost/callback")) {
+                requestToken = (event.url).split("code=")[1];
+                $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=254673914223-tv4pvoig9ouql2puvsuigmiuabaj87u8.apps.googleusercontent.com&client_secret=VIlyqfrpXMNJCx5gJREdftaz&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })
+                    .success(function(data) {
+                        accessToken = data.access_token;
+                        console.log(data);
+                    })
+                    .error(function(data, status) {
+                        alert("LPKS ERROR: " + data);
+                    });
+                ref.close();
+            }
+        });
+		
+    };
+    
+    if (typeof String.prototype.startsWith != 'function') {
+        String.prototype.startsWith = function (str){
+            return this.indexOf(str) == 0;
+        };
+    }
+    
 	/* Test before click login */
 	$scope.signIn = function(email, password) {
 		        $ionicLoading.show({

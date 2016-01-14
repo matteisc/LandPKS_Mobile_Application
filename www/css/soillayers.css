@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* CSS Document */
+
+nav {
+	height: 10px;
+	width: 100%;
+}
+.body {
+	background-color: #EDEDED;
+	color: black;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: medium;
+	padding: 0px;
+}
+
+
+.soillayer {
+	width: 95%;
+	height: auto;
+	color: black;
+	background-color: white;
+	border-collapse: collapse;
+	align: center;
+	border-radius: 10px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 25px;
+	margin-bottom: 2px;
+	text-align: left;
+	text-indent: 20px;
+	line-height: 30px;
+	font-size: medium;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding: 5px;
+}
+
+.othercomponent {
+	width: 95%;
+	height: auto;
+	color: black;
+	background-color: white;
+	border-collapse: collapse;
+	align: center;
+	border-radius: 10px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 2px;
+	text-align: left;
+	text-indent: 20px;
+	line-height: 30px;
+	font-size: medium;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding: 5px;
+}
+
+
+.checkmark {
+	width: 25px;
+	height: 25px;
+}

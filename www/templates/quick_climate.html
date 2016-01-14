@@ -1,64 +1,58 @@
- <ion-view view-title="" hide-back-button="true" align-title="center">
+<link href="css/results.css" rel="stylesheet">
+<ion-view view-title="" hide-back-button="true" align-title="center">
   <ion-nav-buttons side="left">
       <a align="left" class="button button-icon ion-ios-arrow-back" ng-click="goBack()"></a>
       <a align="left" class="button button-icon" ng-click="goBack()"><img src="img/ic_launcher.png" class="title-image1" align="left">&nbsp;Local Climate</a>
   </ion-nav-buttons>
              
- <ion-content class="padding">
+ <ion-content class="padding body">
           
 
 
 
- <p align='center'><B>Climate</B></p>
-  <p> <B>Precipitation(mm) </B></p>
-
-<canvas id="bar" 
-        class="chart chart-bar" 
-        chart-options="precip_bar_options" 
-        chart-data="data" 
-        chart-labels="labels" 
-        chart-caption="captions" chart-colours="precip_bar_colors"
->
-</canvas>
-<p align='center'><b>Month</b></p>
+ <p align='center' class="lpks-climate"><b>Climate</b></p>
+ <p class="lpks-p"> <B>Precipitation(mm) </B></p>
+<div class="lpks-graph">
+	<canvas id="bar" 
+	        class="chart chart-bar" 
+	        chart-options="precip_bar_options" 
+	        chart-data="data" 
+	        chart-labels="labels" 
+	        chart-caption="captions" chart-colours="precip_bar_colors"
+	>
+	</canvas>
+</div>
+<p align="center" class="lpks-p"> Month </p>
 <br/>
 <br/>
-<h6> <B>Temperature(°C) </B></h6>
+<p class="lpks-p"><B>Temperature(°C) </B></p>
 
-
-<canvas id="line" 
-        class="chart chart-line" 
-        chart-options="temp_line_options" 
-        chart-data="linedata" 
-        chart-labels="names" 
-        chart-legend="true" 
-        chart-series="number" 
-        chart-click="onClick">
-</canvas> 
-
-<p align='center'><b>Month</b></p>
+<div class="lpks-graph">
+	<canvas id="line" 
+	        class="chart chart-line" 
+	        chart-options="temp_line_options" 
+	        chart-data="linedata" 
+	        chart-labels="names" 
+	        chart-legend="true" 
+	        chart-series="number" 
+	        chart-click="onClick">
+	</canvas> 
+</div>
+<p align="center" class="lpks-p"> Month </p>
 <br/>
-<br/>
-<p>
+
+<p class="othercomponent">
   Latitude :  {{plots.latitude}} </p>
  
-<p >
+<p class="othercomponent">
   Longitude : {{plots.longitude}} </p>
-  <p >
+<p class="othercomponent">
   Elevation (m) : {{plots.geospatial_data.gdal_elevation}} </p>
-  <p >
+<p class="othercomponent">
   Average annual precipitation (mm) : {{plots.climate.precipitation.annual}} </p>
-  <p >
+<p class="othercomponent">
   FAO length of growing period (days/year): {{plots.geospatial_data.gdal_fao_lgp}} </p>
-  <p >
+<p class="othercomponent">
   Aridity index : {{plots.geospatial_data.gdal_aridity_index}} </p>
- 
-
-
-
-
-</div>
-          
-        
         </ion-content>
       </ion-view>

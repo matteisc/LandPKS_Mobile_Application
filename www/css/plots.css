@@ -1,0 +1,56 @@
+
+.body {
+	background-color: #EBEBEB;
+	color: #009100;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.lpks-plotname {
+	width: 95%;
+	height: auto;
+	color: black;
+	background-color: white;
+	border-collapse: collapse;
+	align: center;
+	border-radius: 10px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 25px;
+	margin-bottom: none;
+	text-align: left;
+	text-indent: 20px;
+	line-height: 30px;
+	font-size: 14px;
+	padding: 5px;
+
+}
+
+.othercomponent {
+	width: 95%;
+	height: auto;
+	color: black;
+	background-color: white;
+	border-collapse: collapse;
+	align: center;
+	border-radius: 10px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 0px;
+	text-align: left;
+	text-indent: 20px;
+	line-height: 30px;
+	font-size: 14px;
+	padding: 5px;
+
+}
+.checkmark {
+	align: right;
+	height: 25px;
+	width: 25px;
+}
+

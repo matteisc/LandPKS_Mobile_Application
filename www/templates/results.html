@@ -1,3 +1,4 @@
+<link href="css/results.css" rel="stylesheet">
 <link href="css/tab.css" rel="stylesheet"> 
  <ion-view view-title="" hide-back-button="true" align-title="center">
 
@@ -9,90 +10,92 @@
 
 
 
-<div class="tabs-striped tabs-top tabs-background-stable">
-    <div class="tabs">
-     <a class="tab-item tab_border" href="#/landinfo/review-results">
-        <img ng-src="{{review_status_img_src}}" class="title-image1" style="width:30%; height:60%"/>
-        Review
+<div class="tabs tabs-icon-left tabs-striped tabs-top tabs-background-stable tabs-color-positive">
+     <a class="tab-item" href="#/landinfo/review-results">
+        <i><img ng-src="{{review_status_img_src}}" class="title-image1" style="width:30%; height:60%"/></i>
+        <b>Review</b>
       </a>
-      <a class="tab-item tab_selected" href="#/landinfo/results">
-        <img ng-src="{{results_status_img_src}}"  class="title-image1" style="width:30%; height:60%"/>
-        Result
+      <a class="tab-item active" href="#/landinfo/results">
+        <i><img ng-src="{{results_status_img_src}}"  class="title-image1" style="width:30%; height:60%"/></i>
+        <b>Result</b>
       </a>
-      
-    </div>
-  </div>
+</div>
 
 
-        <ion-content class="padding">
+        <ion-content class="padding body">
           
  <br/>
  <p><b><h3> Results </h3></b></p>
 
- <p align='center'><b>Climate</b></p>
-  <p> <B>Precipitation(mm) </B></p>
+ <p align='center' class="lpks-climate"><b>Climate</b></p>
+  <p class="lpks-p"> <B>Precipitation(mm) </B></p>
 
-<canvas id="bar" 
-        class="chart chart-bar" 
-        chart-options="precip_bar_options" 
-        chart-data="data" 
-        chart-labels="labels" 
-        chart-caption="captions" 
-        chart-colours="precip_bar_colors"
->
-</canvas>
+<div class="lpks-graph">
+	<canvas id="bar" 
+	        class="chart chart-bar" 
+	        chart-options="precip_bar_options" 
+	        chart-data="data" 
+	        chart-labels="labels" 
+	        chart-caption="captions" 
+	        chart-colours="precip_bar_colors"
+	>
+	</canvas>
+</div>	
 
-<p align='center'> Month </p>
+<p align="center" class="lpks-p"> Month </p>
 
 
 <br/>
 
 
 
-<h6> <B>Temperature(°C) </B></h6>
-
-<canvas id="line" class="chart chart-line" chart-data="linedata" chart-labels="names" chart-legend="true" chart-series="number" chart-click="onClick" chart-options="temp_line_options"></canvas> 
-
-<p align='center'> Month </p>
-<p >
-  Latitude :  {{selectedPlot.latitude}} </p>
- 
-<p >
+<p class="lpks-p"><B>Temperature(°C) </B></p>
+<div class="lpks-graph">
+  <canvas id="line" class="chart chart-line" chart-data="linedata" chart-labels="names" chart-legend="true" chart-series="number" chart-click="onClick" chart-options="temp_line_options"></canvas> 
+</div>
+<p align="center" class="lpks-p"> Month </p>
+  <p class="othercomponent">
+   Latitude :  {{selectedPlot.latitude}} </p>
+  <p class="othercomponent">
   Longitude : {{selectedPlot.longitude}} </p>
-  <p >
+  <p class="othercomponent">
   Elevation (m) : {{selectedPlot.geospatial_data.gdal_elevation}} </p>
-  <p >
+  <p class="othercomponent">
   Average annual precipitation (mm) : {{selectedPlot.geospatial_data.gdal_gdd}} </p>
-  <p >
+  <p class="othercomponent">
   FAO length of growing period (days/year): {{selectedPlot.geospatial_data.gdal_fao_lgp}} </p>
-  <p >
+  <p class="othercomponent">
   Aridity index : {{selectedPlot.geospatial_data.gdal_aridity_index}} </p>
-  <p >
+  <p class="othercomponent">
   AWC soil profile (cm) : {{selectedPlot.analytic_data_soil.awc_soil_profile_awc}} </p>
 
+<br/>
 
-<div>
-<p>Number of plots to display: <text align="center" id="txtNumberOfAWCPlots">1</text></p>
-	<div class="range range-positive">
+<div >
+<p class="lpks-p">Number of plots to display: <text align="center" id="txtNumberOfAWCPlots">1</text></p>
+	 <div class="range range-positive lpks-graph">
 	    <i id="txtMinNumberOfAWC">1</i>
 	    <input type="range" id="numberOfAWCPlots" ng-model="numberOfAWCPlots" min="1" max="{{max_awc_plots}}" value="1" ng-change="changeNumberOfAWCPlots();"/>
 	    <i id="txtMaxNumberOfAWC"></i>
 	 </div>
 </div>
 
+<br/>
 
-<p align='center'> <B>AWC Soil Profile</B></p>
-<p > <B>Available water(cm) </B> </p>
+<p class="lpks-p" align='center'> <B>AWC Soil Profile</B></p>
+<p class="lpks-p"> <B>Available water(cm) </B> </p>
 
-<canvas id="bar" 
-        class="chart chart-bar" 
-        chart-options="awc_bar_options" 
-        chart-data="awcdata" 
-        chart-labels="names1" 
-        chart-caption="awccaptions"
-        chart-colours="awc_bar_colors""
-        >
-</canvas>
+<div class="lpks-graph">
+	<canvas id="bar" 
+	        class="chart chart-bar" 
+	        chart-options="awc_bar_options" 
+	        chart-data="awcdata" 
+	        chart-labels="names1" 
+	        chart-caption="awccaptions"
+	        chart-colours="awc_bar_colors""
+	        >
+	</canvas>
+</div>
 
 
 

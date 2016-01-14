@@ -1,4 +1,4 @@
-<link href="css/tab.css" rel="stylesheet">
+<link href="css/soillayers1.css" rel="stylesheet">
 <ion-view view-title="" hide-back-button="true" cache-view="false">
 <ion-nav-buttons
     side="left"> 
@@ -8,73 +8,67 @@
 </ion-nav-buttons>
 
 
-<div class="tabs-striped tabs-top tabs-background-stable">
-    <div class="tabs">
-      <a class="tab-item tab_border" href="#/landinfo/soillayers1">
-        0-1CM
+<div class="tabs-striped tabs tabs-top tabs-background-stable tabs-color-balanced">
+      <a class="tab-item" href="#/landinfo/soillayers1">
+        <b>0-1CM</b>
       </a>
-      <a class="tab-item tab_border" href="#/landinfo/soillayers2">
-        1-10CM
+      <a class="tab-item " href="#/landinfo/soillayers2">
+        <b>1-10CM</b>
       </a>
-      <a class="tab-item tab_border" href="#/landinfo/soillayers3">
-        10-20CM
+      <a class="tab-item" href="#/landinfo/soillayers3">
+        <b>10-20CM</b>
       </a>
-      <a class="tab-item tab_border" href="#/landinfo/soillayers4">
-        20-50CM
+      <a class="tab-item" href="#/landinfo/soillayers4">
+        <b>20-50CM</b>
       </a>
-      <a class="tab-item tab_border tab_selected" href="#/landinfo/soillayers5">
-        50-70CM
+      <a class="tab-item active" href="#/landinfo/soillayers5">
+        <b>50-70CM</b>
       </a>
-      <a class="tab-item tab_border" href="#/landinfo/soillayers6">
-        70-10CM
+      <a class="tab-item " href="#/landinfo/soillayers6">
+        <b>70-10CM</b>
       </a>
       <a class="tab-item" href="#/landinfo/soillayers7">
-        100-120CM
+        <b>100-120CM</b>
       </a>
-    </div>
 </div>
 
-<ion-content class="padding">  
+<ion-content class="padding body">  
 <br>
 <br>
 <br> 
-   <text><b><h4>50-70 cm</h4></b></text> <br>
-
-    <text><b>Rock Fragment Volume</b></text> <br>
-<div class="item" ng-click="openPopupSelectRock_fragment();">
-     <input type="label" ng-model="rock_fragement_value" value="0-15%" readonly="readonly" style="border:0px; background-color:white;"/>
-</div> 
+  <p class="lpks-p">50-70 cm</p> <br>
+<div class="othercomponent" ng-click="openPopupSelectRock_fragment();">
+	<p class="lpks-p-2">Rock Fragment Volume</p>
+	<div class="lpks-select">
+	    <input type="label" ng-model="rock_fragement_value" value="0-15%" readonly="readonly" style="border:0px; background-color:white;"/>
+	</div> 
+</div>
   
 <br>
-<br>    
-<text><b>Soil Texture</b></text> <br>
-      
-<p > <div class="list">
-    <select ng-model="texture_value" ng-change="selectTexture(texture_value)">
-      <option value="SAND">Sand</option>
-      <option value="LOAMY SAND">Loamy sand</option>
-      <option value="SANDY LOAM">Sandy loam</option>
-      <option value="SILT LOAM">Silt loam</option>
-      <option value="LOAM">Loam</option>
-	  <option value="SANDY CLAY LOAM">Sandy clay loam</option>
-	  <option value="SILTY CLAY LOAM">Silty clay loam</option>
-	  <option value="CLAY LOAM">Clay loam</option>
-	  <option value="SANDY CLAY LOAM">Sandy clay loam</option>
-	  <option value="SILTY CLAY">Silty clay</option>
-	  <option value="CLAY">Clay</option>
-    </select>
-
-    <text> <b>or</b></text>
-
-    
-<a  class="button icon"> Guide me</a>
-</p>
-</div>
-
-
-       <text><b>If Restrictive layer:</b></text><br><br><br>
-
-       <p>Bedrocl or similar at  &nbsp;&nbsp;&nbsp;&nbsp;
+ 
+<div class="othercomponent">
+	<p class="lpks-p-2"> Soil Texture </p>
+	<select ng-model="texture_value" ng-change="selectTexture(texture_value)" class="lpks-select">
+	      <option class="lpks-option" value="SAND">Sand</option>
+	      <option class="lpks-option" value="LOAMY SAND">Loamy sand</option>
+	      <option class="lpks-option" value="SANDY LOAM">Sandy loam</option>
+	      <option class="lpks-option" value="SILT LOAM">Silt loam</option>
+	      <option class="lpks-option" value="LOAM">Loam</option>
+		  <option class="lpks-option" value="SANDY CLAY LOAM">Sandy clay loam</option>
+		  <option class="lpks-option" value="SILTY CLAY LOAM">Silty clay loam</option>
+		  <option class="lpks-option" value="CLAY LOAM">Clay loam</option>
+		  <option class="lpks-option" value="SANDY CLAY LOAM">Sandy clay loam</option>
+		  <option class="lpks-option" value="SILTY CLAY">Silty clay</option>
+		  <option class="lpks-option" value="CLAY">Clay</option>
+	</select>
+	<br/>
+	<p class="lpks-or"> Or </p>
+	<button class="lpks-button">Guide me</button>	
+</div> 
+<br/>
+<div class="othercomponent">
+   <p class="lpks-p-2">If Restrictive layer:</p>
+   <p>Bedrock or similar at  &nbsp;&nbsp;&nbsp;&nbsp;
     <select>
       <option selected></option>
       <option >0</option>
@@ -89,5 +83,6 @@
       <option>1</option>
       
     </select>  cm. Soil below.</p>
+</div>
         </ion-content>
       </ion-view>

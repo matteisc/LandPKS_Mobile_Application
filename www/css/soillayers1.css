@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.body {
+	background-color: #EDEDED;
+	color: black;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.lpks-p {
+	font-weight: bold;
+	text-indent: 20px; 
+	font-size: 20px;
+}
+
+.lpks-p-2 {
+	font-weight: bold;
+	text-indent: 20px;
+	font-size: 15px;
+}
+
+
+.lpks-or {
+	font-weight: bold;
+	text-align: left;
+}
+
+.lpks-button {
+	background-color: #009100;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: white;
+	font-size: 14px;
+	border-radius: 25px;
+	box-shadow: none;
+	border: none;
+	padding: 10px;
+	text-align: center;
+	margin: auto;
+	width:120px;
+}
+
+
+.othercomponent {
+	width: 95%;
+	height: auto;
+	color: black;
+	background-color: white;
+	border-collapse: collapse;
+	align: center;
+	border-radius: 10px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 2px;
+	text-align: left;
+	text-indent: 20px;
+	line-height: 30px;
+	font-size: small;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding: 5px;
+}
+
+.lpks-option {
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.lpks-select {
+	align:left;
+}
