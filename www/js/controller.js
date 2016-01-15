@@ -3531,9 +3531,9 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
     	       for(var index = 0 ; index < data.length; index ++){
 	   				var plot = data[index];
 	   				if (isPlotInCloud(plot) == true){
-						$scope.plots[index].img_src = "img/lpks_green_checkmark.png";
+						data[index].img_src = = "img/lpks_green_checkmark.png";
 					} else {
-						$scope.plots[index].img_src = "img/lpks_empty_checkmark.png";
+						data[index].img_src = = "img/lpks_empty_checkmark.png";
 					}
    		       }
     	       
