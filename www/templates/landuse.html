@@ -10,6 +10,7 @@
     align="right" class="button button-icon ion-android-more-vertical"></a>
     </ion-nav-buttons>
     
+    <!--  
     <div class="tabs-striped tabs tabs-top tabs-background-stable tabs-color-balanced">
       <a class="tab-item" href="#/landinfo/landcover">
         <b>Land Cover</b>
@@ -21,11 +22,11 @@
         <b>Slope</b>
       </a>
     </div>
-    
+    -->
     
      
-    <ion-content class="padding"> 
-        <div class="row divider_bottom">
+    <ion-content class="padding body"> 
+        <div class="row othercomponent">
                <div class="col col-50 box">
                     <img class="content" ng-src="{{landuse_current_grazed}}" ng-click="select_LandUse_Grazed('grazed')"/>
                </div>
@@ -33,8 +34,8 @@
                     <img class="content" ng-src="{{landuse_current_not_grazed}}" ng-click="select_LandUse_Grazed('not_grazed')"/>
                </div>
          </div>
-         <br/>
-         <div class="row">
+         <hr class="horizontalbreak">
+         <div class="row othercomponent">
                <div class="col col-50 box">
                     <img class="content" ng-src="{{landuse_current_cattle}}" ng-click="select_LandUse_Grazing('cattle')"/>
                </div>
@@ -42,7 +43,7 @@
                     <img class="content" ng-src="{{landuse_current_goat}}" ng-click="select_LandUse_Grazing('goat')"/>
                </div>
          </div>
-          <div class="row">
+          <div class="row othercomponent">
                <div class="col col-50 box">
                     <img class="content" ng-src="{{landuse_current_sheep}}" ng-click="select_LandUse_Grazing('sheep')"/>
                </div>

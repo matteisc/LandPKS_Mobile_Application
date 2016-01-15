@@ -1,5 +1,6 @@
 .divider_left{
     border-left:8px solid grey;
+	border-color: #009100;
 }
 
 .ctn {
@@ -22,8 +23,53 @@
 
 .content{
     position:  absolute;
-    top: 0;
+    top: 40px;
     left: 0;
     bottom: 0;
     right: 0;
+}
+
+@charset "UTF-8";
+/* CSS Document */
+.body {
+	background-color: #EDEDED;
+}
+
+.lpks-img {
+	height: 30%;
+	width: 40%;
+	border-radius: 10px;
+	display: inline-block;
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 5px;
+}
+
+.lpks-img2 {
+	height: 55%;
+	width: 65%;
+	display: block;
+	margin-top: 5px;
+	border-radius: 10px;
+	text-align:left;
+}
+	
+
+
+
+.right{
+    float:right;
+    width:38%;
+    height:auto;
+	text-align: left;
+      
+}
+
+.left{
+    float: left;
+    width: 55%;
+    height:auto;
+  	text-align: center;
+	border-right-style: solid;
+	border-color: #009100;
 }

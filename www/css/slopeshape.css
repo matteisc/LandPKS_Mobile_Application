@@ -1,0 +1,78 @@
+.divider_left{
+    border-left:8px solid grey;
+    border-color: #009100;
+}
+
+.ctn {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle 
+}
+
+.box{
+    position: relative;
+    width: 50%;     /* desired width */
+}
+.box:before{
+    content: "";
+    display: block;
+    padding-top: 100%;  /* initial ratio of 1:1*/
+}
+
+.content{
+    position:  absolute;
+    top: 40px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+@charset "UTF-8";
+/* CSS Document */
+.body {
+	background-color: #EDEDED;
+}
+
+.lpks-img {
+	height: 45%;
+	width: 60%;
+	border-radius: 10px;
+	display: block;
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 5px;
+	background-color: white;
+}
+
+.lpks-img2 {
+	height: 75%;
+	width: 80%;
+	display: block;
+	margin-top: 5px;
+
+	border-radius: 10px;
+	background-color: white;
+}
+	
+
+
+
+.right{
+    float:right;
+    width:38%;
+    height:auto;
+	text-align: left;
+      
+}
+
+.left{
+    float: left;
+    width: 50%;
+    height:auto;
+  	text-align: center;
+	border-right-style: solid;
+	border-color: #009100;
+}
+

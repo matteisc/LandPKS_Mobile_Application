@@ -1,4 +1,4 @@
-<link href="css/landuse.css" rel="stylesheet">
+<link href="css/slope.css" rel="stylesheet">
 <ion-view view-title="" cache-view="false" hide-back-button="true"> 
 <ion-nav-buttons
     side="left"> 
@@ -8,25 +8,40 @@
 </ion-nav-buttons>
     
     
-    <ion-nav-buttons
+<ion-nav-buttons
     side="right"> <a
     align="right" class="button button-icon ion-android-more-vertical"></a>
-    </ion-nav-buttons>
+</ion-nav-buttons>
+
+<!--  
+<div class="tabs-striped tabs tabs-top tabs-background-stable tabs-color-balanced">
+      <a class="tab-item" href="#/landinfo/landuse">
+        <b>Land Use</b>
+      </a>
+      <a class="tab-item active" href="#/landinfo/slope">
+        <b>Slope</b>
+      </a>
+      <a class="tab-item" href="#/landinfo/slopeshape">
+        <b>Slope Shape</b>
+      </a>
+</div>
+-->    
     
-     
-    <ion-content class="padding" > 
-      
+<ion-content class="padding body" > 
+<br/><br/> <br/>     
 <p align="center">
-      <button  class="button icon" ng-click="slope_Meter();"
+      <button  class="lpks-button" ng-click="slope_Meter();"
 		id="btnUseSlopeMeter" >Use Slope Meter</button>
+      <input type="text" id="slopeMeterValue" value="" style="background-color: #EBEBEB;"/>
+      <b><text align="center" id="txtSlopeMeter"></text></b>
+	  
 </p>
-		<input type="text" id="slopeMeterValue" value=""/>
-        <p align="center">
-	         <b><text align="center" id="txtSlopeMeter"></text></b>
-	         <b><text align="center">OR</text></b>
-        </p>
-          <br/>
-         <div class="row">
+<br/>
+<p align="center" class="lpks-p">
+    <b><text align="center">OR</text></b>		
+</p>
+ <br/>
+         <div class="row othercomponent">
                <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_flat}}" ng-click="select_Slope_Filled('flat')"/>
                </div>
@@ -34,7 +49,7 @@
                     <img class="content" ng-src="{{slope_gentle}}" ng-click="select_Slope_Filled('gentle')"/>
                </div>
          </div>
-          <div class="row">
+          <div class="row othercomponent">
                <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_moderate}}" ng-click="select_Slope_Filled('moderate')"/>
                </div>
@@ -43,7 +58,7 @@
                </div>
          </div>
 
-          <div class="row">
+          <div class="row othercomponent">
                <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_hilly}}" ng-click="select_Slope_Filled('hilly')"/>
                </div>
@@ -52,7 +67,7 @@
                </div>
          </div>
 
-         <div class="row">
+         <div class="row othercomponent">
                <div class="col col-50 box">
                     <img class="content" ng-src="{{slope_verysteep}}" ng-click="select_Slope_Filled('verysteep')"/>
                </div>

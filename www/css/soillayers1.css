@@ -12,24 +12,20 @@
 
 
 .lpks-p {
-	font-weight: bold;
-	text-indent: 20px; 
+	font-weight: bold; 
 	font-size: 20px;
+	text-indent: 20px;
 }
 
 .lpks-p-2 {
 	font-weight: bold;
-	text-indent: 20px;
-	font-size: 15px;
-}
-
-
-.lpks-or {
-	font-weight: bold;
+	text-indent: 15px;
 	text-align: left;
 }
 
-.lpks-button {
+
+
+.button {
 	background-color: #009100;
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: white;
@@ -39,8 +35,8 @@
 	border: none;
 	padding: 10px;
 	text-align: center;
-	margin: auto;
-	width:120px;
+
+	
 }
 
 
@@ -69,6 +65,8 @@
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+
 .lpks-select {
-	align:left;
+	margin: auto;
+	display: block;
 }
