@@ -2537,8 +2537,48 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
 	var video = document.getElementById("video");
+	var streaming = false;
+	
+	/* Test thu nghiem */
+	navigator.getMedia = ( navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia);
 
+	navigator.getMedia(
+	    {
+	      video: true,
+	     audio: false
+	    },
+	    function(stream) {
+	       if (navigator.mozGetUserMedia) {
+	           video.mozSrcObject = stream;
+	       } else {
+	           var vendorURL = window.URL || window.webkitURL;
+	            video.src = vendorURL.createObjectURL(stream);
+	      }
+	      video.play();
+	    },
+	    function(err) {
+	      console.log("An error occured! " + err);
+	    }
+	);
+	
+	video.addEventListener('canplay', function(ev){
+		if (!streaming) {
+			height = video.videoHeight / (video.videoWidth/width);
+			video.setAttribute('width', width);
+			video.setAttribute('height', height);
+			canvas.setAttribute('width', width);
+			canvas.setAttribute('height', height);
+			streaming = true;
+		}
+	}, false);
+	
+	/* End test  */
+	
 	//video.webkitEnterFullScreen();
+	/*
 	var videoObj = { "video": true };
 	var errBack = function(error) {
 		console.log("Video capture error: ", error.code); 
@@ -2560,7 +2600,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 			video.play();
 		}, errBack);
 	}
-	
+	*/
 	
 	function auth() {
         var config = {
