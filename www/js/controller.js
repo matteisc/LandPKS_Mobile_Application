@@ -2527,123 +2527,119 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 /****************************************/
 /** Take_Photo_Soil_Pit_Ctrl **/
 /****************************************/
-.controller('Take_Photo_Soil_Pit_Ctrl',function($scope,$state){
-//	var email = window.localStorage.getItem('current_email');
-//	if (isEmpty(email)){
-//		$state.go('landinfo.accounts');
-//	}
-	
-	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
-	var canvas = document.getElementById("canvas");
-	var context = canvas.getContext("2d");
-	var video = document.getElementById("video");
-	var streaming = false;
-	
-	/* Test thu nghiem */
-	navigator.getMedia = ( navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia);
-
-	navigator.getMedia(
-	    {
-	      video: true,
-	     audio: false
-	    },
-	    function(stream) {
-	       if (navigator.mozGetUserMedia) {
-	           video.mozSrcObject = stream;
-	       } else {
-	           var vendorURL = window.URL || window.webkitURL;
-	            video.src = vendorURL.createObjectURL(stream);
-	      }
-	      video.play();
-	    },
-	    function(err) {
-	      console.log("An error occured! " + err);
-	    }
-	);
-	
-	video.addEventListener('canplay', function(ev){
-		if (!streaming) {
-			height = video.videoHeight / (video.videoWidth/width);
-			video.setAttribute('width', width);
-			video.setAttribute('height', height);
-			canvas.setAttribute('width', width);
-			canvas.setAttribute('height', height);
-			streaming = true;
+.controller('Take_Photo_Soil_Pit_Ctrl',function($scope,$state,$cordovaCamera){
+	if (window.cordova) {
+		alert("You are using real device. Some devices camera does not work");
+		document.getElementById("snap").addEventListener("click", function() {
+			var options = {
+		            quality : 75,
+		            destinationType : Camera.DestinationType.DATA_URL,
+		            sourceType : Camera.PictureSourceType.CAMERA,
+		            allowEdit : true,
+		            encodingType: Camera.EncodingType.JPEG,
+		            popoverOptions: CameraPopoverOptions,
+		            targetWidth: 500,
+		            targetHeight: 500,
+		            saveToPhotoAlbum: false
+		     };
+			 $cordovaCamera.getPicture(options).then(function(imageData) {
+		            console.log("Du lieu anh : " + imageData);
+		            newPlot.soil_pit_photo_data_url = dataURL;
+					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+					$state.go('landinfo.photos');
+		     }, function(error) {
+		            console.error(error);
+		     });
+		})
+     } else {
+		var typeBrowser = getTypeWebBrowser();
+		if (typeBrowser != "FIREFOX"){
+			alert("Take picture by Camera now works well for FireFox Web Browser ! You are using " + typeBrowser + ", that may not work");
 		}
-	}, false);
-	
-	/* End test  */
-	
-	//video.webkitEnterFullScreen();
-	/*
-	var videoObj = { "video": true };
-	var errBack = function(error) {
-		console.log("Video capture error: ", error.code); 
-	};
-
-	if(navigator.getUserMedia) { // Standard
-		navigator.getUserMedia(videoObj, function(stream) {
-			video.src = stream;
-			video.play();
-		}, errBack);
-	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-		navigator.webkitGetUserMedia(videoObj, function(stream){
-			video.src = window.webkitURL.createObjectURL(stream);
-			video.play();
-		}, errBack);
-	} else if(navigator.mozGetUserMedia) { // Firefox-prefixed
-		navigator.mozGetUserMedia(videoObj, function(stream){
-			video.src = window.URL.createObjectURL(stream);
-			video.play();
-		}, errBack);
-	}
-	*/
-	
-	function auth() {
-        var config = {
-          'client_id': '254673914223-tv4pvoig9ouql2puvsuigmiuabaj87u8.apps.googleusercontent.com',
-          'scope': 'https://www.googleapis.com/auth/urlshortener'
-        };
-        gapi.auth.authorize(config, function() {
-            console.log('login complete');
-            console.log(gapi.auth.getToken());
-        });
-    };
-	
-	// Trigger photo take
-	document.getElementById("snap").addEventListener("click", function() {
-		context.drawImage(video, 0, 0, 640, 480);
-		var dataURL = canvas.toDataURL('image/jpeg', 0.5);
-		
-		var imageData = dataURL;
-		/* Upload data to google drive */
+    	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+		var video = document.getElementById("video");
+		var streaming = false;
 		var access_token = "";
-		auth();
-		/*
-		$.ajax({
-	           type: 'POST',
-	           url: 'https://www.googleapis.com/upload/drive/v2/files?uploadType=media',
-	           headers: {
-	              'Authorization': 'Bearer ' + access_token,
-	              'Content-Type': 'image/jpeg',
-	              'Content-Length': imageData.length, // imageData is Base64 encoded string
-	           },
-	           data: imageData // imageData is Base64 encoded string
-	       }).done(function (result, textStatus, jqXHR) {
-	                console.log('success : ' + textStatus);
-	                console.log(JSON.stringify(result));
-	      }).fail(function (jqXHR, textStatus, errorThrown) {
-	                console.log('fail : ' + textStatus + ' desc : ' + SJON.stringify(jqXHR));
-	      });
-	     */
-		/* End */
-		newPlot.soil_pit_photo_data_url = dataURL;
-		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
-		$state.go('landinfo.photos');
-	});
+		/* Test thu nghiem */
+		navigator.getMedia = ( navigator.getUserMedia ||
+	            navigator.webkitGetUserMedia ||
+	            navigator.mozGetUserMedia ||
+	            navigator.msGetUserMedia);
+	
+		navigator.getMedia(
+		    {
+		      video: true,
+		     audio: false
+		    },
+		    function(stream) {
+		       if (navigator.mozGetUserMedia) {
+		           video.mozSrcObject = stream;
+		       } else {
+		           var vendorURL = window.URL || window.webkitURL;
+		            video.src = vendorURL.createObjectURL(stream);
+		      }
+		      video.play();
+		    },
+		    function(err) {
+		      console.log("An error occured! " + err );
+		    }
+		);
+		
+		video.addEventListener('canplay', function(ev){
+			if (!streaming) {
+				//height = video.videoHeight / (video.videoWidth/width);
+				//video.setAttribute('width', width);
+				//video.setAttribute('height', height);
+				//canvas.setAttribute('width', width);
+				//canvas.setAttribute('height', height);
+				streaming = true;
+			}
+		}, false);
+		
+		function auth() {
+	        var config = {
+	          'client_id': '254673914223-tv4pvoig9ouql2puvsuigmiuabaj87u8.apps.googleusercontent.com',
+	          'scope': 'https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/devstorage.full_control'
+	        };
+	        gapi.auth.authorize(config, function() {
+	            console.log(gapi.auth.getToken());
+	            var access_token = gapi.auth.getToken().access_token;
+	            context.drawImage(video, 0, 0, 640, 480);
+	    		var dataURL = canvas.toDataURL('image/jpeg', 0.5);
+	    		var imageData = dataURL;
+	    		console.log(imageData);
+	    		imageData = imageData.replace(/^data:.*;base64,/, "");
+	    		$.ajax({
+	 	           type: 'POST',
+	 	           url: 'https://www.googleapis.com/upload/storage/v1/b/landpks-bucket/o?uploadType=media&name=test.jpg',
+	 	           headers: {
+	 	              'Authorization': 'Bearer ' + access_token,
+	 	              'Content-Type': 'image/jpeg'
+	 	           },
+	 	           data: imageData // imageData is Base64 encoded string
+	 	        }).done(function (result, textStatus, jqXHR) {
+	 	                console.log('success : ' + textStatus);
+	 	                console.log(JSON.stringify(result));
+	 	        }).fail(function (jqXHR, textStatus, errorThrown) {
+	 	                console.log('fail : ' + textStatus + ' desc : ' + SJON.stringify(jqXHR));
+	 	        });
+	        });
+	        
+	        
+	    };
+		// Trigger photo take
+		document.getElementById("snap").addEventListener("click", function() {
+			context.drawImage(video, 0, 0, 640, 480);
+			var dataURL = canvas.toDataURL('image/jpeg', 0.5);
+			/* Upload data to google drive */
+			auth();
+			newPlot.soil_pit_photo_data_url = dataURL;
+			window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+			$state.go('landinfo.photos');
+		});
+	}	
 })
 /****************************************/
 /** Take_Photo_Soil_Sample_Ctrl **/
@@ -3925,12 +3921,9 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
     /* Test Login with Google Account */
 	$scope.googleSignIn_2 = function() {
 		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-		var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=254673914223-tv4pvoig9ouql2puvsuigmiuabaj87u8.apps.googleusercontent.com&redirect_uri=http://localhost/callback&scope=https://www.googleapis.com/auth/urlshortener&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no');
-        
-		alert("123");
-		
+		var ref = window.open('https://accounts.google.com/o/oauth2/auth?client_id=254673914223-tv4pvoig9ouql2puvsuigmiuabaj87u8.apps.googleusercontent.com&redirect_uri=http://127.0.01:8100/landinfo/plots&scope=https://www.googleapis.com/auth/urlshortener&approval_prompt=force&response_type=code&access_type=offline', '_blank', 'location=no');
+     	
 		ref.addEventListener('loadstart', function(event) {
-			alert("456");
             if((event.url).startsWith("http://localhost/callback")) {
                 requestToken = (event.url).split("code=")[1];
                 $http({method: "post", url: "https://accounts.google.com/o/oauth2/token", data: "client_id=254673914223-tv4pvoig9ouql2puvsuigmiuabaj87u8.apps.googleusercontent.com&client_secret=VIlyqfrpXMNJCx5gJREdftaz&redirect_uri=http://localhost/callback" + "&grant_type=authorization_code" + "&code=" + requestToken })

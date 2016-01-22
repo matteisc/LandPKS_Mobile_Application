@@ -1,26 +1,27 @@
+<link href="css/login.css" rel="stylesheet">
 <div>
 	<ion-view view-title="LandPKS Sign-In" hide-back-button="true" cache-view="false"> <ion-content>
 	<div class="list">
-		<label class="item item-input"> <span class="input-label">Email</span>
-			<input type="email" name="email" id="email" placeholder="email"
-			ng-model="email"> </label> <label class="item item-input"> <span
-			class="input-label">Password</span> <input type="password"
-			name="password" id="password" placeholder="password"
-			ng-model="password"> </label>
+		<label class="item item-input lpks-id"> 
+			<input type="email" name="email" id="email" placeholder="Email" ng-model="email"> 
+		</label> 
+		<label class="item item-input othercomponent"> 
+		   <input type="password" name="password" id="password" placeholder="Password" ng-model="password"> 
+		</label>
 	</div>
 	<div class="padding">
 		<button class="button button-block button-balanced"
 			ng-click="signIn(email,password)">Sign-In</button>
-		<!--  	
+			
 		<button class="button button-block button-positive"
 			ng-click="googleSignIn_1();">Sign-In With Google Method 1</button>
 		<button class="button button-block button-positive"
 			ng-click="googleSignIn_2();">Sign-In With Google Method 2</button>
 		<button class="button button-block button-positive"
 			ng-click="googleSignIn_3();">Sign-In With Google Method 3</button>
-		-->	
+			
 		<p class="text-center">
-			<a href="#/forgot-password">Forgot password</a>
+			<a class="lpks-link" href="#/forgot-password">Forgot password</a>
 		</p>
 	</div>
 	</ion-content> </ion-view>

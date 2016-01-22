@@ -1,3 +1,33 @@
+function isUsingByDevice() {
+	if (window.cordova) {
+		return true;
+	} else {
+		return false;
+	}
+};
+
+function getTypeWebBrowser() {
+	var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    var isFirefox = typeof InstallTrigger !== 'undefined'; 
+    var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+    var isChrome = !!window.chrome && !isOpera;            
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    
+    if (isFirefox == true && isChrome == false && isOpera == false && isSafari == false && isIE == false) {
+    	return "FIREFOX";
+    } else if (isFirefox == false && isChrome == true && isOpera == false && isSafari == false && isIE == false) {
+    	return "CHROME";
+    } else if (isFirefox == false && isChrome == false && isOpera == true && isSafari == false && isIE == false) {
+    	return "OPERA";
+    } else if (isFirefox == false && isChrome == false && isOpera == false && isSafari == true && isIE == false) {
+    	return "SAFARI";
+    } else if (isFirefox == false && isChrome == false && isOpera == false && isSafari == true && isIE == false) {
+    	return "IE";
+    } else {
+    	return "UNKNOWN";
+    }  
+};
+
 function checkExist(value, JSONArray){
 		var hasMatch =false;
 		for (var index = 0; index < JSONArray.length; index++) {
