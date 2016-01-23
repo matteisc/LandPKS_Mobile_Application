@@ -13,6 +13,7 @@ function getTypeWebBrowser() {
     var isChrome = !!window.chrome && !isOpera;            
     var isIE = /*@cc_on!@*/false || !!document.documentMode;
     
+    
     if (isFirefox == true && isChrome == false && isOpera == false && isSafari == false && isIE == false) {
     	return "FIREFOX";
     } else if (isFirefox == false && isChrome == true && isOpera == false && isSafari == false && isIE == false) {
@@ -24,7 +25,7 @@ function getTypeWebBrowser() {
     } else if (isFirefox == false && isChrome == false && isOpera == false && isSafari == true && isIE == false) {
     	return "IE";
     } else {
-    	return "UNKNOWN";
+    	return "DEVICE";
     }  
 };
 

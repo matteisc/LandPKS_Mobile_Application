@@ -343,22 +343,52 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
         }
       }
     })
-  .state('landinfo.take_photo_soil_pit', {
-      url: "/take_photo_soil_pit",
+  .state('landinfo.take_photo_soil_pit_browser', {
+      url: "/take_photo_soil_pit_browser",
       views: {
         'home-tab': {
-          templateUrl: "templates/take_photo_soil_pit.html",
-          controller: 'Take_Photo_Soil_Pit_Ctrl'
+          templateUrl: "templates/take_photo_soil_pit_browser.html",
+          controller: 'Take_Photo_Soil_Pit_Browser_Ctrl'
           
         }
       }
     })
-  .state('landinfo.take_photo_soil_sample', {
-      url: "/take_photo_soil_sample",
+  .state('landinfo.take_photo_soil_pit_device', {
+      url: "/take_photo_soil_pit_device",
       views: {
         'home-tab': {
-          templateUrl: "templates/take_photo_soil_sample.html",
-          controller: 'Take_Photo_Soil_Sample_Ctrl'
+          templateUrl: "templates/take_photo_soil_pit_device.html",
+          controller: 'Take_Photo_Soil_Pit_Device_Ctrl'
+          
+        }
+      }
+    }) 
+  .state('landinfo.take_photo_soil_sample_browser', {
+      url: "/take_photo_soil_sample_browser",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/take_photo_soil_sample_browser.html",
+          controller: 'Take_Photo_Soil_Sample_Browser_Ctrl'
+          
+        }
+      }
+    })
+   .state('landinfo.take_photo_soil_sample_device', {
+      url: "/take_photo_soil_sample_device",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/take_photo_soil_sample_device.html",
+          controller: 'Take_Photo_Soil_Sample_Device_Ctrl'
+          
+        }
+      }
+    })
+   .state('landinfo.take_photos_landscape', {
+      url: "/take_photos_landscape",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/take_photos_landscape.html",
+          controller: 'Take_Photo_LandScape_Ctrl'
           
         }
       }

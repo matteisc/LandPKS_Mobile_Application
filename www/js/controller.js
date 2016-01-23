@@ -47,6 +47,35 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
  */
 /****************************************/
 /****************************************/
+/** Take_Photo_LandScape_Ctrl **/
+/****************************************/
+.controller('Take_Photo_LandScape_Ctrl', function($scope, $state, $cordovaCamera) {
+	$scope.pictureURL = 'http://placehold.it/300x300';
+	
+	var options = {
+		      quality: 50,
+		      destinationType: Camera.DestinationType.DATA_URL,
+		      sourceType: Camera.PictureSourceType.CAMERA,
+		      allowEdit: false,
+		      encodingType: Camera.EncodingType.JPEG,
+		      targetWidth: 100,
+		      targetHeight: 100,
+		      popoverOptions: CameraPopoverOptions,
+		      saveToPhotoAlbum: false,
+		      correctOrientation:true
+    };
+	
+	$scope.takePicture = function() {
+		$cordovaCamera.getPicture(options)
+		.then(function(imageData){
+			$scope.pictureURL = "data:image/jpeg;base64," + imageData;
+		}, function(error) {
+			console.log("Camera error : " + angular.toJson(error));
+		});
+	};
+})
+
+/****************************************/
 /** List Account Controller **/
 /****************************************/
 .controller('ListAccountsCtrl', function($scope, $state, $http, Scopes, $ionicHistory) {
@@ -1255,13 +1284,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 /****************************************/
 /** AddPlot_LandUse_Ctrl **/
 /****************************************/
-.controller('AddPlot_LandUse_Ctrl',function($scope,$state){
-//	var email = window.localStorage.getItem('current_email');
-//	if (isEmpty(email)){
-//		$state.go('landinfo.accounts');
-//	}
-	
-	
+.controller('AddPlot_LandUse_Ctrl',function($scope,$state){	
 	function updatePlotExist(name,recorder_name,JSONArray,newPlot){
 		for (var index = 0; index < JSONArray.length; index++) {
 		    var plot = JSONArray[index];
@@ -2476,12 +2499,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 /****************************************/
 /** AddPlot_Photos_Ctrl **/
 /****************************************/
-.controller('AddPlot_Photos_Ctrl',function($scope,$state, Camera){
-//	var email = window.localStorage.getItem('current_email');
-//	if (isEmpty(email)){
-//		$state.go('landinfo.accounts');
-//	}
-	
+.controller('AddPlot_Photos_Ctrl',function($scope,$state, Camera){	
 	var recorder_name = window.localStorage.getItem('current_email');
 	var email = recorder_name;
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
@@ -2501,8 +2519,18 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	}
 	$scope.soil_sample_photo_data_url = soil_sample_photo_data_url;
 	
+	/* Control Navigator for Photos */
+	var typeBrowser = getTypeWebBrowser();
+	if (typeBrowser == "DEVICE") {
+		/* Run on device */
+		$scope.navigator_soil_pit_photo = "landinfo.take_photo_soil_pit_device";
+		$scope.navigator_soil_sample_photo = "landinfo.take_photo_soil_sample_device";
+	} else {
+		$scope.navigator_soil_pit_photo = "landinfo.take_photo_soil_pit_browser";
+		$scope.navigator_soil_sample_photo = "landinfo.take_photo_soil_sample_browser";
+	}
 	
-
+	
 	$scope.completeAddPlot_Photos = function() {
 		var soil_sample
 		
@@ -2525,36 +2553,83 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 
 })
 /****************************************/
-/** Take_Photo_Soil_Pit_Ctrl **/
+/** Take_Photo_Soil_Pit_Device_Ctrl **/
 /****************************************/
-.controller('Take_Photo_Soil_Pit_Ctrl',function($scope,$state,$cordovaCamera){
-	if (window.cordova) {
-		alert("You are using real device. Some devices camera does not work");
-		document.getElementById("snap").addEventListener("click", function() {
-			var options = {
-		            quality : 75,
-		            destinationType : Camera.DestinationType.DATA_URL,
-		            sourceType : Camera.PictureSourceType.CAMERA,
-		            allowEdit : true,
-		            encodingType: Camera.EncodingType.JPEG,
-		            popoverOptions: CameraPopoverOptions,
-		            targetWidth: 500,
-		            targetHeight: 500,
-		            saveToPhotoAlbum: false
-		     };
-			 $cordovaCamera.getPicture(options).then(function(imageData) {
-		            console.log("Du lieu anh : " + imageData);
-		            newPlot.soil_pit_photo_data_url = dataURL;
-					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
-					$state.go('landinfo.photos');
-		     }, function(error) {
-		            console.error(error);
-		     });
-		})
-     } else {
+.controller('Take_Photo_Soil_Pit_Device_Ctrl',function($scope,$state,$cordovaCamera){
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+    $scope.pictureURL = 'http://placehold.it/300x300';
+	var options = {
+		      quality: 50,
+		      destinationType: Camera.DestinationType.DATA_URL,
+		      sourceType: Camera.PictureSourceType.CAMERA,
+		      allowEdit: false,
+		      encodingType: Camera.EncodingType.JPEG,
+		      targetWidth: 100,
+		      targetHeight: 100,
+		      popoverOptions: CameraPopoverOptions,
+		      saveToPhotoAlbum: false,
+		      correctOrientation:true
+    };
+	var dataURL = "";
+	$scope.takePicture = function() {
+		$cordovaCamera.getPicture(options)
+		.then(function(imageData){
+			$scope.pictureURL = "data:image/jpeg;base64," + imageData;
+			dataURL = $scope.pictureURL;
+		}, function(error) {
+			console.log("Camera error : " + angular.toJson(error));
+		});
+	};
+	
+	$scope.saveSoilPitPicture = function() {
+		newPlot.soil_pit_photo_data_url = dataURL;
+		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+		$state.go('landinfo.photos');
+	};
+})
+/****************************************/
+/** Take_Photo_Soil_Sample_Device_Ctrl **/
+/****************************************/
+.controller('Take_Photo_Soil_Sample_Device_Ctrl',function($scope,$state,$cordovaCamera){
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+    $scope.pictureURL = 'http://placehold.it/300x300';
+	var options = {
+		      quality: 50,
+		      destinationType: Camera.DestinationType.DATA_URL,
+		      sourceType: Camera.PictureSourceType.CAMERA,
+		      allowEdit: false,
+		      encodingType: Camera.EncodingType.JPEG,
+		      targetWidth: 100,
+		      targetHeight: 100,
+		      popoverOptions: CameraPopoverOptions,
+		      saveToPhotoAlbum: false,
+		      correctOrientation:true
+    };
+	var dataURL = "";
+	$scope.takePicture = function() {
+		$cordovaCamera.getPicture(options)
+		.then(function(imageData){
+			$scope.pictureURL = "data:image/jpeg;base64," + imageData;
+			dataURL = $scope.pictureURL;
+		}, function(error) {
+			console.log("Camera error : " + angular.toJson(error));
+		});
+	};
+	
+	$scope.saveSoilSamplePicture = function() {
+		newPlot.soil_sample_photo_data_url = dataURL;
+		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+		$state.go('landinfo.photos');
+	};
+})
+/****************************************/
+/** Take_Photo_Soil_Pit_Browser_Ctrl **/
+/****************************************/
+
+.controller('Take_Photo_Soil_Pit_Browser_Ctrl',function($scope,$state){
 		var typeBrowser = getTypeWebBrowser();
 		if (typeBrowser != "FIREFOX"){
-			alert("Take picture by Camera now works well for FireFox Web Browser ! You are using " + typeBrowser + ", that may not work");
+			alert("Take picture by Camera now only works well for FireFox Web Browser ! You are using " + typeBrowser + ", that may not work");
 		}
     	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 		var canvas = document.getElementById("canvas");
@@ -2589,11 +2664,6 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		
 		video.addEventListener('canplay', function(ev){
 			if (!streaming) {
-				//height = video.videoHeight / (video.videoWidth/width);
-				//video.setAttribute('width', width);
-				//video.setAttribute('height', height);
-				//canvas.setAttribute('width', width);
-				//canvas.setAttribute('height', height);
 				streaming = true;
 			}
 		}, false);
@@ -2609,7 +2679,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	            context.drawImage(video, 0, 0, 640, 480);
 	    		var dataURL = canvas.toDataURL('image/jpeg', 0.5);
 	    		var imageData = dataURL;
-	    		console.log(imageData);
+	    		//console.log(imageData);
 	    		imageData = imageData.replace(/^data:.*;base64,/, "");
 	    		$.ajax({
 	 	           type: 'POST',
@@ -2639,17 +2709,11 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 			window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 			$state.go('landinfo.photos');
 		});
-	}	
 })
 /****************************************/
 /** Take_Photo_Soil_Sample_Ctrl **/
 /****************************************/
-.controller('Take_Photo_Soil_Sample_Ctrl',function($scope,$state){
-//	var email = window.localStorage.getItem('current_email');
-//	if (isEmpty(email)){
-//		$state.go('landinfo.accounts');
-//	}
-	
+.controller('Take_Photo_Soil_Sample_Browser_Ctrl',function($scope,$state){
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
@@ -3631,11 +3695,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 /** ListPlotsCtrl Controller **/
 /****************************************/
 .controller('ListPlotsCtrl', function($scope,$state, $http, Scopes, $ionicHistory,$ionicLoading) {
-//	var email = window.localStorage.getItem('current_email');
-//	if (isEmpty(email)){
-//		console.log("Di");
-//		$state.go("landinfo.accounts");
-//	}
+
 	
     $scope.title = 'Landinfo';
 
