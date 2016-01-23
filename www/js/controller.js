@@ -53,7 +53,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	$scope.pictureURL = 'http://placehold.it/300x300';
 	
 	var options = {
-		      quality: 50,
+		      quality: 100,
 		      destinationType: Camera.DestinationType.DATA_URL,
 		      sourceType: Camera.PictureSourceType.CAMERA,
 		      allowEdit: false,
@@ -2559,7 +2559,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
     $scope.pictureURL = 'http://placehold.it/300x300';
 	var options = {
-		      quality: 50,
+		      quality: 100,
 		      destinationType: Camera.DestinationType.DATA_URL,
 		      sourceType: Camera.PictureSourceType.CAMERA,
 		      allowEdit: false,
@@ -2594,7 +2594,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
     $scope.pictureURL = 'http://placehold.it/300x300';
 	var options = {
-		      quality: 50,
+		      quality: 100,
 		      destinationType: Camera.DestinationType.DATA_URL,
 		      sourceType: Camera.PictureSourceType.CAMERA,
 		      allowEdit: false,
