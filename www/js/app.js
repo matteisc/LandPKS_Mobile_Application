@@ -383,12 +383,57 @@ angular.module('ionicApp', ['ionic','ionicApp.controller','ngCordova'])
         }
       }
     })
-   .state('landinfo.take_photos_landscape', {
-      url: "/take_photos_landscape",
+   .state('landinfo.take_photos_landscape_browser', {
+      url: "/take_photos_landscape_browser",
+      cache: false,
       views: {
         'home-tab': {
-          templateUrl: "templates/take_photos_landscape.html",
-          controller: 'Take_Photo_LandScape_Ctrl'
+          templateUrl: "templates/take_photos_landscape_browser.html",
+          controller: 'Take_Photo_LandScape_Browser_Ctrl'
+          
+        }
+      }
+    })
+   .state('landinfo.take_photo_landscape_north_browser', {
+      url: "/take_photo_landscape_north_browser",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/take_photo_landscape_north_browser.html",
+          controller: 'Take_Photo_LandScape_North_Browser_Ctrl'
+          
+        }
+      }
+    })
+   .state('landinfo.take_photo_landscape_east_browser', {
+      url: "/take_photo_landscape_east_browser",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/take_photo_landscape_east_browser.html",
+          controller: 'Take_Photo_LandScape_East_Browser_Ctrl'
+          
+        }
+      }
+    })
+   .state('landinfo.take_photo_landscape_south_browser', {
+      url: "/take_photo_landscape_south_browser",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/take_photo_landscape_south_browser.html",
+          controller: 'Take_Photo_LandScape_South_Browser_Ctrl'
+          
+        }
+      }
+    })
+    .state('landinfo.take_photo_landscape_west_browser', {
+      url: "/take_photo_landscape_west_browser",
+      cache: false,
+      views: {
+        'home-tab': {
+          templateUrl: "templates/take_photo_landscape_west_browser.html",
+          controller: 'Take_Photo_LandScape_West_Browser_Ctrl'
           
         }
       }

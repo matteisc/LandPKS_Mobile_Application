@@ -49,7 +49,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 /****************************************/
 /** Take_Photo_LandScape_Ctrl **/
 /****************************************/
-.controller('Take_Photo_LandScape_Ctrl', function($scope, $state, $cordovaCamera) {
+.controller('Take_Photo_LandScape_Device_Ctrl', function($scope, $state, $cordovaCamera) {
 	$scope.pictureURL = 'http://placehold.it/300x300';
 	
 	var options = {
@@ -74,7 +74,310 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		});
 	};
 })
+.controller('Take_Photo_LandScape_Browser_Ctrl', function($scope, $state) {
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	$scope.landscape_north_photo_data_url = newPlot.landscape_north_photo_data_url;
+	$scope.landscape_east_photo_data_url = newPlot.landscape_east_photo_data_url;
+	$scope.landscape_south_photo_data_url = newPlot.landscape_south_photo_data_url;
+	$scope.landscape_west_photo_data_url = newPlot.landscape_west_photo_data_url;
+	$scope.goBack = function() {
+		$state.go('landinfo.photos');
+	};
+})
 
+.controller('Take_Photo_LandScape_North_Browser_Ctrl', function($scope, $state, $ionicLoading, $http) {
+	var typeBrowser = getTypeWebBrowser();
+	if (typeBrowser != "FIREFOX"){
+		alert("Take picture by Camera now only works well for FireFox Web Browser ! You are using " + typeBrowser + ", that may not work");
+	}
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	var video = document.getElementById("video");
+
+	var videoObj = { "video": true };
+	var errBack = function(error) {
+		console.log("Video capture error: ", error.code); 
+	};
+
+	if(navigator.getUserMedia) { // Standard
+		navigator.getUserMedia(videoObj, function(stream) {
+			video.src = stream;
+			video.play();
+		}, errBack);
+	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+		navigator.webkitGetUserMedia(videoObj, function(stream){
+			video.src = window.webkitURL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	} else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+		navigator.mozGetUserMedia(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+	
+	function self_upload(file_name,type){
+    	$ionicLoading.show({
+	           template: 'Uploading LandScape North photo. Please wait...'
+	    });
+    	context.drawImage(video, 0, 0, 640, 480);
+    	var dataURL = canvas.toDataURL('image/jpeg', 1);
+    	var imageData = dataURL;
+	    $http({
+			    method: 'POST',
+			    url: 'http://128.123.177.13/APEX/External_PHP_Project/LandPKS_Upload_Image/LandPKS_Upload_Image.php',
+			    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			    transformRequest: function(obj) {
+			        var str = [];
+			        for(var p in obj)
+			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+			        return str.join("&");
+			    },
+			    data: { img_data:imageData, file_name:file_name, type:type },
+	    }).success(
+				function(data, status, headers, config) {
+					$ionicLoading.hide();
+					newPlot.landscape_north_photo_data_url = imageData;
+					newPlot.landscape_north_photo_url = data.trim();
+					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+					$state.go('landinfo.take_photos_landscape_browser');
+				}).error(function(err) {
+					$ionicLoading.hide();
+			        alert(err.error,'Error in upload image');
+		});
+    };
+    
+	// Trigger photo take
+	document.getElementById("snap").addEventListener("click", function() {
+		context.drawImage(video, 0, 0, 640, 480);
+		/* Upload data to google drive */
+		//auth();
+		/* Upload data to our server */
+		var image_name = newPlot.recorder_name + "_" + newPlot.real_name + "_landscape_north.jpg"
+		self_upload(image_name,"landscape_north");
+	});
+})
+
+.controller('Take_Photo_LandScape_East_Browser_Ctrl', function($scope, $state, $ionicLoading, $http) {
+	var typeBrowser = getTypeWebBrowser();
+	if (typeBrowser != "FIREFOX"){
+		alert("Take picture by Camera now only works well for FireFox Web Browser ! You are using " + typeBrowser + ", that may not work");
+	}
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	var video = document.getElementById("video");
+
+	var videoObj = { "video": true };
+	var errBack = function(error) {
+		console.log("Video capture error: ", error.code); 
+	};
+
+	if(navigator.getUserMedia) { // Standard
+		navigator.getUserMedia(videoObj, function(stream) {
+			video.src = stream;
+			video.play();
+		}, errBack);
+	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+		navigator.webkitGetUserMedia(videoObj, function(stream){
+			video.src = window.webkitURL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	} else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+		navigator.mozGetUserMedia(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+	
+	function self_upload(file_name,type){
+    	$ionicLoading.show({
+	           template: 'Uploading LandScape East photo. Please wait...'
+	    });
+    	context.drawImage(video, 0, 0, 640, 480);
+    	var dataURL = canvas.toDataURL('image/jpeg', 1);
+    	var imageData = dataURL;
+	    $http({
+			    method: 'POST',
+			    url: 'http://128.123.177.13/APEX/External_PHP_Project/LandPKS_Upload_Image/LandPKS_Upload_Image.php',
+			    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			    transformRequest: function(obj) {
+			        var str = [];
+			        for(var p in obj)
+			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+			        return str.join("&");
+			    },
+			    data: { img_data:imageData, file_name:file_name, type:type },
+	    }).success(
+				function(data, status, headers, config) {
+					$ionicLoading.hide();
+					newPlot.landscape_east_photo_data_url = imageData;
+					newPlot.landscape_east_photo_url = data.trim();
+					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+					$state.go('landinfo.take_photos_landscape_browser');
+				}).error(function(err) {
+					$ionicLoading.hide();
+			        alert(err.error,'Error in upload image');
+		});
+    };
+    
+	// Trigger photo take
+	document.getElementById("snap").addEventListener("click", function() {
+		context.drawImage(video, 0, 0, 640, 480);
+		/* Upload data to google drive */
+		//auth();
+		/* Upload data to our server */
+		var image_name = newPlot.recorder_name + "_" + newPlot.real_name + "_landscape_east.jpg"
+		self_upload(image_name,"landscape_east");
+	});
+})
+.controller('Take_Photo_LandScape_South_Browser_Ctrl', function($scope, $state, $ionicLoading, $http) {
+	var typeBrowser = getTypeWebBrowser();
+	if (typeBrowser != "FIREFOX"){
+		alert("Take picture by Camera now only works well for FireFox Web Browser ! You are using " + typeBrowser + ", that may not work");
+	}
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	var video = document.getElementById("video");
+
+	var videoObj = { "video": true };
+	var errBack = function(error) {
+		console.log("Video capture error: ", error.code); 
+	};
+
+	if(navigator.getUserMedia) { // Standard
+		navigator.getUserMedia(videoObj, function(stream) {
+			video.src = stream;
+			video.play();
+		}, errBack);
+	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+		navigator.webkitGetUserMedia(videoObj, function(stream){
+			video.src = window.webkitURL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	} else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+		navigator.mozGetUserMedia(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+	
+	function self_upload(file_name,type){
+    	$ionicLoading.show({
+	           template: 'Uploading LandScape South photo. Please wait...'
+	    });
+    	context.drawImage(video, 0, 0, 640, 480);
+    	var dataURL = canvas.toDataURL('image/jpeg', 1);
+    	var imageData = dataURL;
+	    $http({
+			    method: 'POST',
+			    url: 'http://128.123.177.13/APEX/External_PHP_Project/LandPKS_Upload_Image/LandPKS_Upload_Image.php',
+			    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			    transformRequest: function(obj) {
+			        var str = [];
+			        for(var p in obj)
+			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+			        return str.join("&");
+			    },
+			    data: { img_data:imageData, file_name:file_name, type:type },
+	    }).success(
+				function(data, status, headers, config) {
+					$ionicLoading.hide();
+					newPlot.landscape_south_photo_data_url = imageData;
+					newPlot.landscape_south_photo_url = data.trim();
+					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+					$state.go('landinfo.take_photos_landscape_browser');
+				}).error(function(err) {
+					$ionicLoading.hide();
+			        alert(err.error,'Error in upload image');
+		});
+    };
+    
+	// Trigger photo take
+	document.getElementById("snap").addEventListener("click", function() {
+		//context.drawImage(video, 0, 0, 640, 480);
+		/* Upload data to google drive */
+		//auth();
+		/* Upload data to our server */
+		var image_name = newPlot.recorder_name + "_" + newPlot.real_name + "_landscape_south.jpg"
+		self_upload(image_name,"landscape_south");
+	});
+})
+.controller('Take_Photo_LandScape_West_Browser_Ctrl', function($scope, $state, $ionicLoading, $http) {
+	var typeBrowser = getTypeWebBrowser();
+	if (typeBrowser != "FIREFOX"){
+		alert("Take picture by Camera now only works well for FireFox Web Browser ! You are using " + typeBrowser + ", that may not work");
+	}
+	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	var video = document.getElementById("video");
+
+	var videoObj = { "video": true };
+	var errBack = function(error) {
+		console.log("Video capture error: ", error.code); 
+	};
+
+	if(navigator.getUserMedia) { // Standard
+		navigator.getUserMedia(videoObj, function(stream) {
+			video.src = stream;
+			video.play();
+		}, errBack);
+	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+		navigator.webkitGetUserMedia(videoObj, function(stream){
+			video.src = window.webkitURL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	} else if(navigator.mozGetUserMedia) { // Firefox-prefixed
+		navigator.mozGetUserMedia(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+		}, errBack);
+	}
+	
+	function self_upload(file_name,type){
+    	$ionicLoading.show({
+	           template: 'Uploading LandScape West photo. Please wait...'
+	    });
+    	context.drawImage(video, 0, 0, 640, 480);
+    	var dataURL = canvas.toDataURL('image/jpeg', 1);
+    	var imageData = dataURL;
+	    $http({
+			    method: 'POST',
+			    url: 'http://128.123.177.13/APEX/External_PHP_Project/LandPKS_Upload_Image/LandPKS_Upload_Image.php',
+			    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			    transformRequest: function(obj) {
+			        var str = [];
+			        for(var p in obj)
+			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+			        return str.join("&");
+			    },
+			    data: { img_data:imageData, file_name:file_name, type:type },
+	    }).success(
+				function(data, status, headers, config) {
+					$ionicLoading.hide();
+					newPlot.landscape_west_photo_data_url = imageData;
+					newPlot.landscape_west_photo_url = data.trim();
+					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+					$state.go('landinfo.take_photos_landscape_browser');
+				}).error(function(err) {
+					$ionicLoading.hide();
+			        alert(err.error,'Error in upload image');
+		});
+    };
+    
+	// Trigger photo take
+	document.getElementById("snap").addEventListener("click", function() {
+		//context.drawImage(video, 0, 0, 640, 480);
+		/* Upload data to google drive */
+		//auth();
+		/* Upload data to our server */
+		var image_name = newPlot.recorder_name + "_" + newPlot.real_name + "_landscape_west.jpg"
+		self_upload(image_name,"landscape_west");
+	});
+})
 /****************************************/
 /** List Account Controller **/
 /****************************************/
@@ -382,6 +685,9 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	var ListPlotsCtrl_Scope = Scopes.get('ListPlotsCtrl_Scope');
 	$scope.name = ListPlotsCtrl_Scope.selectedPlot.name;
 	$scope.selectedPlot = ListPlotsCtrl_Scope.selectedPlot;
+	
+	//console.log($scope.selectedPlot);
+	
 	var mix_name = $scope.name; 
 	var str = mix_name.length;
 	var emaillength = email.length + 1;
@@ -2499,12 +2805,12 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 /****************************************/
 /** AddPlot_Photos_Ctrl **/
 /****************************************/
-.controller('AddPlot_Photos_Ctrl',function($scope,$state, Camera){	
+.controller('AddPlot_Photos_Ctrl',function($scope,$state, $cordovaCamera){	
 	var recorder_name = window.localStorage.getItem('current_email');
 	var email = recorder_name;
 	var LIST_PLOTS = JSON.parse(window.localStorage.getItem(recorder_name + "_" + "LIST_LANDINFO_PLOTS"));
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
-	
+	console.log(newPlot);
 	$scope.plot_name = newPlot.real_name;
 	
 	var soil_pit_photo_data_url = newPlot.soil_pit_photo_data_url;
@@ -2519,15 +2825,41 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	}
 	$scope.soil_sample_photo_data_url = soil_sample_photo_data_url;
 	
+	var landscape_north_photo_data_url = newPlot.landscape_north_photo_data_url;
+	if (isEmpty(landscape_north_photo_data_url)){
+		landscape_north_photo_data_url = "";
+	}
+	$scope.landscape_north_photo_data_url = landscape_north_photo_data_url;
+	
+	var landscape_east_photo_data_url = newPlot.landscape_east_photo_data_url;
+	if (isEmpty(landscape_east_photo_data_url)){
+		landscape_east_photo_data_url = "";
+	}
+	$scope.landscape_east_photo_data_url = landscape_east_photo_data_url;
+	
+	var landscape_south_photo_data_url = newPlot.landscape_south_photo_data_url;
+	if (isEmpty(landscape_south_photo_data_url)){
+		landscape_south_photo_data_url = "";
+	}
+	$scope.landscape_south_photo_data_url = landscape_south_photo_data_url;
+	
+	var landscape_west_photo_data_url = newPlot.landscape_west_photo_data_url;
+	if (isEmpty(landscape_west_photo_data_url)){
+		landscape_west_photo_data_url = "";
+	}
+	$scope.landscape_west_photo_data_url = landscape_west_photo_data_url;
+	
 	/* Control Navigator for Photos */
 	var typeBrowser = getTypeWebBrowser();
 	if (typeBrowser == "DEVICE") {
 		/* Run on device */
 		$scope.navigator_soil_pit_photo = "landinfo.take_photo_soil_pit_device";
 		$scope.navigator_soil_sample_photo = "landinfo.take_photo_soil_sample_device";
+		$scope.navigator_landscape_photos = "landinfo.take_photos_landscape_device";
 	} else {
 		$scope.navigator_soil_pit_photo = "landinfo.take_photo_soil_pit_browser";
 		$scope.navigator_soil_sample_photo = "landinfo.take_photo_soil_sample_browser";
+		$scope.navigator_landscape_photos = "landinfo.take_photos_landscape_browser";
 	}
 	
 	
@@ -2550,12 +2882,15 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		 window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
          $state.go('landinfo.newplot');
     };
+    
+    /** Take Soil Pit Photo Picture **/
+    
 
 })
 /****************************************/
 /** Take_Photo_Soil_Pit_Device_Ctrl **/
 /****************************************/
-.controller('Take_Photo_Soil_Pit_Device_Ctrl',function($scope,$state,$cordovaCamera){
+.controller('Take_Photo_Soil_Pit_Device_Ctrl',function($scope,$state,$ionicLoading,$http,$cordovaCamera){
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
     $scope.pictureURL = 'http://placehold.it/300x300';
 	var options = {
@@ -2564,8 +2899,8 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		      sourceType: Camera.PictureSourceType.CAMERA,
 		      allowEdit: false,
 		      encodingType: Camera.EncodingType.JPEG,
-		      targetWidth: 100,
-		      targetHeight: 100,
+		      targetWidth: 640,
+		      targetHeight: 480,
 		      popoverOptions: CameraPopoverOptions,
 		      saveToPhotoAlbum: false,
 		      correctOrientation:true
@@ -2581,16 +2916,46 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		});
 	};
 	
+	function self_upload(file_name,type){
+    	$ionicLoading.show({
+	           template: 'Uploading soil pit photo. Please wait...'
+	    });
+    	
+	    $http({
+			    method: 'POST',
+			    url: 'http://128.123.177.13/APEX/External_PHP_Project/LandPKS_Upload_Image/LandPKS_Upload_Image.php',
+			    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			    transformRequest: function(obj) {
+			        var str = [];
+			        for(var p in obj)
+			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+			        return str.join("&");
+			    },
+			    data: { img_data:dataURL, file_name:file_name, type:type },
+	    }).success(
+				function(data, status, headers, config) {
+					$ionicLoading.hide();
+					newPlot.soil_pit_photo_data_url = dataURL;
+					newPlot.soil_pit_photo_url = data.trim();
+					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+					$state.go('landinfo.photos');
+				}).error(function(err) {
+					$ionicLoading.hide();
+			        alert(err.error,'Error in upload image');
+		});
+    };
+	
 	$scope.saveSoilPitPicture = function() {
-		newPlot.soil_pit_photo_data_url = dataURL;
-		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
-		$state.go('landinfo.photos');
+		var image_name = newPlot.recorder_name + "_" + newPlot.real_name + "_soil_pit.jpg"
+		self_upload(image_name,"soil_pit");
 	};
+	
+	
 })
 /****************************************/
 /** Take_Photo_Soil_Sample_Device_Ctrl **/
 /****************************************/
-.controller('Take_Photo_Soil_Sample_Device_Ctrl',function($scope,$state,$cordovaCamera){
+.controller('Take_Photo_Soil_Sample_Device_Ctrl',function($scope,$state,$ionicLoading,$http,$cordovaCamera){
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
     $scope.pictureURL = 'http://placehold.it/300x300';
 	var options = {
@@ -2599,8 +2964,8 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		      sourceType: Camera.PictureSourceType.CAMERA,
 		      allowEdit: false,
 		      encodingType: Camera.EncodingType.JPEG,
-		      targetWidth: 100,
-		      targetHeight: 100,
+		      targetWidth: 640,
+		      targetHeight: 480,
 		      popoverOptions: CameraPopoverOptions,
 		      saveToPhotoAlbum: false,
 		      correctOrientation:true
@@ -2616,22 +2981,50 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		});
 	};
 	
+	function self_upload(file_name,type){
+    	$ionicLoading.show({
+	           template: 'Uploading soil sample photo. Please wait...'
+	    });
+    	
+	    $http({
+			    method: 'POST',
+			    url: 'http://128.123.177.13/APEX/External_PHP_Project/LandPKS_Upload_Image/LandPKS_Upload_Image.php',
+			    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			    transformRequest: function(obj) {
+			        var str = [];
+			        for(var p in obj)
+			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+			        return str.join("&");
+			    },
+			    data: { img_data:dataURL, file_name:file_name, type:type },
+	    }).success(
+				function(data, status, headers, config) {
+					$ionicLoading.hide();
+					newPlot.soil_sample_photo_data_url = dataURL;
+					newPlot.soil_sample_photo_url = data.trim();
+					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+					$state.go('landinfo.photos');
+				}).error(function(err) {
+					$ionicLoading.hide();
+			        alert(err.error,'Error in upload image');
+		});
+    };
+	
 	$scope.saveSoilSamplePicture = function() {
-		newPlot.soil_sample_photo_data_url = dataURL;
-		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
-		$state.go('landinfo.photos');
+		var image_name = newPlot.recorder_name + "_" + newPlot.real_name + "_soil_sample.jpg"
+		self_upload(image_name,"soil_sample");
 	};
 })
 /****************************************/
 /** Take_Photo_Soil_Pit_Browser_Ctrl **/
 /****************************************/
-
-.controller('Take_Photo_Soil_Pit_Browser_Ctrl',function($scope,$state){
+.controller('Take_Photo_Soil_Pit_Browser_Ctrl',function($scope,$state,$http,$ionicLoading){  
 		var typeBrowser = getTypeWebBrowser();
 		if (typeBrowser != "FIREFOX"){
 			alert("Take picture by Camera now only works well for FireFox Web Browser ! You are using " + typeBrowser + ", that may not work");
 		}
     	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
+    	
 		var canvas = document.getElementById("canvas");
 		var context = canvas.getContext("2d");
 		var video = document.getElementById("video");
@@ -2668,6 +3061,8 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 			}
 		}, false);
 		
+		
+		
 		function auth() {
 	        var config = {
 	          'client_id': '254673914223-tv4pvoig9ouql2puvsuigmiuabaj87u8.apps.googleusercontent.com',
@@ -2679,41 +3074,78 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	            context.drawImage(video, 0, 0, 640, 480);
 	    		var dataURL = canvas.toDataURL('image/jpeg', 0.5);
 	    		var imageData = dataURL;
-	    		//console.log(imageData);
 	    		imageData = imageData.replace(/^data:.*;base64,/, "");
+		    	blobImageData = atob(imageData);
+	    		console.log(blobImageData);
 	    		$.ajax({
 	 	           type: 'POST',
 	 	           url: 'https://www.googleapis.com/upload/storage/v1/b/landpks-bucket/o?uploadType=media&name=test.jpg',
 	 	           headers: {
 	 	              'Authorization': 'Bearer ' + access_token,
+	 	              'Content-Lenght': imageData.length,
 	 	              'Content-Type': 'image/jpeg'
 	 	           },
-	 	           data: imageData // imageData is Base64 encoded string
+	 	           data: blobImageData
 	 	        }).done(function (result, textStatus, jqXHR) {
 	 	                console.log('success : ' + textStatus);
 	 	                console.log(JSON.stringify(result));
 	 	        }).fail(function (jqXHR, textStatus, errorThrown) {
 	 	                console.log('fail : ' + textStatus + ' desc : ' + SJON.stringify(jqXHR));
 	 	        });
-	        });
-	        
-	        
+	        });      
 	    };
+	    
+	    function self_upload(file_name,type){
+	    	$ionicLoading.show({
+		           template: 'Uploading soil pit photo. Please wait...'
+		    });
+	    	context.drawImage(video, 0, 0, 640, 480);
+	    	var dataURL = canvas.toDataURL('image/jpeg', 1);
+	    	var imageData = dataURL;
+		    $http({
+				    method: 'POST',
+				    url: 'http://128.123.177.13/APEX/External_PHP_Project/LandPKS_Upload_Image/LandPKS_Upload_Image.php',
+				    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+				    transformRequest: function(obj) {
+				        var str = [];
+				        for(var p in obj)
+				        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+				        return str.join("&");
+				    },
+				    data: { img_data:imageData, file_name:file_name, type:type },
+		    }).success(
+					function(data, status, headers, config) {
+						$ionicLoading.hide();
+						newPlot.soil_pit_photo_data_url = imageData;
+						newPlot.soil_pit_photo_url = data.trim();
+						window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+						$state.go('landinfo.photos');
+					}).error(function(err) {
+						$ionicLoading.hide();
+				        alert(err.error,'Error in upload image');
+			});
+	    };
+	    
 		// Trigger photo take
 		document.getElementById("snap").addEventListener("click", function() {
-			context.drawImage(video, 0, 0, 640, 480);
-			var dataURL = canvas.toDataURL('image/jpeg', 0.5);
+			//context.drawImage(video, 0, 0, 640, 480);
+			//var dataURL = canvas.toDataURL('image/jpeg', 0.5);
+			
 			/* Upload data to google drive */
-			auth();
-			newPlot.soil_pit_photo_data_url = dataURL;
-			window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
-			$state.go('landinfo.photos');
+			//auth();
+			/* Upload data to our server */
+			var image_name = newPlot.recorder_name + "_" + newPlot.real_name + "_soil_pit.jpg"
+			self_upload(image_name,"soil_pit");
 		});
 })
 /****************************************/
 /** Take_Photo_Soil_Sample_Ctrl **/
 /****************************************/
-.controller('Take_Photo_Soil_Sample_Browser_Ctrl',function($scope,$state){
+.controller('Take_Photo_Soil_Sample_Browser_Ctrl',function($scope,$state,$http,$ionicLoading){
+	var typeBrowser = getTypeWebBrowser();
+	if (typeBrowser != "FIREFOX"){
+		alert("Take picture by Camera now only works well for FireFox Web Browser ! You are using " + typeBrowser + ", that may not work");
+	}
 	var newPlot = JSON.parse(window.localStorage.getItem("current_edit_plot"));
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
@@ -2741,14 +3173,45 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		}, errBack);
 	}
 	
+	function self_upload(file_name,type){
+    	$ionicLoading.show({
+	           template: 'Uploading soil sample photo. Please wait...'
+	    });
+    	context.drawImage(video, 0, 0, 640, 480);
+    	var dataURL = canvas.toDataURL('image/jpeg', 1);
+    	var imageData = dataURL;
+	    $http({
+			    method: 'POST',
+			    url: 'http://128.123.177.13/APEX/External_PHP_Project/LandPKS_Upload_Image/LandPKS_Upload_Image.php',
+			    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+			    transformRequest: function(obj) {
+			        var str = [];
+			        for(var p in obj)
+			        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+			        return str.join("&");
+			    },
+			    data: { img_data:imageData, file_name:file_name, type:type },
+	    }).success(
+				function(data, status, headers, config) {
+					$ionicLoading.hide();
+					newPlot.soil_sample_photo_data_url = imageData;
+					newPlot.soil_sample_photo_url = data.trim();
+					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
+					$state.go('landinfo.photos');
+				}).error(function(err) {
+					$ionicLoading.hide();
+			        alert(err.error,'Error in upload image');
+		});
+    };
+    
 	// Trigger photo take
 	document.getElementById("snap").addEventListener("click", function() {
 		context.drawImage(video, 0, 0, 640, 480);
-		var dataURL = canvas.toDataURL('image/jpeg', 0.5);
-		newPlot.soil_sample_photo_data_url = dataURL;
-		//console.log(dataURL);
-		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
-		$state.go('landinfo.photos');
+		/* Upload data to google drive */
+		//auth();
+		/* Upload data to our server */
+		var image_name = newPlot.recorder_name + "_" + newPlot.real_name + "_soil_sample.jpg"
+		self_upload(image_name,"soil_sample");
 	});
 })
 /****************************************/
@@ -2756,10 +3219,10 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 /****************************************/
 .controller('AddPlot_Review_Ctrl',function($scope,$state,$ionicLoading,$http){
 	
-//	var email = window.localStorage.getItem('current_email');
-//	if (isEmpty(email)){
-//		$state.go('landinfo.accounts');
-//	}
+	//	var email = window.localStorage.getItem('current_email');
+	//	if (isEmpty(email)){
+	//		$state.go('landinfo.accounts');
+	//	}
 	
 	/* Get Authentication data */
 	var json_auth_data = JSON.parse(window.localStorage.getItem("current_json_auth_data"));
@@ -2809,8 +3272,8 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 				    	 texture_for_soil_horizon_6:newPlot.texture.soil_horizon_6,
 				    	 texture_for_soil_horizon_7:newPlot.texture.soil_horizon_7,
 				    	 surface_salt:newPlot.surface_salt, surface_cracking:newPlot.surface_cracking,
-				    	 soil_pit_photo_url:newPlot.soil_pit_photo_data_url,soil_samples_photo_url:newPlot.soil_sample_photo_data_url,landscape_north_photo_url:'',
-				    	 landscape_east_photo_url:'',landscape_south_photo_url:'',landscape_west_photo_url:'',notes:newPlot.notes
+				    	 soil_pit_photo_url:newPlot.soil_pit_photo_url,soil_samples_photo_url:newPlot.soil_sample_photo_url,landscape_north_photo_url:newPlot.landscape_north_photo_url,
+				    	 landscape_east_photo_url:newPlot.landscape_east_photo_url,landscape_south_photo_url:newPlot.landscape_south_photo_url,landscape_west_photo_url:newPlot.landscape_west_photo_url,notes:newPlot.notes
 				    }
 				    
 			}).success(
