@@ -165,7 +165,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.landscape_north_photo_data_url = dataURL;
+					newPlot.landscape_north_photo_data_url = data.trim();
 					newPlot.landscape_north_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.take_photos_landscape');
@@ -234,7 +234,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.landscape_north_photo_data_url = imageData;
+					newPlot.landscape_north_photo_data_url = data.trim();
 					newPlot.landscape_north_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.take_photos_landscape');
@@ -300,7 +300,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.landscape_east_photo_data_url = dataURL;
+					newPlot.landscape_east_photo_data_url = data.trim();
 					newPlot.landscape_east_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.take_photos_landscape');
@@ -370,7 +370,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.landscape_east_photo_data_url = imageData;
+					newPlot.landscape_east_photo_data_url = data.trim();
 					newPlot.landscape_east_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.take_photos_landscape');
@@ -436,7 +436,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.landscape_south_photo_data_url = dataURL;
+					newPlot.landscape_south_photo_data_url = data.trim();
 					newPlot.landscape_south_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.take_photos_landscape');
@@ -505,7 +505,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.landscape_south_photo_data_url = imageData;
+					newPlot.landscape_south_photo_data_url = data.trim();
 					newPlot.landscape_south_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.take_photos_landscape');
@@ -571,7 +571,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.landscape_west_photo_data_url = dataURL;
+					newPlot.landscape_west_photo_data_url = data.trim();
 					newPlot.landscape_west_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.take_photos_landscape');
@@ -640,7 +640,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.landscape_west_photo_data_url = imageData;
+					newPlot.landscape_west_photo_data_url = data.trim();
 					newPlot.landscape_west_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.take_photos_landscape');
@@ -3146,7 +3146,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	
 	
 	$scope.completeAddPlot_Photos = function() {
-		console.log("Vao day");
+		//console.log("Vao day");
 		if (!isEmpty(newPlot.soil_pit_photo_data_url) 
 				|| !isEmpty(newPlot.soil_sample_photo_data_url)
 				|| !isEmpty(newPlot.landscape_north_photo_data_url)
@@ -3157,7 +3157,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 			newPlot.isPhotosDoing = true;
 			newPlot.isPhotosCompleted = true;
 		}
-		console.log("Vao day 2");
+		//console.log("Vao day 2");
 		updatePlotExist(newPlot.real_name,newPlot.recorder_name,LIST_PLOTS,newPlot);
 		window.localStorage.setItem(email + "_" + "LIST_LANDINFO_PLOTS", JSON.stringify(LIST_PLOTS));
 		window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
@@ -3214,7 +3214,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.soil_pit_photo_data_url = dataURL;
+					newPlot.soil_pit_photo_data_url = data.trim();
 					newPlot.soil_pit_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.photos');
@@ -3279,7 +3279,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.soil_sample_photo_data_url = dataURL;
+					newPlot.soil_sample_photo_data_url = data.trim();
 					newPlot.soil_sample_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.photos');
@@ -3395,7 +3395,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 		    }).success(
 					function(data, status, headers, config) {
 						$ionicLoading.hide();
-						newPlot.soil_pit_photo_data_url = imageData;
+						newPlot.soil_pit_photo_data_url = data.trim();
 						newPlot.soil_pit_photo_url = data.trim();
 						window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 						$state.go('landinfo.photos');
@@ -3474,7 +3474,7 @@ angular.module('ionicApp.controller',['chart.js','ngCordova'])
 	    }).success(
 				function(data, status, headers, config) {
 					$ionicLoading.hide();
-					newPlot.soil_sample_photo_data_url = imageData;
+					newPlot.soil_sample_photo_data_url = data.trim();
 					newPlot.soil_sample_photo_url = data.trim();
 					window.localStorage.setItem("current_edit_plot",JSON.stringify(newPlot));
 					$state.go('landinfo.photos');
